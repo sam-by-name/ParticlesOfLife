@@ -1,7 +1,11 @@
 .mainTitle {
-  color: red
+  color: red;
 }
 
 body {
   background-color: black;
+}
+
+h1 {
+  color: blue;
 }
