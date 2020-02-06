@@ -1,0 +1,43 @@
+{
+  "name": "another-you",
+  "version": "0.5b",
+  "description": "The odds thrive",
+  "main": "server/index.js",
+  "repository": "https://github.com/sam-by-name/ParticlesOfLife.git",
+  "author": "sam-by-name <sam-sanders@hotmail.co.uk>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config ./webpack.config.js",
+    "dev": "nodemon server & yarn build --watch",
+    "start": "node server"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "react-router-dom": "^5.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.0.5",
+    "nodemon": "^2.0.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
