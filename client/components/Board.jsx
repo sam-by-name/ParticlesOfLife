@@ -5,27 +5,44 @@ class Board extends Component {
     super(props)
     this.state = {
       board: [],
-      boardSize: 0
+      xy: 0
     }
-    this.createBoard = this.createBoard.bind()
+    this.handleChange = this.handleChange.bind(this)
+    this.createBoard = this.createBoard.bind(this)
   }
-  createBoard(x) {
+
+  handleChange (e) {
+    const {name, value} = e.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  createBoard() {
     let arr = []
     
-    for (let i = 0; i < x; i++) {
+    for (let i = 0; i < this.state.xy; i++) {
       let temp = []
-      for (let j = 0; j < x; j++) {
+      for (let j = 0; j < this.state.xy; j++) {
         temp.push(0)
       }
       arr.push(temp)
     }
+    this.setState({board: arr})
   }
 
   render() {
     return  (
       <div className='mainTitle'>
         <h1>Hello World</h1>
-        <button onClick={() => this.createBoard()}>click me</button>
+        <input
+          type='text'
+          name='xy'
+          placeholder='100-500'
+          onChange={this.handleChange}
+          value={this.state.xy}
+        />
+        <button onClick={this.createBoard}>Lets Play</button>
       </div>
     )
   }
