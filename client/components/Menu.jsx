@@ -32,7 +32,7 @@ class Menu extends Component {
       }
       arr.push(temp)
     }
-    this.props.handleClick(arr)
+    this.props.handleClick(arr, this.state.xy)
   }
 
   render() {
