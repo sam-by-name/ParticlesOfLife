@@ -4,8 +4,26 @@
 
 body {
   background-color: black;
+  display: flex;
+  flex-direction: row;
 }
 
 h1 {
   color: blue;
+}
+
+.board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cell {
+
 }

@@ -8,13 +8,17 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      board: []
+      board: [],
+      boardShow: []
     }
     this.handleClick = this.handleClick.bind(this)
   }
 
   handleClick (arr) {
-    this.setState({board: arr})
+    this.setState({
+      board: arr,
+      boardShow: arr
+    })
   }
 
   render() {
@@ -23,7 +27,9 @@ class App extends Component {
         <Route path='/menu' render={() => 
           <Menu handleClick={this.handleClick} />}
         />
-        <Route path='/board' component={Board} />
+        <Route path='/board' render={() => 
+          <Board board={this.state.boardShow} />} 
+        />
       </Router>
     )
   }

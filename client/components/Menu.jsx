@@ -24,7 +24,11 @@ class Menu extends Component {
     for (let i = 0; i < this.state.xy; i++) {
       let temp = []
       for (let j = 0; j < this.state.xy; j++) {
-        temp.push(0)
+        temp.push({
+          alive: false,
+          color: this.alive ? 'white' : 'black',
+          key: `${i}${j}`
+        })
       }
       arr.push(temp)
     }
