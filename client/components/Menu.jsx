@@ -26,7 +26,7 @@ class Menu extends Component {
       for (let j = 0; j < this.state.xy; j++) {
         temp.push({
           alive: false,
-          color: this.alive ? 'white' : 'black',
+          color: 'black',
           key: `${i}${j}`
         })
       }

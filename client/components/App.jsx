@@ -19,23 +19,38 @@ class App extends Component {
     this.countSurrounds = this.countSurrounds.bind(this)
     this.lifeOrDeath = this.lifeOrDeath.bind(this)
     this.createSurArr = this.createSurArr.bind(this)
+    this.editFirstGen = this.editFirstGen.bind(this)
   }
 
   handleClick (arr, xy) {
+    arr = this.editFirstGen(arr)
     this.setState({
       // board: arr,
       boardShow: arr,
       xy: xy - 1 // does this need to be -1 ?
     })
-    this.lifeBegins()
+    // setTimeout(() => {
+      this.lifeBegins()
+    // }, 1000)
   }
 
   lifeBegins () {
     this.scanner()
   }
 
+  editFirstGen (arr) {
+    for (let i = 1; i < 4; i++) {
+      for (let j = 1; j < 4; j++) {
+        if (i === 1 && j === 2) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
+        else if (i === 2 && j === 3) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
+        else if (i === 3) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
+      }
+    }
+    return arr
+  }
+
   scanner () {
-    let newArr = this.state.showBoard
+    let newArr = this.state.boardShow
     let gens = 10000 // make num of generations dynamic
     for (let i = 0; i < gens; i++) {
       for (let x = 0; x < this.state.xy; x++) {
@@ -43,14 +58,14 @@ class App extends Component {
           this.countSurrounds(x, y, newArr)
         }
       }
-      setTimeout(() => {
-        this.setState({showBoard: newArr, count: i})
+      setTimeout(() => { // not sure I like this
+        this.setState({boardShow: newArr, count: i})
       }, 500)
     } 
   }
 
-  countSurrounds (x, y, newArr) { // needs a refactor & adapt to not break during fringe cases
-    let arr = this.state.showBoard // deep clone?
+  countSurrounds (x, y, newArr) { // needs a refactor
+    let arr = this.state.boardShow // deep clone?
     let surArr = this.createSurArr(x, y, arr)
     // let tLC = [arr[x][y + 1], arr[x + 1][y], arr[x + 1][y + 1]]
     // let top = [arr[x][y - 1], arr[x][y + 1], arr[x + 1][y - 1], arr[x + 1][y], arr[x + 1][y + 1]]
@@ -69,7 +84,7 @@ class App extends Component {
     this.lifeOrDeath(x, y, surrounds, arr, newArr)
   }
 
-  createSurArr (x, y, arr) {
+  createSurArr (x, y, arr) { // find a better way
     let max = this.state.xy
     if (x < 1 && y < 1) return [arr[x][y + 1], arr[x + 1][y], arr[x + 1][y + 1]] // tLC
     else if (x < 1 && y < max) {
@@ -97,9 +112,10 @@ class App extends Component {
 
   lifeOrDeath (x, y, surrounds, arr, newArr) {
     let cell = arr[x][y].alive
-    if (!cell && surrounds === 3) newArr[x][y].alive = true
-    else if (surrounds < 2 || surrounds > 3) newArr[x][y].alive = false
-    else if (cell && surrounds === (2 || 3)) newArr[x][y].alive = true
+    let newCell = newArr[x][y]
+    if (!cell && surrounds === 3) (newCell.alive = true) && (newCell.color = 'white')
+    else if (surrounds < 2 || surrounds > 3) (newCell.alive = false) && (newCell.color = 'black')
+    else if (cell && surrounds === (2 || 3)) (newCell.alive = true) && (newCell.color = 'white')
   }
 
   render() {
