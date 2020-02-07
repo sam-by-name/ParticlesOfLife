@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 
-class Menu
- extends Component {
+class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      board: [],
       xy: ''
     }
     this.handleChange = this.handleChange.bind(this)
@@ -30,7 +28,7 @@ class Menu
       }
       arr.push(temp)
     }
-    this.setState({board: arr})
+    this.props.handleClick(arr)
   }
 
   render() {

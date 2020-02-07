@@ -5,16 +5,24 @@ import Menu from './Menu'
 import Board from './Board'
 
 class App extends Component {
-  constructor (props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
-      hi: true
+      board: []
     }
+    this.handleClick = this.handleClick.bind(this)
   }
+
+  handleClick (arr) {
+    this.setState({board: arr})
+  }
+
   render() {
     return (
       <Router>
-        <Route path='/menu' component={Menu} />
+        <Route path='/menu' render={() => 
+          <Menu handleClick={this.handleClick} />}
+        />
         <Route path='/board' component={Board} />
       </Router>
     )
