@@ -60,7 +60,7 @@ class App extends Component {
       }
       setTimeout(() => { // not sure I like this
         this.setState({boardShow: newArr, count: i})
-      }, 500)
+      }, 5000)
     } 
   }
 
@@ -80,7 +80,7 @@ class App extends Component {
     //   arr[x][y - 1], arr[x][y + 1],
     //   arr[x + 1][y - 1], arr[x + 1][y], arr[x + 1][y + 1]
     // ]
-    let surrounds = surArr.reduce((acc, cur) => {if (cur.alive) acc + 1}) // does this work?
+    let surrounds = surArr.filter((s) => {return s.alive}).length // does this work?
     this.lifeOrDeath(x, y, surrounds, arr, newArr)
   }
 
@@ -100,7 +100,7 @@ class App extends Component {
     } else if (x === max && y < max) {
       return [arr[x - 1][y - 1], arr[x - 1][y], arr[x - 1][y + 1], arr[x][y - 1], arr[x][y + 1]] // btm
     } else if (x === max && y === max) {
-      return [arr[x - 1][y - 1], arr[x - 1][y], arr[x][y - 1]] // tRC
+      return [arr[x - 1][y - 1], arr[x - 1][y], arr[x][y - 1]] // bRC
     } else {
       return [ // not edge or corner 
         arr[x - 1][y - 1], arr[x - 1][y], arr[x - 1][y + 1],
