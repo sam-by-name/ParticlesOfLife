@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+
+import {updateBoard} from '../actions/updateBoard'
+import {updateXy} from '../actions/updateXy'
 
 class Menu extends Component {
   constructor(props) {
@@ -9,6 +13,7 @@ class Menu extends Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.createBoard = this.createBoard.bind(this)
+    this.editFirstGen = this.editFirstGen.bind(this)
   }
 
   handleChange (e) {
@@ -32,7 +37,19 @@ class Menu extends Component {
       }
       arr.push(temp)
     }
-    this.props.handleClick(arr, this.state.xy)
+    this.editFirstGen(arr)
+    this.props.updateXy(this.state.xy - 1)
+    this.props.updateBoard(arr)
+  }
+
+  editFirstGen (arr) {
+    for (let i = 1; i < 4; i++) {
+      for (let j = 1; j < 4; j++) {
+        if (i === 1 && j === 2) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
+        else if (i === 2 && j === 3) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
+        else if (i === 3) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
+      }
+    }
   }
 
   render() {
@@ -54,4 +71,9 @@ class Menu extends Component {
   }
 }
 
-export default Menu
+const mapDispatchToProps = {
+  updateBoard: arr => updateBoard(arr),
+  updateXy: num => updateXy(num)
+}
+
+export default connect(null, mapDispatchToProps)(Menu)
