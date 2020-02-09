@@ -2,12 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {updateBoard} from '../actions/updateBoard'
+import {updateXy} from '../actions/updateXy'
 import {deepClone} from '../../lib/deepClone'
 
 const Board = (props) => {
   return (
     <div className='board'>
-      {/* <h1>{props.count}</h1> */}
+      {/* <h1>{props.xy}</h1> */}
       {props.board.map((row) => {
         return [
           <div style={{backgroundColor: row[0].color, height: '4px', width: '4px'}}
@@ -38,7 +39,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  updateBoard: arr => updateBoard(arr)
+  updateBoard: arr => updateBoard(arr),
+  updateXy: num => updateXy(num)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
@@ -48,25 +50,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(Board)
 
 const scanner = (props) => {
   let newArr = deepClone(props.board)
-  // let gens = 10000 // make num of generations dynamic
-  // for (let i = 0; i < gens; i++) {
+  let gens = 1000 // make num of generations dynamic
+  for (let i = 0; i < gens; i++) {
+     setInterval(() => { // find another way
+      console.log(`Gen ${i}`)
     for (let x = 0; x < props.xy; x++) {
       for (let y = 0; y < props.xy; y++) {
         countSurrounds(props, x, y, props.board, newArr)
       }
     }
-    // setTimeout(() => { // find another way
-      // this.setState({count: this.state.count++})
       props.updateBoard(newArr)
-      // return newArr
-    // }, 50)
-    // if (this.state.count < 1000) this.scanner()
-  // } 
+      // props.updateXy(props.xy++)
+     }, 50)
+    // if (props.count < 1000) this.scanner()
+  } 
 }
 
-const countSurrounds = (props, x, y, arr, newArr) => { // needs a refactor
+const countSurrounds = (props, x, y, arr, newArr) => {
   let surArr = createSurArr(props, x, y, arr)
-  let surrounds = surArr.filter((s) => {return s.alive}).length // does this work?
+  let surrounds = surArr.filter((s) => {return s.alive}).length
   lifeOrDeath(x, y, surrounds, arr, newArr)
 }
 
