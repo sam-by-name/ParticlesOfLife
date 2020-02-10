@@ -1,0 +1,29 @@
+.mainTitle {
+  color: red;
+}
+
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  color: blue;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.cell {
+
+}
