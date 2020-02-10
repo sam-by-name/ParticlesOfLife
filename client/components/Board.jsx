@@ -3,12 +3,13 @@ import {connect} from 'react-redux'
 
 import {updateBoard} from '../actions/updateBoard'
 import {updateXy} from '../actions/updateXy'
+import {updateGen} from '../actions/updateGen'
 import {deepClone} from '../../lib/deepClone'
 
 const Board = (props) => {
   return (
     <div className='board'>
-      {/* <h1>{props.xy}</h1> */}
+      <h1>{props.gen}</h1>
       {props.board.map((row) => {
         return [
           <div style={{backgroundColor: row[0].color, height: '4px', width: '4px'}}
@@ -34,13 +35,14 @@ const Board = (props) => {
 const mapStateToProps = state => {
   return {
     board: state.board,
-    xy: state.xy
+    xy: state.xy,
+    gen: state.gen
   }
 }
 
 const mapDispatchToProps = {
   updateBoard: arr => updateBoard(arr),
-  updateXy: num => updateXy(num)
+  updateGen: num => updateGen(num)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
@@ -48,28 +50,48 @@ export default connect(mapStateToProps, mapDispatchToProps)(Board)
 
 
 
+// const scanner = (props) => {
+//   let newArr = deepClone(props.board)
+//   // let gens = 10 // make num of generations dynamic
+//   // for (let i = 0; i < 10; i++) {
+//     //  setInterval(() => { // find another way
+//       console.log(`Gen ${props.gen}`)
+//     for (let x = 0; x < props.xy; x++) {
+//       for (let y = 0; y < props.xy; y++) {
+//         countSurrounds(props, x, y, props.board, newArr)
+//       }
+//     }
+//       props.updateBoard(newArr)
+//       props.updateGen(i)
+//     //  }, 50)
+//     // if (props.count < 1000) this.scanner()
+//   // } 
+// }
+
 const scanner = (props) => {
-  let newArr = deepClone(props.board)
-  let gens = 1000 // make num of generations dynamic
-  for (let i = 0; i < gens; i++) {
-     setInterval(() => { // find another way
-      console.log(`Gen ${i}`)
+  let newArr = []
+  // let gens = 10 // make num of generations dynamic
+  // for (let i = 0; i < 10; i++) {
+    //  setInterval(() => { // find another way
+      // console.log(`Gen ${props.gen}`)
     for (let x = 0; x < props.xy; x++) {
+      let row = []
       for (let y = 0; y < props.xy; y++) {
-        countSurrounds(props, x, y, props.board, newArr)
+        row.push(countSurrounds(props, x, y, props.board))
       }
+      newArr.push(row)
     }
-      props.updateBoard(newArr)
-      // props.updateXy(props.xy++)
-     }, 50)
+    props.updateBoard(newArr)
+    props.updateGen(props.gen + 1)
+    //  }, 50)
     // if (props.count < 1000) this.scanner()
-  } 
+  // } 
 }
 
-const countSurrounds = (props, x, y, arr, newArr) => {
+const countSurrounds = (props, x, y, arr) => {
   let surArr = createSurArr(props, x, y, arr)
-  let surrounds = surArr.filter((s) => {return s.alive}).length
-  lifeOrDeath(x, y, surrounds, arr, newArr)
+  let surrounds = surArr.reduce((acc, cur) => acc + cur)
+  return lifeOrDeath(x, y, surrounds, arr)
 }
 
 const createSurArr = (props, x, y, arr) => { // find a better way
@@ -98,12 +120,20 @@ const createSurArr = (props, x, y, arr) => { // find a better way
   }
 }
 
-const lifeOrDeath = (x, y, surrounds, arr, newArr) => {
+const lifeOrDeath = (x, y, surrounds, arr) => {
   let cell = arr[x][y].alive
-  let newCell = newArr[x][y]
-  if (!cell && surrounds === 3) (newCell.alive = true) && (newCell.color = 'white')
-  else if (surrounds < 2 || surrounds > 3) (newCell.alive = false) && (newCell.color = 'black')
-  else if (cell && surrounds === (2 || 3)) (newCell.alive = true) && (newCell.color = 'white')
+  if (!cell && surrounds === 3) return {alive : 1, color: 'white', key: `${x}${y}`}
+  else if (surrounds < 2 || surrounds > 3) return {alive: 0, color: 'black', key: `${x}${y}`}
+  else if (cell && surrounds === (2 || 3)) return {alive: 1, color: 'white', key: `${x}${y}`}
+  else return {alive: 0, color: 'black', key: `${x}${y}`}
 }
+
+// const lifeOrDeath = (x, y, surrounds, arr, newArr) => {
+//   let cell = arr[x][y].alive
+//   let newCell = newArr[x][y]
+//   if (!cell && surrounds === 3) (newCell.alive = true) && (newCell.color = 'white')
+//   else if (surrounds < 2 || surrounds > 3) (newCell.alive = false) && (newCell.color = 'black')
+//   else if (cell && surrounds === (2 || 3)) (newCell.alive = true) && (newCell.color = 'white')
+// }
 
         

@@ -30,7 +30,7 @@ class Menu extends Component {
       let temp = []
       for (let j = 0; j < this.state.xy; j++) {
         temp.push({
-          alive: false,
+          alive: 0,
           color: 'black',
           key: `${i}${j}`
         })
@@ -38,16 +38,16 @@ class Menu extends Component {
       arr.push(temp)
     }
     this.editFirstGen(arr)
-    this.props.updateXy(this.state.xy - 1)
+    this.props.updateXy(this.state.xy)
     this.props.updateBoard(arr)
   }
 
   editFirstGen (arr) {
     for (let i = 1; i < 4; i++) {
       for (let j = 1; j < 4; j++) {
-        if (i === 1 && j === 2) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
-        else if (i === 2 && j === 3) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
-        else if (i === 3) (arr[i][j].alive = true) && (arr[i][j].color = 'white')
+        if (i === 1 && j === 2) (arr[i][j].alive = 1) && (arr[i][j].color = 'white')
+        else if (i === 2 && j === 3) (arr[i][j].alive = 1) && (arr[i][j].color = 'white')
+        else if (i === 3) (arr[i][j].alive = 1) && (arr[i][j].color = 'white')
       }
     }
   }
