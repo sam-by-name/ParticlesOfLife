@@ -2,9 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {updateBoard} from '../actions/updateBoard'
-import {updateXy} from '../actions/updateXy'
 import {updateGen} from '../actions/updateGen'
-import {deepClone} from '../../lib/deepClone'
 
 const Board = (props) => {
   return (
@@ -47,27 +45,6 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
 
-
-
-
-// const scanner = (props) => {
-//   let newArr = deepClone(props.board)
-//   // let gens = 10 // make num of generations dynamic
-//   // for (let i = 0; i < 10; i++) {
-//     //  setInterval(() => { // find another way
-//       console.log(`Gen ${props.gen}`)
-//     for (let x = 0; x < props.xy; x++) {
-//       for (let y = 0; y < props.xy; y++) {
-//         countSurrounds(props, x, y, props.board, newArr)
-//       }
-//     }
-//       props.updateBoard(newArr)
-//       props.updateGen(i)
-//     //  }, 50)
-//     // if (props.count < 1000) this.scanner()
-//   // } 
-// }
-
 const scanner = (props) => {
   let newArr = []
   // let gens = 10 // make num of generations dynamic
@@ -90,12 +67,12 @@ const scanner = (props) => {
 
 const countSurrounds = (props, x, y, arr) => {
   let surArr = createSurArr(props, x, y, arr)
-  let surrounds = surArr.reduce((acc, cur) => acc + cur)
+  let surrounds = surArr.filter(s => {return s.alive}).length
   return lifeOrDeath(x, y, surrounds, arr)
 }
 
 const createSurArr = (props, x, y, arr) => { // find a better way
-  let max = props.xy
+  let max = props.xy - 1
   if (x < 1 && y < 1) return [arr[x][y + 1], arr[x + 1][y], arr[x + 1][y + 1]] // tLC
   else if (x < 1 && y < max) {
     return [arr[x][y - 1], arr[x][y + 1], arr[x + 1][y - 1], arr[x + 1][y], arr[x + 1][y + 1]] // top
@@ -122,18 +99,12 @@ const createSurArr = (props, x, y, arr) => { // find a better way
 
 const lifeOrDeath = (x, y, surrounds, arr) => {
   let cell = arr[x][y].alive
-  if (!cell && surrounds === 3) return {alive : 1, color: 'white', key: `${x}${y}`}
-  else if (surrounds < 2 || surrounds > 3) return {alive: 0, color: 'black', key: `${x}${y}`}
-  else if (cell && surrounds === (2 || 3)) return {alive: 1, color: 'white', key: `${x}${y}`}
+  if (cell) {
+    if (surrounds < 2 || surrounds > 3) return {alive: 0, color: 'black', key: `${x}${y}`}
+    else return {alive: 1, color: 'white', key: `${x}${y}`}
+  } 
+  if (!cell && surrounds === 3) return {alive: 1, color: 'white', key: `${x}${y}`}
   else return {alive: 0, color: 'black', key: `${x}${y}`}
 }
-
-// const lifeOrDeath = (x, y, surrounds, arr, newArr) => {
-//   let cell = arr[x][y].alive
-//   let newCell = newArr[x][y]
-//   if (!cell && surrounds === 3) (newCell.alive = true) && (newCell.color = 'white')
-//   else if (surrounds < 2 || surrounds > 3) (newCell.alive = false) && (newCell.color = 'black')
-//   else if (cell && surrounds === (2 || 3)) (newCell.alive = true) && (newCell.color = 'white')
-// }
 
         
