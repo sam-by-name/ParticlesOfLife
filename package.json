@@ -2,7 +2,7 @@
   "name": "another-you",
   "version": "0.5b",
   "description": "The odds thrive",
-  "main": "server/index.js",
+  "main": "index.js",
   "repository": "https://github.com/sam-by-name/ParticlesOfLife.git",
   "author": "sam-by-name <sam-sanders@hotmail.co.uk>",
   "license": "MIT",
