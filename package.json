@@ -7,9 +7,9 @@
   "author": "sam-by-name <sam-sanders@hotmail.co.uk>",
   "license": "MIT",
   "scripts": {
+    "start": "node server",
     "build": "webpack --config ./webpack.config.js",
-    "dev": "nodemon server & yarn build --watch",
-    "start": "node server"
+    "dev": "nodemon server & yarn build --watch"
   },
   "babel": {
     "presets": [
