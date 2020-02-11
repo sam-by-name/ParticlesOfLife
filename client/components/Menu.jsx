@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import {createBoard} from '../actions/createBoard'
+import {updateBoard} from '../actions/updateBoard'
 import {updateXy} from '../actions/updateXy'
 
 class Menu extends Component {
@@ -12,7 +12,8 @@ class Menu extends Component {
       xy: ''
     }
     this.handleChange = this.handleChange.bind(this)
-    this.handleClick = this.handleClick.bind(this)
+    this.createBoard = this.createBoard.bind(this)
+    this.editFirstGen = this.editFirstGen.bind(this)
   }
 
   handleChange (e) {
@@ -22,9 +23,33 @@ class Menu extends Component {
     })
   }
 
-  handleClick () {
+  createBoard() {
+    let arr = []
+    
+    for (let i = 0; i < this.state.xy; i++) {
+      let temp = []
+      for (let j = 0; j < this.state.xy; j++) {
+        temp.push({
+          alive: 0,
+          color: 'black',
+          key: `${i}${j}`
+        })
+      }
+      arr.push(temp)
+    }
+    this.editFirstGen(arr)
     this.props.updateXy(this.state.xy)
-    this.props.createBoard(this.state.xy)
+    this.props.updateBoard(arr)
+  }
+
+  editFirstGen (arr) {
+    for (let i = 1; i < 4; i++) {
+      for (let j = 1; j < 4; j++) {
+        if (i === 1 && j === 2) (arr[i][j].alive = 1) && (arr[i][j].color = 'white')
+        else if (i === 2 && j === 3) (arr[i][j].alive = 1) && (arr[i][j].color = 'white')
+        else if (i === 3) (arr[i][j].alive = 1) && (arr[i][j].color = 'white')
+      }
+    }
   }
 
   render() {
@@ -39,7 +64,7 @@ class Menu extends Component {
           value={this.state.xy}
         />
         <Link to='/board'>
-          <button onClick={this.handleClick}>Lets Play</button>
+          <button onClick={this.createBoard}>Lets Play</button>
         </Link>
       </div>
     )
@@ -47,7 +72,7 @@ class Menu extends Component {
 }
 
 const mapDispatchToProps = {
-  createBoard: arr => createBoard(arr),
+  updateBoard: arr => updateBoard(arr),
   updateXy: num => updateXy(num)
 }
 
