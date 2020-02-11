@@ -7,7 +7,7 @@ import {updateGen} from '../actions/updateGen'
 
 class Control extends Component {
   componentDidMount() {
-    setInterval(this.props.updateBoard, 100)
+    setInterval(this.props.updateBoard, 200)
     // setInterval(this.props.updateGen, 100)
   }
 
