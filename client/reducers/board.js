@@ -1,9 +1,15 @@
+import {CREATE_BOARD} from '../actions/createBoard'
 import {UPDATE_BOARD} from '../actions/updateBoard'
+import {newBoard, createBoard} from '../../lib/newBoard'
 
 const board = (board = [], action) => {
   switch (action.type) {
+
+    case CREATE_BOARD:
+      return createBoard(action.payload)
+
     case UPDATE_BOARD:
-      return action.payload
+      return newBoard(board)
 
     default:
       return board

@@ -1,8 +1,7 @@
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 
-export const updateBoard = payload => {
+export const updateBoard = () => {
   return {
-    type: UPDATE_BOARD,
-    payload
+    type: UPDATE_BOARD
   }
 }
