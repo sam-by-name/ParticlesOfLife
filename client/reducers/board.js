@@ -2,7 +2,7 @@ import {CREATE_BOARD} from '../actions/createBoard'
 import {UPDATE_BOARD} from '../actions/updateBoard'
 import {newBoard, createBoard} from '../../lib/newBoard'
 
-const board = (board = createBoard(50), action) => {
+const board = (board = [], action) => {
   switch (action.type) {
 
     case CREATE_BOARD:

@@ -27,8 +27,7 @@ const Board = (props) => {
 
 const mapStateToProps = state => {
   return {
-    board: state.board,
-    gen: state.gen,
+    board: state.board
   }
 }
 

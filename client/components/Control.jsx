@@ -8,6 +8,7 @@ import {updateGen} from '../actions/updateGen'
 class Control extends Component {
   componentDidMount() {
     setInterval(this.props.updateBoard, 100)
+    // setInterval(this.props.updateGen, 100)
   }
 
   render() {
@@ -23,14 +24,13 @@ class Control extends Component {
 const mapStateToProps = state => {
   return {
     board: state.board,
-    xy: state.xy,
     gen: state.gen
   }
 }
 
 const mapDispatchToProps = {
-  updateBoard: arr => updateBoard(arr),
-  updateGen: num => updateGen(num)
+  updateBoard: () => updateBoard(),
+  updateGen: () => updateGen()
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Control)
