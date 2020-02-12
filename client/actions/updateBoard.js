@@ -1,21 +1,21 @@
 export const UPDATE_BOARD = 'UPDATE_BOARD'
-export const PAUSE_GEN = 'PAUSE_GEN'
-export const RANDOMIZE_GEN = 'RANDOMIZE_GEN'
+export const PAUSE_BOARD = 'PAUSE_BOARD'
+export const RANDOMIZE_BOARD = 'RANDOMIZE_BOARD'
 
 export const updateBoard = () => {
   return {
     type: UPDATE_BOARD
   }
 }
-export const pauseGen = payload => {
+export const pauseBoard = payload => {
   return {
-    type: PAUSE_GEN,
+    type: PAUSE_BOARD,
     payload
   }
 }
 
-export const randomizeGen = () => {
+export const randomizeBoard = () => {
   return {
-    type: RANDOMIZE_GEN
+    type: RANDOMIZE_BOARD
   }
 }
