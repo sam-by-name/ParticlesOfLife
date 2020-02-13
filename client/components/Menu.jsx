@@ -34,7 +34,7 @@ class Menu extends Component {
         <input
           type='text'
           name='xy'
-          placeholder='100-500'
+          placeholder='10-50'
           onChange={this.handleChange}
           value={this.state.xy}
         />
