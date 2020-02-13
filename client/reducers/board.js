@@ -1,5 +1,4 @@
-import {CREATE_BOARD} from '../actions/createBoard'
-import {UPDATE_BOARD, PAUSE_BOARD, RANDOMIZE_BOARD} from '../actions/updateBoard'
+import {UPDATE_BOARD, PAUSE_BOARD, RANDOMIZE_BOARD, CREATE_BOARD} from '../actions/updateBoard'
 import {newBoard, createBoard, randomizeBoard} from '../../lib/newBoard'
 import {CLEAR_LIFE} from '../actions/lifeActions'
 
