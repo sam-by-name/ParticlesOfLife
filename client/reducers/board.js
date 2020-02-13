@@ -1,6 +1,7 @@
 import {CREATE_BOARD} from '../actions/createBoard'
 import {UPDATE_BOARD, PAUSE_BOARD, RANDOMIZE_BOARD} from '../actions/updateBoard'
 import {newBoard, createBoard, randomizeBoard} from '../../lib/newBoard'
+import {CLEAR_LIFE} from '../actions/lifeActions'
 
 const board = (board = [], action) => {
   switch (action.type) {
@@ -16,6 +17,9 @@ const board = (board = [], action) => {
 
     case PAUSE_BOARD:
       return // !!!!!!!CONTINUE HERE!!!!!!!
+
+    case CLEAR_LIFE:
+      return createBoard()
 
     default:
       return board
