@@ -1,6 +1,6 @@
 export const START_LIFE = 'START_LIFE'
 export const STOP_LIFE = 'STOP_LIFE'
-export const CLEAR_LIFE = 'CLEAR_LIFE'
+export const CLEAR = 'CLEAR'
 
 export const startLife = (payload) => {
   return {
@@ -15,8 +15,9 @@ export const stopLife = () => {
   }
 }
 
-export const clearLife = () => {
+export const clear = (payload) => {
   return {
-    type: CLEAR_LIFE
+    type: CLEAR,
+    payload
   }
 }

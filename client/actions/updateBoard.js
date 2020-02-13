@@ -8,11 +8,6 @@ export const updateBoard = () => {
     type: UPDATE_BOARD
   }
 }
-export const pauseBoard = () => {
-  return {
-    type: PAUSE_BOARD
-  }
-}
 
 export const randomizeBoard = () => {
   return {

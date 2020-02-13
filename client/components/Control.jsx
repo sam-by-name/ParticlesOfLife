@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 
-import {updateBoard, pauseBoard, randomizeBoard} from '../actions/updateBoard'
+import {updateBoard, randomizeBoard} from '../actions/updateBoard'
 // import {updateGen} from '../actions/updateGen'
-import {startLife, stopLife, clearLife} from '../actions/lifeActions'
+import {startLife, stopLife, clear} from '../actions/lifeActions'
 
 class Control extends Component {
   componentDidMount() {
@@ -21,6 +21,12 @@ class Control extends Component {
     }
   }
 
+  clearLife = () => {
+    clearInterval(this.props.lifeState.timer)
+    this.props.stopLife()
+    this.props.clear(this.props.xy)
+  }
+
 
   render() {
     return ( 
@@ -30,6 +36,7 @@ class Control extends Component {
         <button onClick={() => this.life(false)}>Pause</button>
         <button onClick={this.props.updateBoard}>nextGen</button>
         <button onClick={this.props.randomizeBoard}>Randomize</button>
+        <button onClick={this.clearLife}>Clear</button>
       </div>
     )
   }
@@ -39,18 +46,18 @@ const mapStateToProps = state => {
   return {
     board: state.board,
     gen: state.gen,
-    lifeState: state.lifeState // 
+    lifeState: state.lifeState,
+    xy: state.xy
   }
 }
 
 const mapDispatchToProps = {
   updateBoard: () => updateBoard(),
   // updateGen: () => updateGen(),
-  pauseBoard: () => pauseBoard(),
   randomizeBoard: () => randomizeBoard(),
   startLife: (timer) => startLife(timer), //
   stopLife: () => stopLife(), //
-  clearLife: () => clearLife() // 
+  clear: (num) => clear(num) // 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Control)
