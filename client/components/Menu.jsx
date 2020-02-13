@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
-import {createBoard} from '../actions/createBoard'
+import {createBoard} from '../actions/updateBoard'
 import {updateXy} from '../actions/updateXy'
 
 class Menu extends Component {
@@ -34,7 +34,7 @@ class Menu extends Component {
         <input
           type='text'
           name='xy'
-          placeholder='100-500'
+          placeholder='10-50'
           onChange={this.handleChange}
           value={this.state.xy}
         />
