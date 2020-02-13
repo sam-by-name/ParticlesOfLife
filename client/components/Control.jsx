@@ -21,13 +21,14 @@ class Control extends Component {
     }
   }
 
+
   render() {
     return ( 
       <div> 
         <h1>{this.props.gen}</h1>
         <button onClick={() => this.life(true)}>Play</button>
         <button onClick={() => this.life(false)}>Pause</button>
-        <button onClick={this.props.nextBoard}>nextGen</button>
+        <button onClick={this.props.updateBoard}>nextGen</button>
         <button onClick={this.props.randomizeBoard}>Randomize</button>
       </div>
     )

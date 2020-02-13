@@ -8,10 +8,9 @@ export const updateBoard = () => {
     type: UPDATE_BOARD
   }
 }
-export const pauseBoard = payload => {
+export const pauseBoard = () => {
   return {
-    type: PAUSE_BOARD,
-    payload
+    type: PAUSE_BOARD
   }
 }
 
