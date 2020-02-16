@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 
 
 import {updateBoard, createBoard} from '../actions/updateBoard'
-// import {updateGen} from '../actions/updateGen'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
 
 class Control extends Component {
@@ -13,7 +12,9 @@ class Control extends Component {
 
   life = (boo) => {
     if (boo) {
-      let timer = setInterval(this.props.updateBoard, 100)
+      let timer = setInterval(() => {
+        this.props.updateBoard(this.props.board)
+      }, 100)
       this.props.startLife(timer)
     } else {
       clearInterval(this.props.lifeState.timer)
@@ -40,7 +41,7 @@ class Control extends Component {
         <h1>{this.props.gen}</h1>
         <button onClick={() => this.life(true)}>Play</button>
         <button onClick={() => this.life(false)}>Pause</button>
-        <button onClick={this.props.updateBoard}>nextGen</button>
+        <button onClick={() => this.props.updateBoard(this.props.board)}>nextGen</button>
         <button onClick={this.randomize}>Randomize</button>
         <button onClick={this.clearLife}>Clear</button>
       </div>
@@ -58,12 +59,11 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  updateBoard: () => updateBoard(),
-  // updateGen: () => updateGen(),
+  updateBoard: (arr) => updateBoard(arr),
   createBoard: (num) => createBoard(num),
-  startLife: (timer) => startLife(timer), //
-  stopLife: () => stopLife(), //
-  clear: (num) => clear(num) // 
+  startLife: (timer) => startLife(timer),
+  stopLife: () => stopLife(),
+  clear: (num) => clear(num)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Control)
