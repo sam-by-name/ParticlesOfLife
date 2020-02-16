@@ -4,6 +4,7 @@ import {HashRouter as Router, Route} from 'react-router-dom'
 import Menu from './Menu'
 import Board from './Board'
 import Control from './Control'
+import Stats from './Stats'
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Route path='/menu' component={Menu} />
       <Route path='/board' component={Board} />
       <Route path='/board' component={Control} />
+      <Route path='/board' component={Stats} />
     </Router>
   )
 }
