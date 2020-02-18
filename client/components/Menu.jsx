@@ -5,11 +5,17 @@ import {connect} from 'react-redux'
 import {createBoard} from '../actions/updateBoard'
 import {updateXy} from '../actions/updateXy'
 
+const lifeOpsTxt = [
+  "Life's normal options",
+  "Life's evolved options"
+]
+
 class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      xy: ''
+      xy: '',
+      lifeOps: 0
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -30,7 +36,7 @@ class Menu extends Component {
   render() {
     return  (
       <div className='mainTitle'>
-        <h1>Hello World</h1>
+        <h1>Particles of Life</h1>
         <input
           type='text'
           name='xy'
@@ -41,6 +47,22 @@ class Menu extends Component {
         <Link to='/board'>
           <button onClick={this.handleClick}>Lets Play</button>
         </Link>
+
+        <div>
+          <h3>Life's Options</h3>
+          <div className='lifeOps'>
+            <label>normal
+              <input type='radio' name='lifeOps' value='0' onChange={this.handleChange}/>
+            </label>
+            <label>evolve
+              <input type='radio' name='lifeOps' value='1' onChange={this.handleChange}/>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          {lifeOpsTxt[this.state.lifeOps]}
+        </div>
       </div>
     )
   }
