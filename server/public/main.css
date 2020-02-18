@@ -12,6 +12,10 @@ h1 {
   color: blue;
 }
 
+h2 {
+  color: green;
+}
+
 .board {
   display: flex;
   flex-direction: column;

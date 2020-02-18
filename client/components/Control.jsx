@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 import {updateBoard, createBoard} from '../actions/updateBoard'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
+import {createBoard as create} from '../../lib/newBoard'
 
 class Control extends Component {
   componentDidMount() {
@@ -31,14 +32,15 @@ class Control extends Component {
   randomize = () => {
     // clearInterval(this.props.lifeState.timer)
     // this.props.stopLife()
-    this.props.createBoard(this.props.xy)
+    this.props.updateBoard(create(this.props.xy, true))
+    
   }
 
 
   render() {
     return ( 
       <div> 
-        <h1>{this.props.gen}</h1>
+        {/* <h1>{this.props.gen}</h1> */}
         <button onClick={() => this.life(true)}>Play</button>
         <button onClick={() => this.life(false)}>Pause</button>
         <button onClick={() => this.props.updateBoard(this.props.board)}>nextGen</button>
@@ -52,7 +54,7 @@ class Control extends Component {
 const mapStateToProps = state => {
   return {
     board: state.board,
-    gen: state.gen,
+    // gen: state.gen,
     lifeState: state.lifeState,
     xy: state.xy
   }
