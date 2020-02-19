@@ -12,6 +12,10 @@ h1 {
   color: blue;
 }
 
+h2 {
+  color: green;
+}
+
 .board {
   display: flex;
   flex-direction: column;
@@ -26,4 +30,18 @@ h1 {
 
 .cell {
 
+}
+
+/* Life's Options Radios */
+
+.lifeOps label{
+  display:    inline-block;
+  text-align: center;
+  margin:     0 0.2em;
+
+}
+
+.lifeOps label input[type='radio']{
+  display:    block;
+  margin:     0.5em auto;
 }

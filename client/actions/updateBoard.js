@@ -1,9 +1,13 @@
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const CREATE_BOARD = 'CREATE_BOARD'
 
-export const updateBoard = () => {
+import {newBoard} from '../../lib/newBoard'
+
+export const updateBoard = (payload) => {
+  payload = newBoard(payload.board, payload.rules)
   return {
-    type: UPDATE_BOARD
+    type: UPDATE_BOARD,
+    payload
   }
 }
 
