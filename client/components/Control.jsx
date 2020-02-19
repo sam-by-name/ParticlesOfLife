@@ -37,16 +37,21 @@ class Control extends Component {
       board: create(this.props.xy, true),
       rules: this.props.rules
     }) // I do not like this, can it be refactored?
-    
   }
 
+  next = () => {
+    this.props.updateBoard({
+      board: this.props.board,
+      rules: this.props.rules
+    }) // I do not like this, can it be refactored?
+  }
 
   render() {
     return ( 
       <div> 
         <button onClick={() => this.life(true)}>Play</button>
         <button onClick={() => this.life(false)}>Pause</button>
-        <button onClick={() => this.props.updateBoard(this.props.board)}>nextGen</button>
+        <button onClick={this.next}>nextGen</button>
         <button onClick={this.randomize}>Randomize</button>
         <button onClick={this.clearLife}>Clear</button>
       </div>
