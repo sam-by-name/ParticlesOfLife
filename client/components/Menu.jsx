@@ -4,11 +4,7 @@ import {connect} from 'react-redux'
 
 import {createBoard} from '../actions/updateBoard'
 import {updateXy} from '../actions/updateXy'
-
-const lifeOpsTxt = [
-  "Life's normal options",
-  "Life's evolved options"
-]
+import {lifeOpsTxt} from '../../lib/lifeOpsTxt'
 
 class Menu extends Component {
   constructor(props) {
@@ -49,10 +45,10 @@ class Menu extends Component {
         </Link>
 
         <div>
-          <h3>Life's Options</h3>
+          <h3>Life's Options</h3>  
           <div className='lifeOps'>
-            <label>normal
-              <input type='radio' name='lifeOps' value='0' onChange={this.handleChange}/>
+            <label>normal 
+              <input type='radio' name='lifeOps' value='0' checked='checked' onChange={this.handleChange}/>
             </label>
             <label>evolve
               <input type='radio' name='lifeOps' value='1' onChange={this.handleChange}/>
@@ -61,7 +57,12 @@ class Menu extends Component {
         </div>
 
         <div>
-          {lifeOpsTxt[this.state.lifeOps]}
+          <h3>{lifeOpsTxt[this.state.lifeOps][0]}</h3>
+          <p>{lifeOpsTxt[this.state.lifeOps][1].map(line => {
+            return [
+              <p>{line}</p>
+            ]
+          })}</p>
         </div>
       </div>
     )
