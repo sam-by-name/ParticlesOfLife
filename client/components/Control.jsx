@@ -33,7 +33,10 @@ class Control extends Component {
   }
 
   randomize = () => {
-    this.props.updateBoard(create(this.props.xy, true))
+    this.props.updateBoard({
+      board: create(this.props.xy, true),
+      rules: this.props.rules
+    }) // I do not like this, can it be refactored?
     
   }
 

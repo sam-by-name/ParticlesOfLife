@@ -60,11 +60,11 @@ class Menu extends Component {
 
         <div>
           <h3>{lifeOpsTxt[this.state.lifeOps][0]}</h3>
-          <p>{lifeOpsTxt[this.state.lifeOps][1].map(line => {
+          {lifeOpsTxt[this.state.lifeOps][1].map(line => {
             return [
-              <p>{line}</p>
+              <p key={line.length}>{line}</p> // this key is not great me thinks
             ]
-          })}</p>
+          })}
         </div>
       </div>
     )
