@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 
 import {createBoard} from '../actions/updateBoard'
 import {updateXy} from '../actions/updateXy'
+import {lifeRules} from '../actions/lifeRules'
 import {lifeOpsTxt} from '../../lib/lifeOpsTxt'
 
 class Menu extends Component {
@@ -27,6 +28,7 @@ class Menu extends Component {
   handleClick () {
     this.props.updateXy(this.state.xy)
     this.props.createBoard(this.state.xy)
+    this.props.rules(this.state.lifeOps)
   }
 
   render() {
@@ -71,7 +73,8 @@ class Menu extends Component {
 
 const mapDispatchToProps = {
   createBoard: arr => createBoard(arr),
-  updateXy: num => updateXy(num)
+  updateXy: num => updateXy(num),
+  rules: num => lifeRules(num)
 }
 
 export default connect(null, mapDispatchToProps)(Menu)
