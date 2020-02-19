@@ -14,7 +14,10 @@ class Control extends Component {
   life = (boo) => {
     if (boo) {
       let timer = setInterval(() => {
-        this.props.updateBoard(this.props.board)
+        this.props.updateBoard({
+          board: this.props.board,
+          rules: this.props.rules
+        }) // I do not like this, can it be refactored?
       }, 100)
       this.props.startLife(timer)
     } else {
@@ -30,9 +33,10 @@ class Control extends Component {
   }
 
   randomize = () => {
-    // clearInterval(this.props.lifeState.timer)
-    // this.props.stopLife()
-    this.props.updateBoard(create(this.props.xy, true))
+    this.props.updateBoard({
+      board: create(this.props.xy, true),
+      rules: this.props.rules
+    }) // I do not like this, can it be refactored?
     
   }
 
@@ -40,7 +44,6 @@ class Control extends Component {
   render() {
     return ( 
       <div> 
-        {/* <h1>{this.props.gen}</h1> */}
         <button onClick={() => this.life(true)}>Play</button>
         <button onClick={() => this.life(false)}>Pause</button>
         <button onClick={() => this.props.updateBoard(this.props.board)}>nextGen</button>
@@ -53,8 +56,8 @@ class Control extends Component {
 
 const mapStateToProps = state => {
   return {
+    rules: state.rules,
     board: state.board,
-    // gen: state.gen,
     lifeState: state.lifeState,
     xy: state.xy
   }
