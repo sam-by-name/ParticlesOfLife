@@ -26,7 +26,7 @@ class Menu extends Component {
   }
 
   handleClick () {
-    this.props.updateXy(this.state.xy)
+    this.props.updateXy(this.state.xy || '50')
     this.props.createBoard(this.state.xy || '50')
     this.props.rules(this.state.lifeOps)
   }
