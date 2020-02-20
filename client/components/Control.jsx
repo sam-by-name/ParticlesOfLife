@@ -33,6 +33,7 @@ class Control extends Component {
   }
 
   randomize = () => {
+    this.props.clear(this.props.xy)
     this.props.updateBoard({
       board: create(this.props.xy, true),
       rules: this.props.rules
