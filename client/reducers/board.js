@@ -9,7 +9,7 @@ const board = (board = [], action) => {
       return createBoard(action.payload, true)
 
     case UPDATE_BOARD:
-      return action.payload
+      return action.payload.newArr
 
     case CLEAR:
       return createBoard(action.payload, false)
