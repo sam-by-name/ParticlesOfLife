@@ -20,7 +20,3 @@ const board = (board = [], action) => {
 }
 
 export default board
-
-
-// create randomize action to call create and new board
-// because randomize button just calls createBoard, which does not self update
