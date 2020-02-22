@@ -26,8 +26,8 @@ class Menu extends Component {
   }
 
   handleClick () {
-    this.props.updateXy(this.state.xy)
-    this.props.createBoard(this.state.xy)
+    this.props.updateXy(this.state.xy || '50')
+    this.props.createBoard(this.state.xy || '50')
     this.props.rules(this.state.lifeOps)
   }
 
@@ -54,6 +54,9 @@ class Menu extends Component {
             </label>
             <label>evolve
               <input type='radio' name='lifeOps' value='1' onChange={this.handleChange}/>
+            </label>
+            <label>move
+              <input type='radio' name='lifeOps' value='2' onChange={this.handleChange}/>
             </label>
           </div>
         </div>
