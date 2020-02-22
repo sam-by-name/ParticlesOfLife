@@ -9,7 +9,7 @@ const board = (board = [], action) => {
       return createBoard(action.payload, true)
 
     case UPDATE_BOARD:
-      return action.payload
+      return action.payload.newArr
 
     case CLEAR:
       return createBoard(action.payload, false)
@@ -20,7 +20,3 @@ const board = (board = [], action) => {
 }
 
 export default board
-
-
-// create randomize action to call create and new board
-// because randomize button just calls createBoard, which does not self update

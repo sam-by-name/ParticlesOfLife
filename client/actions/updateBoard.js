@@ -3,7 +3,7 @@ export const CREATE_BOARD = 'CREATE_BOARD'
 
 import {newBoard} from '../../lib/newBoard'
 
-export const updateBoard = (payload) => {
+export const updateBoard = (payload) => { // refactor
   payload = newBoard(payload.board, payload.rules)
   return {
     type: UPDATE_BOARD,
