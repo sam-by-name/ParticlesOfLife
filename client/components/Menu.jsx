@@ -2,17 +2,18 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import RuleOptions from './RuleOptions'
+
 import {createBoard} from '../actions/updateBoard'
 import {updateXy} from '../actions/updateXy'
 import {lifeRules} from '../actions/lifeRules'
-import {lifeOpsTxt} from '../../lib/lifeOpsTxt'
 
 class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
       xy: '',
-      lifeOps: 0
+      lifeOps: -1
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -50,7 +51,7 @@ class Menu extends Component {
           <h3>Life's Options</h3>  
           <div className='lifeOps'>
             <label>normal 
-              <input type='radio' name='lifeOps' value='0' checked='checked' onChange={this.handleChange}/>
+              <input type='radio' name='lifeOps' value='0' onChange={this.handleChange}/>
             </label>
             <label>evolve
               <input type='radio' name='lifeOps' value='1' onChange={this.handleChange}/>
@@ -60,15 +61,7 @@ class Menu extends Component {
             </label>
           </div>
         </div>
-
-        <div>
-          <h3>{lifeOpsTxt[this.state.lifeOps][0]}</h3>
-          {lifeOpsTxt[this.state.lifeOps][1].map(line => {
-            return [
-              <p key={line.length}>{line}</p> // this key is not great me thinks
-            ]
-          })}
-        </div>
+        <RuleOptions lifeOps={this.state.lifeOps} />
       </div>
     )
   }
