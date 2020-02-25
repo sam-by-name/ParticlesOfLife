@@ -34,34 +34,30 @@ class Menu extends Component {
 
   render() {
     return  (
-      <div className='mainTitle'>
-        <h1>Particles of Life</h1>
+      <div className='menuCont' >
+        <h1 className='menuTitle' >Particles of Life</h1>
+        <div className='menuDiv' >
         <input
+          className='menuInput'
           type='text'
           name='xy'
           placeholder='10-50'
           onChange={this.handleChange}
           value={this.state.xy}
         />
+        <RuleOptions
+          lifeOps={this.state.lifeOps}
+          handleChange={this.handleChange}
+        />
+          
+        </div>
         <Link to='/board'>
-          <button onClick={this.handleClick}>Lets Play</button>
+          <button className='menuBtn'
+           onClick={this.handleClick}>
+            Lets Play
+          </button>
         </Link>
 
-        <div>
-          <h3>Life's Options</h3>  
-          <div className='lifeOps'>
-            <label>normal 
-              <input type='radio' name='lifeOps' value='0' onChange={this.handleChange}/>
-            </label>
-            <label>evolve
-              <input type='radio' name='lifeOps' value='1' onChange={this.handleChange}/>
-            </label>
-            <label>move
-              <input type='radio' name='lifeOps' value='2' onChange={this.handleChange}/>
-            </label>
-          </div>
-        </div>
-        <RuleOptions lifeOps={this.state.lifeOps} />
       </div>
     )
   }
