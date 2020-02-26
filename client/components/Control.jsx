@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-
 import {updateBoard, createBoard} from '../actions/updateBoard'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
 import {createBoard as create} from '../../lib/newBoard'

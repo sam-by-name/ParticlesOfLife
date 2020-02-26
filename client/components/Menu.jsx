@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
@@ -15,10 +15,20 @@ class Menu extends Component {
     super(props)
     this.state = {
       xy: '',
-      lifeOps: -1
+      lifeOps: -1,
+      title: 15,
+      xyChosen: false,
+      ready: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentDidMount() {
+    this.showTitle()
+  }
+
+  showTitle () {
   }
 
   handleChange (e) {
@@ -38,24 +48,29 @@ class Menu extends Component {
     return  (
       <div className='menuCont' >
         <div className='menuDiv' >
-          <div className='ruleDiv'>
-            <Title />
-            <LifeSize
-              handleChange={this.handleChange}
-              xy={this.state.xy}
-            />
-            <RuleOptions
-              lifeOps={this.state.lifeOps}
-              handleChange={this.handleChange}
-              xy={this.state.xy}
-            />
-            <Link to='/board'>
-              <button className='menuBtn'
-                onClick={this.handleClick}>
-                  Lets Play
-              </button>
-            </Link>
-          </div>
+            {this.state.title > 0 
+            ? <Title />
+            : <LifeSize
+                handleChange={this.handleChange}
+                xy={this.state.xy}
+              />
+            }
+            {this.state.xyChosen ? 
+              <RuleOptions
+                lifeOps={this.state.lifeOps}
+                handleChange={this.handleChange}
+                xy={this.state.xy}
+              /> 
+            : <Fragment></Fragment>
+            }
+            {this.state.ready ? 
+              <Link to='/board'>
+                <button className='menuBtn'
+                  onClick={this.handleClick}>
+                    Lets Play
+                </button>
+              </Link>
+            : <Fragment></Fragment>}
         </div>
       </div>
     )

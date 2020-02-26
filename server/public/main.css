@@ -8,22 +8,22 @@ body {
 .menuCont {
   color: red;
   margin: 0 auto;
-  display: table;
+  display: flex;
   height: 100vh;
-  /* width: 100%; */
-  /* flex-direction: column;
-  vertical-align: middle; */
+  width: 100vw;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .menuDiv {
-  height: 50vh;
-  /* width: 100vw; */
+  margin: auto;
+  border: 1px solid red;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .menuTitle {
   color: blue;
-  text-align: center;
-  margin: 5vh 0
 }
 
 .menuInput {
@@ -43,13 +43,6 @@ body {
 }
 
 /* Life's Options Radios */
-
-.ruleDiv {
-  margin: 0 auto;
-  border: 1px solid red;
-  text-align: center;
-  vertical-align: middle;
-}
 
 .ruleInfo {
   margin:  auto;
