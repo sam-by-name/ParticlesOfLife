@@ -5,18 +5,7 @@ import {lifeOpsTxt} from '../../lib/lifeOpsTxt'
 const RuleOptions = (props) => {
 
   return (
-    <div className='ruleDiv'>
-      <h3>Life's Parameters</h3>  
-
-      <input
-        className='menuInput'
-        type='text'
-        name='xy'
-        placeholder='10-50'
-        onChange={props.handleChange}
-        value={props.xy}
-      />
-
+    <Fragment>
       <div className='lifeOps'>
         <label>normal 
           <input type='radio' name='lifeOps' value='0' onChange={props.handleChange}/>
@@ -39,7 +28,7 @@ const RuleOptions = (props) => {
             })}       
         </div>
       : <h3>Please select a rule set</h3>}
-    </div>
+    </Fragment>
   )
 }
 

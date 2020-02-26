@@ -27,7 +27,7 @@ body {
 }
 
 .menuInput {
-  margin: 4vh auto 4vh auto;
+  margin: 6vh auto;
   width: 5vw;
   text-align: center;
   flex-direction: column;

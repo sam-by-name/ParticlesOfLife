@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
+import Title from './Title'
+import LifeSize from './LifeSize'
 import RuleOptions from './RuleOptions'
 
 import {createBoard} from '../actions/updateBoard'
@@ -35,20 +37,26 @@ class Menu extends Component {
   render() {
     return  (
       <div className='menuCont' >
-        <h1 className='menuTitle' >Particles of Life</h1>
         <div className='menuDiv' >
-          <RuleOptions
-            lifeOps={this.state.lifeOps}
-            handleChange={this.handleChange}
-            xy={this.state.xy}
-          />
+          <div className='ruleDiv'>
+            <Title />
+            <LifeSize
+              handleChange={this.handleChange}
+              xy={this.state.xy}
+            />
+            <RuleOptions
+              lifeOps={this.state.lifeOps}
+              handleChange={this.handleChange}
+              xy={this.state.xy}
+            />
+            <Link to='/board'>
+              <button className='menuBtn'
+                onClick={this.handleClick}>
+                  Lets Play
+              </button>
+            </Link>
+          </div>
         </div>
-        <Link to='/board'>
-          <button className='menuBtn'
-           onClick={this.handleClick}>
-            Lets Play
-          </button>
-        </Link>
       </div>
     )
   }
