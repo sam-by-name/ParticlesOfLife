@@ -28,20 +28,30 @@ class Menu extends Component {
     this.showTitle()
   }
 
-  showTitle () {
+  showTitle = () => {
+    setTimeout(() => {
+      this.setState({title: 0})
+    }, 15000)    
   }
 
-  handleChange (e) {
+  handleChange = (e) => {
     const {name, value} = e.target
     this.setState({
       [name]: value
     })
   }
 
-  handleClick () {
+  handleClick = () => {
     this.props.updateXy(this.state.xy || '50')
     this.props.createBoard(this.state.xy || '50')
     this.props.rules(this.state.lifeOps)
+  }
+
+  lifeSize = () => {
+    this.setState({
+      title: -1,
+      xyChosen: true
+    })
   }
 
   render() {
@@ -50,10 +60,14 @@ class Menu extends Component {
         <div className='menuDiv' >
             {this.state.title > 0 
             ? <Title />
-            : <LifeSize
+            : <Fragment></Fragment>}
+            {this.state.title === 0 
+            ? <LifeSize
                 handleChange={this.handleChange}
                 xy={this.state.xy}
+                lifeSize={this.lifeSize}
               />
+            : <Fragment></Fragment>
             }
             {this.state.xyChosen ? 
               <RuleOptions

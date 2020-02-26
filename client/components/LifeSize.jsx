@@ -14,7 +14,7 @@ const LifeSize = (props) => {
         onChange={props.handleChange}
         value={props.xy}
       />
-
+      <button onClick={props.lifeSize}>As you wish</button>
     </Fragment>
   )
 }

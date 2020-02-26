@@ -6,6 +6,7 @@ const RuleOptions = (props) => {
 
   return (
     <Fragment>
+      <h2>Life needs some rules</h2>
       <div className='lifeOps'>
         <label>normal 
           <input type='radio' name='lifeOps' value='0' onChange={props.handleChange}/>
