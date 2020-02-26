@@ -1,8 +1,8 @@
 body {
   margin: 0;
   background-color: black;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 .menuCont {
@@ -17,22 +17,27 @@ body {
 
 .menuDiv {
   height: 50vh;
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 .menuTitle {
   color: blue;
   text-align: center;
+  margin: 5vh 0
 }
 
 .menuInput {
-  margin: 10% auto 0 auto;
+  margin: 4vh auto 4vh auto;
+  width: 5vw;
+  text-align: center;
   flex-direction: column;
   display: flex;
+  background-color: black;
+  color: white;
 }
 
 .menuBtn {
-  margin: 10% auto;
+  margin: 10vh auto;
   flex-direction: column;
   display: flex;
 }

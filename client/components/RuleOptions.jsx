@@ -6,7 +6,16 @@ const RuleOptions = (props) => {
 
   return (
     <div className='ruleDiv'>
-      <h3>Life's Options</h3>  
+      <h3>Life's Parameters</h3>  
+
+      <input
+        className='menuInput'
+        type='text'
+        name='xy'
+        placeholder='10-50'
+        onChange={props.handleChange}
+        value={props.xy}
+      />
 
       <div className='lifeOps'>
         <label>normal 

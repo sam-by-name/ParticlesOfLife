@@ -37,19 +37,11 @@ class Menu extends Component {
       <div className='menuCont' >
         <h1 className='menuTitle' >Particles of Life</h1>
         <div className='menuDiv' >
-        <input
-          className='menuInput'
-          type='text'
-          name='xy'
-          placeholder='10-50'
-          onChange={this.handleChange}
-          value={this.state.xy}
-        />
-        <RuleOptions
-          lifeOps={this.state.lifeOps}
-          handleChange={this.handleChange}
-        />
-          
+          <RuleOptions
+            lifeOps={this.state.lifeOps}
+            handleChange={this.handleChange}
+            xy={this.state.xy}
+          />
         </div>
         <Link to='/board'>
           <button className='menuBtn'
@@ -57,7 +49,6 @@ class Menu extends Component {
             Lets Play
           </button>
         </Link>
-
       </div>
     )
   }
