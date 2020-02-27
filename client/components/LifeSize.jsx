@@ -28,7 +28,13 @@ class LifeSize extends Component{
   render() {
     return (
       <Fragment>
-        <h3>{this.state.temp.length ? this.state.title + '_' : this.state.title}</h3>  
+        <h3>
+          {this.state.temp.length
+            ? this.state.title.length % 2 === 0 
+              ? this.state.title + '|' 
+              : this.state.title
+            : this.state.title}
+        </h3>  
   
         <input
           className='menuInput'
