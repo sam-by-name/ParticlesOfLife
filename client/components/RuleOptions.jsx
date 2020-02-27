@@ -5,7 +5,7 @@ import {lifeOpsTxt} from '../../lib/lifeOpsTxt'
 const RuleOptions = (props) => {
 
   return (
-    <Fragment>
+    <div className='ruleDiv' >
       <h2>Life needs some rules</h2>
       <div className='lifeOps'>
         <label>normal 
@@ -29,7 +29,7 @@ const RuleOptions = (props) => {
             })}       
         </div>
       : <h3>Please select a rule set</h3>}
-    </Fragment>
+    </div>
   )
 }
 

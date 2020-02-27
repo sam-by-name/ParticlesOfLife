@@ -17,13 +17,15 @@ body {
 
 .menuDiv {
   margin: auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   text-align: center;
-  vertical-align: middle;
+
+  /* vertical-align: middle; */
 }
 
 .menuTitle {
   color: blue;
+  align-content: center;
 }
 
 .menuInput {
@@ -44,9 +46,13 @@ body {
 
 /* Life's Options Radios */
 
+.ruleDiv {
+  height: 20vh;
+}
+
 .ruleInfo {
   margin:  auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .lifeOps label {

@@ -31,7 +31,7 @@ class Menu extends Component {
   showTitle = () => {
     setTimeout(() => {
       this.setState({title: 0})
-    }, 15000)    
+    }, 2000)    
   }
 
   handleChange = (e) => {
@@ -49,7 +49,7 @@ class Menu extends Component {
 
   lifeSize = () => {
     this.setState({
-      title: -1,
+      // title: -1,
       xyChosen: true
     })
   }
@@ -61,7 +61,7 @@ class Menu extends Component {
             {this.state.title > 0 
             ? <Title />
             : <Fragment></Fragment>}
-            {this.state.title === 0 
+            {this.state.title < 1 && !this.state.xyChosen
             ? <LifeSize
                 handleChange={this.handleChange}
                 xy={this.state.xy}
