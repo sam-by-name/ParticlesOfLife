@@ -55,7 +55,7 @@ class Menu extends Component {
   }
 
   render() {
-    return  (
+    return (
       <div className='menuCont' >
         <div className='menuDiv' >
             {this.state.title > 0 
