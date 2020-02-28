@@ -20,9 +20,6 @@ class LifeSize extends Component{
         })
       } else clearInterval(timer)
     }, 60)
-      
-    // setTimeout(() => {
-    // }, 9200)
   }
 
   render() {

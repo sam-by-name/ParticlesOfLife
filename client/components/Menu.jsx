@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import Title from './Title'
@@ -74,17 +74,18 @@ class Menu extends Component {
                 lifeOps={this.state.lifeOps}
                 handleChange={this.handleChange}
                 xy={this.state.xy}
+                handleClick={this.handleClick}
               /> 
             : <Fragment></Fragment>
             }
-            {this.state.ready ? 
+            {/* {this.state.lifeOps > -1 ? 
               <Link to='/board'>
                 <button className='menuBtn'
                   onClick={this.handleClick}>
                     Lets Play
                 </button>
               </Link>
-            : <Fragment></Fragment>}
+            : <Fragment></Fragment>} */}
         </div>
       </div>
     )

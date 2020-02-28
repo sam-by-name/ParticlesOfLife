@@ -124,15 +124,12 @@ body {
 
 .lifeSizeDiv {
   height: 198px;
-  width:  209px;
-  /* justify-content: space-around;
-  display: flex;
-  flex-direction: column */
 }
 
 .lifeSizeTxt {
   text-align: left;
   margin: 10px auto;
+  width: 209px;
 }
 
 .menuInput {
@@ -167,12 +164,23 @@ body {
 /* Life's Options Radios */
 
 .ruleDiv {
-  height: 20vh;
+  height: 198px;
+
 }
 
 .ruleInfo {
   margin:  auto;
   /* border: 1px solid red; */
+}
+
+.ruleOpsTxt {
+  text-align: left;
+  margin: 10px auto;
+  width: 229px;
+}
+
+.lifeOps {
+  margin: 6vh auto;
 }
 
 .lifeOps label {
