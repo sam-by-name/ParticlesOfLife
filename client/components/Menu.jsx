@@ -31,7 +31,7 @@ class Menu extends Component {
   showTitle = () => {
     setTimeout(() => {
       this.setState({title: 0})
-    }, 2000)    
+    }, 400)    
   }
 
   handleChange = (e) => {

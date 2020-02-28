@@ -26,26 +26,39 @@ class LifeSize extends Component{
   }
 
   render() {
+    let x = this.state.title
     return (
-      <Fragment>
-        <h3>
-          {this.state.temp.length
-            ? this.state.title.length % 2 === 0 
-              ? this.state.title + '|' 
-              : this.state.title
-            : this.state.title}
-        </h3>  
-  
-        <input
-          className='menuInput'
-          type='text'
-          name='xy'
-          placeholder='10-50'
-          onChange={this.props.handleChange}
-          value={this.props.xy}
-        />
-        <button onClick={this.props.lifeSize}>As you wish</button>
-      </Fragment>
+      <div className='lifeSizeDiv' >
+        <h3 className='lifeSizeTxt' >
+          <span>
+            {this.state.temp.length
+              ? !x.length % 2 === 0 
+                ? x + '|' 
+                : x
+              : x}
+          </span> 
+        </h3>
+        
+        {/* <span> */}
+        {!this.state.temp.length &&
+          <input
+            className='menuInput'
+            type='text'
+            name='xy'
+            placeholder='10-50'
+            onChange={this.props.handleChange}
+            value={this.props.xy}
+          />
+        }
+        {/* </span>
+        <span> */}
+          {this.props.xy.length > 1 &&
+            <button className='menuBtn' onClick={this.props.lifeSize}>
+              Good Choice
+            </button>
+          }
+        {/* </span> */}
+      </div>
     )
   }
 }

@@ -2,9 +2,9 @@ import React from 'react'
 
 const Title = () => {
   return (
-    <h1 className='menuTitle' >
-      <span>Particles of Life</span>
-    </h1>
+    <div className='menuTitle' >
+      <span><h1>Particles of Life</h1></span>
+    </div>
   )
 }
 
