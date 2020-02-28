@@ -48,7 +48,7 @@ class Control extends Component {
 
   render() {
     return ( 
-      <div> 
+      <div className='controls' > 
         <button onClick={() => this.life(true)}>Play</button>
         <button onClick={() => this.life(false)}>Pause</button>
         <button onClick={this.next}>nextGen</button>

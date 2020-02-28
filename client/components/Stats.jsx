@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 const Stats = (props) => {
   return (
-    <div>
+    <div className='stats' >
       <h1>Stats</h1>
       <h2>No. generations: {props.gen}</h2>
       <h2>No. new born :  {props.numBorn}</h2>

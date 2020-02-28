@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 const Board = (props) => {
   return (
-    <div className='board'>
+    <div className='board' style={{width: 8 * props.xy}}>
       {props.board.map((row) => {
         return [
           <div style={{backgroundColor: row[0].color, height: '8px', width: '8px'}}
@@ -18,7 +18,6 @@ const Board = (props) => {
               ]
             })}
           </div>
-
         ]
       })}
     </div>
@@ -27,7 +26,8 @@ const Board = (props) => {
 
 const mapStateToProps = state => {
   return {
-    board: state.board
+    board: state.board,
+    xy: state.xy
   }
 }
 
