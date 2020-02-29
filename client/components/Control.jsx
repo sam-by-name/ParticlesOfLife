@@ -49,11 +49,11 @@ class Control extends Component {
   render() {
     return ( 
       <div className='controls' > 
-        <button onClick={() => this.life(true)}>Play</button>
-        <button onClick={() => this.life(false)}>Pause</button>
-        <button onClick={this.next}>nextGen</button>
-        <button onClick={this.randomize}>Randomize</button>
-        <button onClick={this.clearLife}>Clear</button>
+        <button className='menuBtn' onClick={() => this.life(true)}>Play</button>
+        <button className='menuBtn' onClick={() => this.life(false)}>Pause</button>
+        <button className='menuBtn' onClick={this.next}>nextGen</button>
+        <button className='menuBtn' onClick={this.randomize}>Randomize</button>
+        <button className='menuBtn' onClick={this.clearLife}>Clear</button>
       </div>
     )
   }

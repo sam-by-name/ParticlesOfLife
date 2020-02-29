@@ -250,4 +250,7 @@ h2 {
 .stats {
   margin: 0 auto;
   color: purple;
+  text-align: center;
+  /* display: flex;
+  flex-direction: row; */
 }
