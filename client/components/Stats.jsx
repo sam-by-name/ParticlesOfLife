@@ -3,12 +3,22 @@ import {connect} from 'react-redux'
 
 const Stats = (props) => {
   return (
-    <div>
-      <h1>Stats</h1>
-      <h2>No. generations: {props.gen}</h2>
-      <h2>No. new born :  {props.numBorn}</h2>
-      <h2>No. survivers:  {props.numEra}</h2>
-      <h2>No. evolved  :  {props.numEon}</h2>
+    <div className='stats' >
+      <h2>Stats</h2>
+      <table>
+        <tr>
+          <th>Gens</th>
+          <th>Born</th>
+          <th>Survived</th>
+          <th>Evolved</th>
+        </tr>
+        <tr>
+          <td>{props.gen}</td>
+          <td>{props.numBorn}</td>
+          <td>{props.numEra}</td>
+          <td>{props.numEon}</td>
+        </tr>
+      </table>
     </div>
   )
 }

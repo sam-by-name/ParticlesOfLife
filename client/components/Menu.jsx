@@ -1,73 +1,82 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 
-import {createBoard} from '../actions/updateBoard'
+import Title from './Title'
+import LifeSize from './LifeSize'
+import RuleOptions from './RuleOptions'
+
+import {createLife} from '../actions/updateLife'
 import {updateXy} from '../actions/updateXy'
 import {lifeRules} from '../actions/lifeRules'
-import {lifeOpsTxt} from '../../lib/lifeOpsTxt'
 
 class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
       xy: '',
-      lifeOps: 0
+      lifeOps: -1,
+      title: 15,
+      xyChosen: false,
+      ready: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleChange (e) {
+  componentDidMount() {
+    this.showTitle()
+  }
+
+  showTitle = () => {
+    setTimeout(() => {
+      this.setState({title: 0})
+    }, 4000)    
+  }
+
+  handleChange = (e) => {
     const {name, value} = e.target
     this.setState({
       [name]: value
     })
   }
 
-  handleClick () {
+  handleClick = () => {
     this.props.updateXy(this.state.xy || '50')
-    this.props.createBoard(this.state.xy || '50')
+    this.props.createLife(this.state.xy || '50')
     this.props.rules(this.state.lifeOps)
   }
 
+  lifeSize = () => {
+    this.setState({
+      // title: -1,
+      xyChosen: true
+    })
+  }
+
   render() {
-    return  (
-      <div className='mainTitle'>
-        <h1>Particles of Life</h1>
-        <input
-          type='text'
-          name='xy'
-          placeholder='10-50'
-          onChange={this.handleChange}
-          value={this.state.xy}
-        />
-        <Link to='/board'>
-          <button onClick={this.handleClick}>Lets Play</button>
-        </Link>
-
-        <div>
-          <h3>Life's Options</h3>  
-          <div className='lifeOps'>
-            <label>normal 
-              <input type='radio' name='lifeOps' value='0' checked='checked' onChange={this.handleChange}/>
-            </label>
-            <label>evolve
-              <input type='radio' name='lifeOps' value='1' onChange={this.handleChange}/>
-            </label>
-            <label>move
-              <input type='radio' name='lifeOps' value='2' onChange={this.handleChange}/>
-            </label>
-          </div>
-        </div>
-
-        <div>
-          <h3>{lifeOpsTxt[this.state.lifeOps][0]}</h3>
-          {lifeOpsTxt[this.state.lifeOps][1].map(line => {
-            return [
-              <p key={line.length}>{line}</p> // this key is not great me thinks
-            ]
-          })}
+    return (
+      <div className='menuCont' >
+        <div className='menuDiv' >
+            {this.state.title > 0 
+            ? <Title />
+            : <Fragment></Fragment>}
+            {this.state.title < 1 && !this.state.xyChosen
+            ? <LifeSize
+                handleChange={this.handleChange}
+                xy={this.state.xy}
+                lifeSize={this.lifeSize}
+              />
+            : <Fragment></Fragment>
+            }
+            {this.state.xyChosen ? 
+              <RuleOptions
+                lifeOps={this.state.lifeOps}
+                handleChange={this.handleChange}
+                xy={this.state.xy}
+                handleClick={this.handleClick}
+              /> 
+            : <Fragment></Fragment>
+            }
         </div>
       </div>
     )
@@ -75,7 +84,7 @@ class Menu extends Component {
 }
 
 const mapDispatchToProps = {
-  createBoard: arr => createBoard(arr),
+  createLife: arr => createLife(arr),
   updateXy: num => updateXy(num),
   rules: num => lifeRules(num)
 }
