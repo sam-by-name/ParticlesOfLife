@@ -11,12 +11,12 @@ body {
 
 .menuCont {
   color: red;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   display: flex;
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
 }
 
 .menuDiv {
@@ -213,20 +213,22 @@ body {
   margin:     0.5em auto;
 }
 
-/* Board */
+/* Life */
 
 h2 {
   color: green;
 }
 
-.boardCont {
-
-}
-
-.board {
+.lifeCont {
   display: flex;
   flex-direction: column;
-  margin: 25% auto 0 auto;
+  height: 100vh;
+}
+
+.life {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
 .row {
@@ -237,6 +239,7 @@ h2 {
 
 .controls {
   margin: 0 auto
+
 }
 
 .stats {

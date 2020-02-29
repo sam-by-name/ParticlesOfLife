@@ -1,11 +1,11 @@
-import {UPDATE_BOARD} from '../actions/updateBoard'
+import {UPDATE_LIFE} from '../actions/updateLife'
 import {statsChecker} from '../../lib/statsChecker'
 
 
 const stats = (stats = {}, action) => {
   switch (action.type) {
 
-    case UPDATE_BOARD:
+    case UPDATE_LIFE:
     return statsChecker(action.payload)
 
     default:

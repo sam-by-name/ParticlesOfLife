@@ -6,7 +6,7 @@ import Title from './Title'
 import LifeSize from './LifeSize'
 import RuleOptions from './RuleOptions'
 
-import {createBoard} from '../actions/updateBoard'
+import {createLife} from '../actions/updateLife'
 import {updateXy} from '../actions/updateXy'
 import {lifeRules} from '../actions/lifeRules'
 
@@ -43,7 +43,7 @@ class Menu extends Component {
 
   handleClick = () => {
     this.props.updateXy(this.state.xy || '50')
-    this.props.createBoard(this.state.xy || '50')
+    this.props.createLife(this.state.xy || '50')
     this.props.rules(this.state.lifeOps)
   }
 
@@ -93,7 +93,7 @@ class Menu extends Component {
 }
 
 const mapDispatchToProps = {
-  createBoard: arr => createBoard(arr),
+  createLife: arr => createLife(arr),
   updateXy: num => updateXy(num),
   rules: num => lifeRules(num)
 }

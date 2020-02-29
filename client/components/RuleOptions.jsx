@@ -42,14 +42,6 @@ class RuleOptions extends Component {
     }
   }
 
-  // fade = () => {
-  //   if (this.props.lifeOps < 0) {
-  //     return 'fadeOut'
-  //   } else {
-  //     setTimeout(() => {return 'fadeIn'}, 1500)
-  //   }
-  // }
-
   render() {
     let op = this.props.lifeOps
     return (
@@ -75,7 +67,7 @@ class RuleOptions extends Component {
               })}       
           </div>
           <span className={!this.state.fade ? 'fadeOut' : 'startFadeIn' } >
-            <Link to='/board'>
+            <Link to='/life'>
               <button className='menuBtn'
                 onClick={this.props.handleClick}>
                   Lets Play
