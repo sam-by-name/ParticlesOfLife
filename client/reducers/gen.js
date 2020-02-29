@@ -1,10 +1,10 @@
-import {UPDATE_BOARD} from '../actions/updateBoard'
+import {UPDATE_LIFE} from '../actions/updateLife'
 import {CLEAR} from '../actions/lifeActions'
 
 const gen = (gen = 0, action) => {
   switch (action.type) {
 
-    case UPDATE_BOARD:
+    case UPDATE_LIFE:
       return gen + 1
 
     case CLEAR:

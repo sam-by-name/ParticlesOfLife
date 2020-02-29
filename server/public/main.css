@@ -1,25 +1,239 @@
-.mainTitle {
-  color: red;
-}
+/* * {
+  border: 1px solid red;
+} */
 
 body {
+  margin: 0;
   background-color: black;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
 }
 
-h1 {
-  color: blue;
+.menuCont {
+  color: red;
+  /* margin: 0 auto; */
+  display: flex;
+  height: 100vh;
+  /* width: 100vw;
+  flex-direction: column;
+  justify-content: center; */
 }
+
+.menuDiv {
+  margin: auto;
+  /* border: 1px solid red; */
+  text-align: center;
+  display: flex;
+}
+
+.menuTitle {
+  color: blue;
+  align-content: center;
+}
+
+/* temp title trial */
+
+/* Basic styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root{
+  --bg-color: rgb(0, 0, 0);
+}
+
+/* title styles */
+.menuTitle span {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    line-height: 1.2;
+}
+
+.menuTitle span::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    animation: a-ltr-after .5s cubic-bezier(.77,0,.18,1) forwards;
+    transform: translateX(-101%);
+}
+
+.menuTitle span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    animation: a-ltr-before .5s cubic-bezier(.77,0,.18,1) forwards;
+    transform: translateX(0);
+}
+
+.menuTitle span::before,
+.menuTitle span::after {
+    animation-delay: 1s;
+}
+
+/* .menuTitle span:nth-of-type(2)::before,
+.menuTitle span:nth-of-type(2)::after{
+    animation-delay: 1.5s;
+} */
+
+@keyframes a-ltr-after {
+    0% {transform: translateX(-100%)}
+    100% {transform: translateX(101%)}
+}
+
+@keyframes a-ltr-before {
+    0% {transform: translateX(0)}
+    100% {transform: translateX(200%)}
+}
+
+/* temp */
+
+/* .lifeSizeTxt span::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  animation: a-ltr-after 1.5s cubic-bezier(.77,0,.18,1) forwards;
+  transform: translateX(-101%);
+}
+
+.lifeSizeTxt span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  animation: a-ltr-before 1.5s cubic-bezier(.77,0,.18,1) forwards;
+  transform: translateX(0);
+} */
+
+.lifeSizeDiv {
+  height: 198px;
+}
+
+.lifeSizeTxt {
+  text-align: left;
+  margin: 10px auto;
+  width: 209px;
+}
+
+.menuInput {
+  margin:   6vh auto;
+  width:    8em;
+  height:   3em;
+  text-align: center;
+  flex-direction: column;
+  display: flex;
+  background-color: black;
+  color: white;
+  border: 1px solid #522aa9bf;
+  border-radius: 5% 10% 5% 10%;
+}
+
+.menuBtn {
+  margin: auto;
+  /* flex-direction: column;
+  display: flex; */
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  border-radius: 20%;
+  padding: 5px 15px;
+}
+
+.menuBtn:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Life's Options Radios */
+
+.ruleDiv {
+  height: 198px;
+
+}
+
+.ruleInfo {
+  margin:  auto;
+  /* border: 1px solid red; */
+}
+
+.ruleOpsTxt {
+  text-align: left;
+  margin: 10px auto;
+  width: 229px;
+}
+
+.fadeOut {
+  margin: 40px auto 10px auto;
+  opacity:0;
+  /* width:0;
+  height:0; */
+  transition: opacity 0.5s 0.5s; /* width 0.5s, height 0.5s; */
+}
+
+.fadeIn {
+  margin: 40px auto 10px auto;
+  opacity:1;
+  /* width:100px;
+  height:100px; */
+  transition: opacity 0.5s 0.5s; /* width 0.5s, height 0.5s; */
+}
+
+.startFadeIn {
+  margin: 20px auto;
+  opacity:1;
+  transition: opacity 1.5s 1.5s; 
+}
+
+.opsLbl {
+  display:    inline-block;
+  text-align: center;
+  margin:     0 0.2em;
+
+}
+
+.opsLbl input[type='radio'] {
+  display:    block;
+  margin:     0.5em auto;
+}
+
+/* Life */
 
 h2 {
   color: green;
 }
 
-.board {
+.lifeCont {
+  display: flex;
+  height: 100vh;
+}
+
+.lifeDiv {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  margin: auto;
+}
+
+.life {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
 .row {
@@ -28,20 +242,15 @@ h2 {
   flex-wrap: wrap;
 }
 
-.cell {
+.controls {
+  margin: 0 auto
 
 }
 
-/* Life's Options Radios */
-
-.lifeOps label{
-  display:    inline-block;
+.stats {
+  margin: 0 auto;
+  color: purple;
   text-align: center;
-  margin:     0 0.2em;
-
-}
-
-.lifeOps label input[type='radio']{
-  display:    block;
-  margin:     0.5em auto;
+  /* display: flex;
+  flex-direction: row; */
 }
