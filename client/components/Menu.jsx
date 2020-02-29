@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react'
-// import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 import Title from './Title'
@@ -78,14 +77,6 @@ class Menu extends Component {
               /> 
             : <Fragment></Fragment>
             }
-            {/* {this.state.lifeOps > -1 ? 
-              <Link to='/board'>
-                <button className='menuBtn'
-                  onClick={this.handleClick}>
-                    Lets Play
-                </button>
-              </Link>
-            : <Fragment></Fragment>} */}
         </div>
       </div>
     )

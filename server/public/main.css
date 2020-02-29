@@ -221,8 +221,13 @@ h2 {
 
 .lifeCont {
   display: flex;
-  flex-direction: column;
   height: 100vh;
+}
+
+.lifeDiv {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
 }
 
 .life {
@@ -244,4 +249,5 @@ h2 {
 
 .stats {
   margin: 0 auto;
+  color: purple;
 }
