@@ -24,9 +24,9 @@ class Menu extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
-    this.showTitle()
-  }
+  // componentDidMount() {
+  //   this.showTitle()
+  // }
 
   showTitle = () => {
     setTimeout(() => {
