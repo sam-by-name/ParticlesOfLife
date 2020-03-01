@@ -44,9 +44,17 @@ class RuleOptions extends Component {
 
   render() {
     let op = this.props.lifeOps
+    let x = this.state.title
     return (
       <div className='ruleDiv'>
-        <h3 className='ruleOpsTxt' >{this.state.title}</h3>
+        <h3 className='ruleOpsTxt'>
+          {this.state.temp.length
+            ? !x.length % 2 === 0 
+              ? x + '|' 
+              : x
+            : x
+          }
+        </h3>
           <div className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
             <label className='opsLbl' >normal 
               <input type='radio' name='lifeOps' value='0' onChange={this.ruleFade}/>

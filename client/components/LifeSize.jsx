@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 
 class LifeSize extends Component{
   constructor (props) {
@@ -27,15 +27,13 @@ class LifeSize extends Component{
     return (
       <div className='lifeSizeDiv'>
         <h3 className='lifeSizeTxt'>
-          <span>
-            {this.state.temp.length
-              ? !x.length % 2 === 0 
-                ? x + '|' 
-                : x
-              : x}
-          </span> 
+          {this.state.temp.length
+            ? !x.length % 2 === 0 
+              ? x + '|' 
+              : x
+            : x
+          }
         </h3>
-        
         <span className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
           <input
             className='menuInput'
