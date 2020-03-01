@@ -13,10 +13,7 @@ class Control extends Component {
   life = (boo) => {
     if (boo) {
       let timer = setInterval(() => {
-        this.props.updateLife({
-          life: this.props.life,
-          rules: this.props.rules
-        }) // I do not like this, can it be refactored?
+        this.next()
       }, 100)
       this.props.startLife(timer)
     } else {
