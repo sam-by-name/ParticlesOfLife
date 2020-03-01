@@ -45,7 +45,7 @@ class RuleOptions extends Component {
   render() {
     let op = this.props.lifeOps
     return (
-      <div className='ruleDiv' >
+      <div className='ruleDiv'>
         <h3 className='ruleOpsTxt' >{this.state.title}</h3>
           <div className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
             <label className='opsLbl' >normal 
@@ -66,7 +66,7 @@ class RuleOptions extends Component {
                 ]
               })}       
           </div>
-          <span className={!this.state.fade ? 'fadeOut' : 'startFadeIn' } >
+          <span className={!this.state.fade ? 'fadeOut' : 'startFadeIn' }>
             <Link to='/life'>
               <button className='menuBtn'
                 onClick={this.props.handleClick}>

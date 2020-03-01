@@ -7,7 +7,7 @@ import Stats from './Stats'
 const Life = (props) => {
   return (
     <div className='lifeCont'>
-      <div className='lifeDiv' >
+      <div className='lifeDiv'>
         <div className='life' style={{width: 8 * props.xy}}>
           {props.life.map((row) => {
             return [

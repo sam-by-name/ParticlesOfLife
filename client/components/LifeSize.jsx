@@ -25,8 +25,8 @@ class LifeSize extends Component{
   render() {
     let x = this.state.title
     return (
-      <div className='lifeSizeDiv' >
-        <h3 className='lifeSizeTxt' >
+      <div className='lifeSizeDiv'>
+        <h3 className='lifeSizeTxt'>
           <span>
             {this.state.temp.length
               ? !x.length % 2 === 0 
@@ -36,8 +36,7 @@ class LifeSize extends Component{
           </span> 
         </h3>
         
-        {/* <span> */}
-        {!this.state.temp.length &&
+        <span className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
           <input
             className='menuInput'
             type='text'
@@ -46,15 +45,12 @@ class LifeSize extends Component{
             onChange={this.props.handleChange}
             value={this.props.xy}
           />
-        }
-        {/* </span>
-        <span> */}
-          {this.props.xy.length > 1 &&
-            <button className='menuBtn' onClick={this.props.lifeSize}>
-              Good Choice
-            </button>
-          }
-        {/* </span> */}
+        </span>
+        <span className={!this.props.xy.length ? 'fadeOut' : 'fadeIn'}>
+          <button className='menuBtn' onClick={this.props.lifeSize}>
+            Good Choice
+          </button>
+        </span>
       </div>
     )
   }
