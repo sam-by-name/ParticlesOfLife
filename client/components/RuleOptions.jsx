@@ -46,42 +46,44 @@ class RuleOptions extends Component {
     let op = this.props.lifeOps
     let x = this.state.title
     return (
-      <div className='ruleDiv'>
-        <h3 className='ruleOpsTxt'>
-          {this.state.temp.length
-            ? !x.length % 2 === 0 
-              ? x + '|' 
+      <div className={!this.props.fade ? 'fadeOut' : 'fadeIn'}>
+        <div className='ruleDiv'>
+          <h3 className='ruleOpsTxt'>
+            {this.state.temp.length
+              ? !x.length % 2 === 0 
+                ? x + '|' 
+                : x
               : x
-            : x
-          }
-        </h3>
-          <div className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
-            <label className='opsLbl' >normal 
-              <input type='radio' name='lifeOps' value='0' onChange={this.ruleFade}/>
-            </label>
-            <label className='opsLbl' >evolve
-              <input type='radio' name='lifeOps' value='1' onChange={this.ruleFade}/>
-            </label>
-            <label className='opsLbl' >move
-              <input type='radio' name='lifeOps' value='2' onChange={this.ruleFade}/>
-            </label>
-          </div>
-          <div className={!this.state.fade ? 'fadeOut' : 'fadeIn' }>
-            <h3>{lifeOpsTxt[op < 0 ? 0 : op][0]}</h3>
-              {lifeOpsTxt[op < 0 ? 0 : op][1].map(line => {
-                return [
-                  <p key={line.length}>{line}</p> // this key is not great me thinks
-                ]
-              })}       
-          </div>
-          <span className={!this.state.fade ? 'fadeOut' : 'startFadeIn' }>
-            <Link to='/life'>
-              <button className='menuBtn'
-                onClick={this.props.handleClick}>
-                  Lets Play
-              </button>
-            </Link>
-          </span>          
+            }
+          </h3>
+            <div className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
+              <label className='opsLbl' >normal 
+                <input type='radio' name='lifeOps' value='0' onChange={this.ruleFade}/>
+              </label>
+              <label className='opsLbl' >evolve
+                <input type='radio' name='lifeOps' value='1' onChange={this.ruleFade}/>
+              </label>
+              <label className='opsLbl' >move
+                <input type='radio' name='lifeOps' value='2' onChange={this.ruleFade}/>
+              </label>
+            </div>
+            <div className={!this.state.fade ? 'fadeOut' : 'fadeIn' }>
+              <h3>{lifeOpsTxt[op < 0 ? 0 : op][0]}</h3>
+                {lifeOpsTxt[op < 0 ? 0 : op][1].map(line => {
+                  return [
+                    <p key={line.length}>{line}</p> // this key is not great me thinks
+                  ]
+                })}       
+            </div>
+            <span className={!this.state.fade ? 'fadeOut' : 'startFadeIn' }>
+              {/* <Link to='/life'> */}
+                <button className='menuBtn'
+                  onClick={this.props.handleClick}>
+                    Lets Play
+                </button>
+              {/* </Link> */}
+            </span>          
+        </div>
       </div>
     )
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 import Title from './Title'
 import LifeSize from './LifeSize'
@@ -17,7 +18,7 @@ class Menu extends Component {
       lifeOps: -1,
       title: 15,
       xyChosen: false,
-      ready: false
+      fade: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
@@ -29,8 +30,11 @@ class Menu extends Component {
 
   showTitle = () => {
     setTimeout(() => {
-      this.setState({title: 0})
-    }, 40)    
+      this.setState({title: 1})
+      setTimeout(() => {
+        this.setState({title: 0})
+      }, 1000)
+    }, 4000)    
   }
 
   handleChange = (e) => {
@@ -41,42 +45,56 @@ class Menu extends Component {
   }
 
   handleClick = () => {
-    this.props.updateXy(this.state.xy || '50')
-    this.props.createLife(this.state.xy || '50')
-    this.props.rules(this.state.lifeOps)
+    this.fade()
+    setTimeout(() => {
+      this.setState({redirect: true})
+      this.props.updateXy(this.state.xy || '50')
+      this.props.createLife(this.state.xy || '50')
+      this.props.rules(this.state.lifeOps)
+    }, 1000)
   }
 
   lifeSize = () => {
-    this.setState({
-      xyChosen: true
-    })
+    this.fade()
+    setTimeout(() => {
+      this.setState({xyChosen: true})
+    }, 1000)
+  }
+
+  fade = () => {
+    this.setState({fade: !this.state.fade})
   }
 
   render() {
-    return (
-      <div className='menuCont'>
-        <div className='menuDiv'>
-            {this.state.title > 0  &&
-              <Title />
-            }
-            {(this.state.title < 1 && !this.state.xyChosen) &&
-              <LifeSize
-                handleChange={this.handleChange}
-                xy={this.state.xy}
-                lifeSize={this.lifeSize}
-              />
-            }
-            {this.state.xyChosen &&
-              <RuleOptions
-                lifeOps={this.state.lifeOps}
-                handleChange={this.handleChange}
-                xy={this.state.xy}
-                handleClick={this.handleClick}
-              />
-            }
+    if (this.state.redirect) {return <Redirect to='/life'/>}
+    else {
+      return (
+        <div className='menuCont'>
+          <div className='menuDiv'>
+              {this.state.title > 0  &&
+                <Title title={this.state.title} />
+              }
+              {(this.state.title < 1 && !this.state.xyChosen) &&
+                <LifeSize
+                  handleChange={this.handleChange}
+                  xy={this.state.xy}
+                  lifeSize={this.lifeSize}
+                  fade={this.state.fade}
+                />
+              }
+              {this.state.xyChosen &&
+                <RuleOptions
+                  lifeOps={this.state.lifeOps}
+                  handleChange={this.handleChange}
+                  xy={this.state.xy}
+                  handleClick={this.handleClick}
+                  fade={this.state.fade}
+                />
+              }
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 

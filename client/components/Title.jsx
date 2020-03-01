@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Title = () => {
+const Title = (props) => {
   return (
     <div className='menuTitle'>
-      <span><h1>Particles of Life</h1></span>
+      <span className={props.title < 2 ? 'fadeOut' : 'fadeIn'}>
+        <h1>Particles of Life</h1>
+      </span>
     </div>
   )
 }

@@ -25,30 +25,32 @@ class LifeSize extends Component{
   render() {
     let x = this.state.title
     return (
-      <div className='lifeSizeDiv'>
-        <h3 className='lifeSizeTxt'>
-          {this.state.temp.length
-            ? !x.length % 2 === 0 
-              ? x + '|' 
+      <div className={this.props.fade ? 'fadeOut' : 'fadeIn'}>
+        <div className='lifeSizeDiv'>
+          <h3 className='lifeSizeTxt'>
+            {this.state.temp.length
+              ? !x.length % 2 === 0 
+                ? x + '|' 
+                : x
               : x
-            : x
-          }
-        </h3>
-        <span className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
-          <input
-            className='menuInput'
-            type='text'
-            name='xy'
-            placeholder='10-50'
-            onChange={this.props.handleChange}
-            value={this.props.xy}
-          />
-        </span>
-        <span className={!this.props.xy.length ? 'fadeOut' : 'fadeIn'}>
-          <button className='menuBtn' onClick={this.props.lifeSize}>
-            Good Choice
-          </button>
-        </span>
+            }
+          </h3>
+          <span className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
+            <input
+              className='menuInput'
+              type='text'
+              name='xy'
+              placeholder='10-50'
+              onChange={this.props.handleChange}
+              value={this.props.xy}
+            />
+          </span>
+          <span className={!this.props.xy.length ? 'fadeOut' : 'fadeIn'}>
+            <button className='menuBtn' onClick={this.props.lifeSize}>
+              Good Choice
+            </button>
+          </span>
+        </div>
       </div>
     )
   }
