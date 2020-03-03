@@ -1,25 +1,25 @@
 import React, {Component} from 'react'
 
-import {title, flicker, arr} from '../../lib/title'
+import {title, flicker, arr, color} from '../../lib/title'
 
 class Title extends Component {
   constructor() {
     super()
     this.state = {
       title: arr(),
-      count: title[0].length * title.length
+      count: 164 // ((title[0].length * title.length) - 1) / 2
     }
   }
   componentDidMount() {
     let timer = setInterval(() => {
       if (this.state.count) {
-        let x = flicker(this.state.title, this.state.count)
+        let x = flicker(this.state.title, 2)
         this.setState({
           title: x,
           count: this.state.count - 1
         })
       } else clearInterval(timer)
-    }, 18)
+    }, 3)
 
   }
 
@@ -33,11 +33,11 @@ class Title extends Component {
   
         {this.state.title.map(arr => {
           return [
-            <div style={{backgroundColor: !arr ? 'white' : 'black', height: '6px', width: '6px'}}
+            <div style={{backgroundColor: color[arr], height: '6px', width: '6px'}}
               className='row'>
               {arr.map(indx => {
                 return [
-                  <div style={{backgroundColor: !indx ? 'white' : 'black', height: '6px', width: '6px'}}>
+                  <div style={{backgroundColor: color[indx], height: '6px', width: '6px'}}>
                   </div>
                 ]
               })}  
