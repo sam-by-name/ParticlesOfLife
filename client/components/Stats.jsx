@@ -29,10 +29,11 @@ const Stats = (props) => {
 
 const mapStatToProps = state => {
   return {
-    numBorn: state.stats.numBorn,
-    numEra: state.stats.numEra,
-    numEon: state.stats.numEon,
-    gen: state.gen
+    // born: state.stats.numBorn,
+    // era: state.stats.numEra,
+    // eon: state.stats.numEon,
+    // gen: state.state.gen
+    ...state.stats
   }
 }
 

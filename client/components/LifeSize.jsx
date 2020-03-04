@@ -20,6 +20,22 @@ class LifeSize extends Component{
         })
       } else clearInterval(timer)
     }, 60)
+    // this.type()
+  }
+
+  type = () => {
+    if (this.state.temp.length) {
+      let tl = this.state.temp
+      let char = tl.charAt(0)
+      this.setState({
+        title: this.state.title + char,
+        temp: tl.slice(1)
+      })
+    } 
+    if (this.state.temp.charAt(0) === ' ') {
+      let count = Math.floor(Math.random() * 500)
+      setTimeout(() =>  requestAnimationFrame(this.type), count)
+    } else requestAnimationFrame(this.type)
   }
 
   render() {

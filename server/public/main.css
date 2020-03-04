@@ -40,7 +40,7 @@ body {
 /* temp title trial */
 
 /* Basic styles */
-*,
+/* *,
 *::before,
 *::after {
   box-sizing: border-box;
@@ -48,10 +48,10 @@ body {
 
 :root{
   --bg-color: rgb(0, 0, 0);
-}
+} */
 
 /* title styles */
-.menuTitle span {
+/* .menuTitle span {
     position: relative;
     overflow: hidden;
     display: block;
@@ -85,14 +85,14 @@ body {
 .menuTitle span::before,
 .menuTitle span::after {
     animation-delay: 1s;
-}
+} */
 
 /* .menuTitle span:nth-of-type(2)::before,
 .menuTitle span:nth-of-type(2)::after{
     animation-delay: 1.5s;
 } */
 
-@keyframes a-ltr-after {
+/* @keyframes a-ltr-after {
     0% {transform: translateX(-100%)}
     100% {transform: translateX(101%)}
 }
@@ -100,7 +100,7 @@ body {
 @keyframes a-ltr-before {
     0% {transform: translateX(0)}
     100% {transform: translateX(200%)}
-}
+} */
 
 /* temp */
 

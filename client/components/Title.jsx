@@ -28,11 +28,13 @@ class Title extends Component {
 
   render() {
     return (
-      <div className='menuTitle' style={{width: `${title[0].length * 6}px`}}>
+      <div className={this.props.title < 2 ? 'fadeOut' : 'fadeIn'}>
+        <div className='menuTitle' style={{width: `${title[0].length * 6}px`}}>
+  
         {this.state.title.map(arr => {
           return [
             <div style={{backgroundColor: color[arr], height: '6px', width: '6px'}}
-              className='row'>
+            className='row'>
               {arr.map(indx => {
                 return [
                   <div style={{backgroundColor: color[indx], height: '6px', width: '6px'}}>
@@ -42,6 +44,7 @@ class Title extends Component {
             </div>
           ]
         })}
+        </div>
       </div>
     )
   }

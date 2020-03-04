@@ -7,23 +7,31 @@ import {createLife as create} from '../../lib/newLife'
 
 class Control extends Component {
   componentDidMount() {
-    this.life(true)
+    this.startLife()
   }
 
-  life = (boo) => {
-    if (boo) {
-      let timer = setInterval(() => {
-        this.next()
-      }, 100)
-      this.props.startLife(timer)
-    } else {
-      clearInterval(this.props.lifeState.timer)
-      this.props.stopLife()
+  startLife = () => {
+    if (!this.props.lifeState) {
+      this.props.startLife()
+      this.life()
     }
   }
 
+  life = () => {
+    this.props.updateLife({
+      life: this.props.life,
+      rules: this.props.rules,
+      raf: requestAnimationFrame(this.life)
+    }) // I do not like this, can it be refactored?
+  }
+
+  pause = () => {
+    cancelAnimationFrame(this.props.raf)
+    this.props.stopLife()
+  }
+
   clearLife = () => {
-    clearInterval(this.props.lifeState.timer)
+    cancelAnimationFrame(this.props.raf)
     this.props.stopLife()
     this.props.clear(this.props.xy)
   }
@@ -31,23 +39,25 @@ class Control extends Component {
   randomize = () => {
     this.props.clear(this.props.xy)
     this.props.updateLife({
-      life: create(this.props.xy, true),
-      rules: this.props.rules
+      life: create(this.props.xy || 50, true),
+      rules: this.props.rules,
+      raf: this.props.raf
     }) // I do not like this, can it be refactored?
   }
 
   next = () => {
     this.props.updateLife({
       life: this.props.life,
-      rules: this.props.rules
+      rules: this.props.rules,
+      raf: this.props.raf
     }) // I do not like this, can it be refactored?
   }
 
   render() {
     return ( 
       <div className='controls'> 
-        <button className='menuBtn' onClick={() => this.life(true)}>Play</button>
-        <button className='menuBtn' onClick={() => this.life(false)}>Pause</button>
+        <button className='menuBtn' onClick={this.life}>Play</button>
+        <button className='menuBtn' onClick={this.pause}>Pause</button>
         <button className='menuBtn' onClick={this.next}>nextGen</button>
         <button className='menuBtn' onClick={this.randomize}>Randomize</button>
         <button className='menuBtn' onClick={this.clearLife}>Clear</button>
@@ -61,12 +71,13 @@ const mapStateToProps = state => {
     rules: state.rules,
     life: state.life,
     lifeState: state.lifeState,
-    xy: state.xy
+    xy: state.xy,
+    raf: state.raf
   }
 }
 
 const mapDispatchToProps = {
-  updateLife: (arr) => updateLife(arr),
+  updateLife: (obj) => updateLife(obj),
   createLife: (num) => createLife(num),
   startLife: (timer) => startLife(timer),
   stopLife: () => stopLife(),

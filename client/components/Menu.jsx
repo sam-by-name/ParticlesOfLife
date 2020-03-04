@@ -16,17 +16,15 @@ class Menu extends Component {
     this.state = {
       xy: '',
       lifeOps: -1,
-      title: 15,
+      title: 2,
       xyChosen: false,
       fade: false
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleClick = this.handleClick.bind(this)
   }
 
-  // componentDidMount() {
-  //   this.showTitle()
-  // }
+  componentDidMount() {
+    this.showTitle()
+  }
 
   showTitle = () => {
     setTimeout(() => {
@@ -34,7 +32,7 @@ class Menu extends Component {
       setTimeout(() => {
         this.setState({title: 0})
       }, 1000)
-    }, 4000)    
+    }, 6000)    
   }
 
   handleChange = (e) => {
