@@ -11,28 +11,29 @@ class Control extends Component {
   }
 
   startLife = () => {
-    if (!this.props.lifeState) {
+    // if (!this.props.lifeState) {
       this.props.startLife()
       this.life()
-    }
+    // }
   }
 
   life = () => {
     this.props.updateLife({
       life: this.props.life,
       rules: this.props.rules,
-      raf: requestAnimationFrame(this.life)
+      raf: requestAnimationFrame(this.life),
+      gen: this.props.gen
     }) // I do not like this, can it be refactored?
   }
 
   pause = () => {
-    cancelAnimationFrame(this.props.raf)
     this.props.stopLife()
+    cancelAnimationFrame(this.props.raf)
   }
 
   clearLife = () => {
-    cancelAnimationFrame(this.props.raf)
     this.props.stopLife()
+    cancelAnimationFrame(this.props.raf)
     this.props.clear(this.props.xy)
   }
 
@@ -41,7 +42,8 @@ class Control extends Component {
     this.props.updateLife({
       life: create(this.props.xy || 50, true),
       rules: this.props.rules,
-      raf: this.props.raf
+      raf: this.props.raf,
+      gen: 0
     }) // I do not like this, can it be refactored?
   }
 
@@ -49,15 +51,18 @@ class Control extends Component {
     this.props.updateLife({
       life: this.props.life,
       rules: this.props.rules,
-      raf: this.props.raf
+      raf: this.props.raf,
+      gen: this.props.gen
     }) // I do not like this, can it be refactored?
   }
 
   render() {
+    let x = this.props.lifeState
     return ( 
       <div className='controls'> 
-        <button className='menuBtn' onClick={this.life}>Play</button>
-        <button className='menuBtn' onClick={this.pause}>Pause</button>
+        <button className='menuBtn' onClick={x ? this.pause : this.startLife}>
+          {x ? 'Pause' : 'Play'}
+        </button>
         <button className='menuBtn' onClick={this.next}>nextGen</button>
         <button className='menuBtn' onClick={this.randomize}>Randomize</button>
         <button className='menuBtn' onClick={this.clearLife}>Clear</button>
@@ -72,7 +77,8 @@ const mapStateToProps = state => {
     life: state.life,
     lifeState: state.lifeState,
     xy: state.xy,
-    raf: state.raf
+    raf: state.raf,
+    gen: state.stats.gen
   }
 }
 

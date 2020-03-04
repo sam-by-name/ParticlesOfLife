@@ -9,16 +9,10 @@ const lifeState = (state = false, action) => {
   switch (action.type) {
 
     case START_LIFE:
-      return {
-        isLife: true
-        // timer: action.payload
-      }
+      return true
 
     case STOP_LIFE:
-      return {
-        isLife: false
-        // timer: null
-      }
+      return false
 
     default:
       return state
