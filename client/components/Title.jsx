@@ -13,7 +13,7 @@ class Title extends Component {
   componentDidMount() {
     let timer = setInterval(() => {
       if (this.state.count) {
-        let x = flicker(this.state.title, 2)
+        let x = flicker(this.state.title, 2, 0, 0)
         this.setState({
           title: x,
           count: this.state.count - 1
