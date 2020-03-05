@@ -11,15 +11,14 @@ class Control extends Component {
   }
 
   startLife = () => {
-    // if (!this.props.lifeState) {
-      this.props.startLife()
-      this.life()
-    // }
+    this.props.startLife()
+    this.life()
   }
 
   life = () => {
     this.props.updateLife({
-      life: this.props.life,
+      lifeA: this.props.lifeA,
+      lifeB: this.props.lifeB,
       rules: this.props.rules,
       raf: requestAnimationFrame(this.life),
       gen: this.props.gen
@@ -40,7 +39,8 @@ class Control extends Component {
   randomize = () => {
     this.props.clear(this.props.xy)
     this.props.updateLife({
-      life: create(this.props.xy || 50, true),
+      lifeA: create(this.props.xy || 50, true),
+      lifeB: create(this.props.xy || 50, true),
       rules: this.props.rules,
       raf: this.props.raf,
       gen: 0
@@ -49,7 +49,8 @@ class Control extends Component {
 
   next = () => {
     this.props.updateLife({
-      life: this.props.life,
+      lifeA: this.props.lifeA,
+      lifeB: this.props.lifeB,
       rules: this.props.rules,
       raf: this.props.raf,
       gen: this.props.gen
@@ -74,7 +75,8 @@ class Control extends Component {
 const mapStateToProps = state => {
   return {
     rules: state.rules,
-    life: state.life,
+    lifeA: state.life.lifeA,
+    lifeB: state.life.lifeB,
     lifeState: state.lifeState,
     xy: state.xy,
     raf: state.raf,

@@ -32,7 +32,7 @@ class Menu extends Component {
       setTimeout(() => {
         this.setState({title: 0})
       }, 1000)
-    }, 6000)    
+    }, 600)    
   }
 
   handleChange = (e) => {
@@ -45,9 +45,9 @@ class Menu extends Component {
   handleClick = () => {
     this.fade()
     setTimeout(() => {
-      this.setState({redirect: true})
-      this.props.updateXy(this.state.xy || '50')
       this.props.createLife(this.state.xy || '50')
+      this.props.updateXy(this.state.xy || '50')
+      this.setState({redirect: true})
       this.props.rules(this.state.lifeOps)
     }, 1000)
   }
