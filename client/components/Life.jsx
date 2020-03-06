@@ -5,13 +5,11 @@ import Control from './Control'
 import Stats from './Stats'
 
 const Life = (props) => {
-  // let x = (props.gen % 2 === 0) ? props.lifeA : props.lifeB
-  let x = props.lifeA
   return (
     <div className='lifeCont'>
       <div className='lifeDiv'>
         <div className='life' style={{width: 8 * props.xy}}>
-          {x.map(row => {
+          {props.lifeA.map(row => {
             return [
               <div style={{backgroundColor: row[0].color, height: '8px', width: '8px'}}
                 className='row' key={row[0].key}
