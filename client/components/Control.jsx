@@ -21,7 +21,8 @@ class Control extends Component {
       lifeB: this.props.lifeB,
       rules: this.props.rules,
       raf: requestAnimationFrame(this.life),
-      gen: this.props.gen
+      gen: this.props.gen,
+      eon: this.props.eon
     }) // I do not like this, can it be refactored?
   }
 
@@ -43,7 +44,8 @@ class Control extends Component {
       lifeB: create(this.props.xy || 50, true),
       rules: this.props.rules,
       raf: this.props.raf,
-      gen: 0
+      gen: 0,
+      eon: []
     }) // I do not like this, can it be refactored?
   }
 
@@ -53,7 +55,8 @@ class Control extends Component {
       lifeB: this.props.lifeB,
       rules: this.props.rules,
       raf: this.props.raf,
-      gen: this.props.gen
+      gen: this.props.gen,
+      eon: this.props.eon
     }) // I do not like this, can it be refactored?
   }
 
@@ -80,7 +83,8 @@ const mapStateToProps = state => {
     lifeState: state.lifeState,
     xy: state.xy,
     raf: state.raf,
-    gen: state.stats.gen
+    gen: state.stats.gen,
+    eon: state.stats.eonPos
   }
 }
 

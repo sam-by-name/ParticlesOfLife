@@ -4,7 +4,7 @@ export const CREATE_LIFE = 'CREATE_LIFE'
 import {newLife} from '../../lib/newLife'
 
 export const updateLife = (payload) => { // refactor
-  payload = newLife(payload.lifeA, payload.lifeB, payload.rules, payload.raf, payload.gen)
+  payload = newLife(payload.lifeA, payload.lifeB, payload.rules, payload.raf, payload.gen, payload.eon)
   return {
     type: UPDATE_LIFE,
     payload
