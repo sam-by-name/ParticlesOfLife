@@ -290,7 +290,7 @@ h2 {
 
 /*  */
 
-/* .cellTrBrBLBr {
+.cellTrBrBlBr {
   border-radius: 0 50% 50% 50%;
 }
 
@@ -304,7 +304,7 @@ h2 {
 
 .cellTlTrBrBr {
   border-radius: 50% 50% 50% 0;
-} */
+}
 
 /*  */
 
@@ -326,3 +326,11 @@ h2 {
   /* display: flex;
   flex-direction: row; */
 }
+
+    
+/*  0 0 1 1 2 2
+    0 0 1 1 2 2
+    3 3 x x 4 4
+    3 3 x x 4 4
+    5 5 6 6 7 7 
+    5 5 6 6 7 7 */
