@@ -253,6 +253,8 @@ h2 {
   border-radius: 0;
 }
 
+/*  */
+
 .cellTrBr {
   border-radius: 0 50% 0 0;
 }
@@ -268,8 +270,9 @@ h2 {
 .cellTlBr {
   border-radius: 50% 0 0 0;
 }
+/*  */
 
-/* .cellTrBrBr {
+.cellTrBrBr {
   border-radius: 0 50% 50% 0;
 }
 
@@ -283,7 +286,31 @@ h2 {
 
 .cellTlTrBr {
   border-radius: 50% 50% 0 0;
+}
+
+/*  */
+
+/* .cellTrBrBLBr {
+  border-radius: 0 50% 50% 50%;
+}
+
+.cellBrBlTlBr {
+  border-radius: 50% 0 50% 50%;
+}
+
+.cellBlTlTrBr {
+  border-radius: 50% 50% 0 50%;
+}
+
+.cellTlTrBrBr {
+  border-radius: 50% 50% 50% 0;
 } */
+
+/*  */
+
+.cellAllBr {
+  border-radius: 50%;
+}
 
 
 
