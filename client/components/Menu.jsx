@@ -45,10 +45,10 @@ class Menu extends Component {
   handleClick = () => {
     this.fade()
     setTimeout(() => {
-      this.props.createLife(this.state.xy || '50')
       this.props.updateXy(this.state.xy || '50')
-      this.setState({redirect: true})
       this.props.rules(this.state.lifeOps)
+      this.props.createLife(this.state.xy || '50')
+      this.setState({redirect: true})
     }, 1000)
   }
 

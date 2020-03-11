@@ -36,8 +36,7 @@ const Life = (props) => {
 const mapStateToProps = state => {
   return {
     lifeA: state.life.lifeA,
-    xy: state.xy,
-    gen: state.stats.gen
+    xy: state.xy
   }
 }
 
