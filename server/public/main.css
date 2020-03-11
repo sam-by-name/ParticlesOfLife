@@ -246,7 +246,46 @@ h2 {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  height: 8px;
 }
+
+.cellNoBr {
+  border-radius: 0;
+}
+
+.cellTrBr {
+  border-radius: 0 50% 0 0;
+}
+
+.cellBrBr {
+  border-radius: 0 0 50% 0;
+}
+
+.cellBlBr {
+  border-radius: 0 0 0 50%;
+}
+
+.cellTlBr {
+  border-radius: 50% 0 0 0;
+}
+
+/* .cellTrBrBr {
+  border-radius: 0 50% 50% 0;
+}
+
+.cellBrBlBr {
+  border-radius: 0 0 50% 50%;
+}
+
+.cellBlTlBr {
+  border-radius: 50% 0 0 50%;
+}
+
+.cellTlTrBr {
+  border-radius: 50% 50% 0 0;
+} */
+
+
 
 .controls {
   margin: 0 auto

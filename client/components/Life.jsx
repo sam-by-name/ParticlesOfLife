@@ -11,13 +11,11 @@ const Life = (props) => {
         <div className='life' style={{width: 8 * props.xy}}>
           {props.lifeA.map(row => {
             return [
-              <div style={{backgroundColor: row[0].color, height: '8px', width: '8px'}}
-                className='row' key={row[0].key}
-              >
+              <div className='row' key={row[0].key}>
                 {row.map(cell => {
                   return [
                     <div style={{backgroundColor: cell.color, height: '8px', width: '8px'}}
-                      className='cell' key={cell.key}
+                      className={cell.class} key={cell.key}
                     >
                     </div>
                   ]
