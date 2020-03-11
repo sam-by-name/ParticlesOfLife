@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Slider from 'react-rangeslider'
 
 import {updateLife, createLife} from '../actions/updateLife'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
@@ -8,54 +9,32 @@ import {createLife as create} from '../../lib/newLife'
 class Control extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      int: 1000 / 10,
+      fps: 10
+    }
     this.raf = 0
   }
   componentDidMount() {
     this.startLife()
   }
 
-  // startLife = () => {
-  //   this.props.startLife()
-  //   this.life()
-  // }
-
-  // life = () => {
-  //   this.props.updateLife({
-  //     lifeA: this.props.lifeA,
-  //     lifeB: this.props.lifeB,
-  //     rules: this.props.rules,
-  //     raf: requestAnimationFrame(this.life),
-  //     gen: this.props.gen,
-  //     eon: this.props.eon
-  //   }) // I do not like this, can it be refactored?
-  // }
-
   startLife = () => {
     this.props.startLife()
-
     let then = performance.now()
-    let interval = 1000 / 5
-    let tolerance = 0.1
 
     let life = (now) => {
       const delta = now - then
       this.raf = requestAnimationFrame(life)
       
-      if (delta >= interval - tolerance) {
-        then = now - (delta % interval)
-        this.props.updateLife({
-          lifeA: this.props.lifeA,
-          lifeB: this.props.lifeB,
-          rules: this.props.rules,
-          gen: this.props.gen,
-          eon: this.props.eon //|| []
-        }) // I do not like this, can it be refactored?
+      if (delta >= this.state.int - 0.1) {
+        then = now - (delta % this.state.int)
+        this.next()
       }
     }
     this.raf = requestAnimationFrame(life)
   }
   
-
   pause = () => {
     this.props.stopLife()
     cancelAnimationFrame(this.raf)
@@ -88,8 +67,16 @@ class Control extends Component {
     }) // I do not like this, can it be refactored?
   }
 
+  handleChange = (value) => {
+    this.setState({
+      int: 1000 / value,
+      fps: value
+    })
+  }
+
   render() {
     let x = this.props.lifeState
+    const {fps} = this.state
     return ( 
       <div className='controls'> 
         <button className='menuBtn' onClick={x ? this.pause : this.startLife}>
@@ -98,6 +85,16 @@ class Control extends Component {
         <button className='menuBtn' onClick={this.next}>nextGen</button>
         <button className='menuBtn' onClick={this.randomize}>Randomize</button>
         <button className='menuBtn' onClick={this.clearLife}>Clear</button>
+        <div className='slider-horizontal'>
+            <Slider
+              min={0}
+              max={30}
+              value={fps}
+              orientation='horizontal'
+              onChange={this.handleChange}
+            />
+            <div style={{color: 'red', textAlign: 'center'}}className='value'>{fps}</div>
+        </div>
       </div>
     )
   }
