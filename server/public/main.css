@@ -290,6 +290,16 @@ h2 {
 
 /*  */
 
+.cellTrBlBr {
+  border-radius: 0 50%;
+}
+
+.cellBrTlBr {
+  border-radius: 50% 0;
+}
+
+/*  */
+
 .cellTrBrBlBr {
   border-radius: 0 50% 50% 50%;
 }
