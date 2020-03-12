@@ -14,9 +14,10 @@ const Life = (props) => {
               <div className='row' key={row[0].key}>
                 {row.map(cell => {
                   return [
-                    <div style={{backgroundColor: cell.color, borderRadius: cell.radius, height: '8px', width: '8px'}}
-                      className={cell.class} key={cell.key}
+                    <div style={{backgroundColor: cell.alive ? cell.color : cell.bG, borderRadius: cell.alive ? cell.radius : '0', height: '8px', width: '8px'}}
+                      key={cell.key}
                     >
+                      {!cell.alive && <div style={{backgroundColor: 'black', borderRadius: cell.radius, height: '8px', width: '8px'}}></div>}
                     </div>
                   ]
                 })}
