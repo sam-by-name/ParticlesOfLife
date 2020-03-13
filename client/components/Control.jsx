@@ -17,6 +17,7 @@ class Control extends Component {
   }
   componentDidMount() {
     this.startLife()
+    // this.lifeGo()
   }
 
   startLife = () => {
@@ -35,6 +36,12 @@ class Control extends Component {
     this.raf = requestAnimationFrame(life)
   }
   
+  // lifeGo = () => {
+  //   this.raf = setInterval(() => {
+  //     this.next()
+  //   }, 50)
+  // }
+
   pause = () => {
     this.props.stopLife()
     cancelAnimationFrame(this.raf)

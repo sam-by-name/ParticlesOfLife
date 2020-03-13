@@ -249,80 +249,6 @@ h2 {
   height: 8px;
 }
 
-/* .cellNoBr {
-  border-radius: 0;
-}
-
-/*  */
-
-.cellTrBr {
-  border-radius: 0 50% 0 0;
-}
-
-.cellBrBr {
-  border-radius: 0 0 50% 0;
-}
-
-.cellBlBr {
-  border-radius: 0 0 0 50%;
-}
-
-.cellTlBr {
-  border-radius: 50% 0 0 0;
-}
-/*  */
-
-.cellTrBrBr {
-  border-radius: 0 50% 50% 0;
-}
-
-.cellBrBlBr {
-  border-radius: 0 0 50% 50%;
-}
-
-.cellBlTlBr {
-  border-radius: 50% 0 0 50%;
-}
-
-.cellTlTrBr {
-  border-radius: 50% 50% 0 0;
-}
-
-/*  */
-
-.cellTrBlBr {
-  border-radius: 0 50%;
-}
-
-.cellBrTlBr {
-  border-radius: 50% 0;
-}
-
-/*  */
-
-.cellTrBrBlBr {
-  border-radius: 0 50% 50% 50%;
-}
-
-.cellBrBlTlBr {
-  border-radius: 50% 0 50% 50%;
-}
-
-.cellBlTlTrBr {
-  border-radius: 50% 50% 0 50%;
-}
-
-.cellTlTrBrBr {
-  border-radius: 50% 50% 50% 0;
-}
-
-/*  */
-
-.cellAllBr {
-  border-radius: 50%;
-} */
-
-
 
 .controls {
   margin: 0 auto
@@ -336,11 +262,3 @@ h2 {
   /* display: flex;
   flex-direction: row; */
 }
-
-    
-/*  0 0 1 1 2 2
-    0 0 1 1 2 2
-    3 3 x x 4 4
-    3 3 x x 4 4
-    5 5 6 6 7 7 
-    5 5 6 6 7 7 */
