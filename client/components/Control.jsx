@@ -36,11 +36,11 @@ class Control extends Component {
     this.raf = requestAnimationFrame(life)
   }
   
-  // lifeGo = () => {
-  //   this.raf = setInterval(() => {
-  //     this.next()
-  //   }, 50)
-  // }
+  lifeGo = () => {
+    this.raf = setInterval(() => {
+      this.next()
+    }, this.state.int)
+  }
 
   pause = () => {
     this.props.stopLife()
@@ -95,7 +95,7 @@ class Control extends Component {
         <div className='slider-horizontal'>
             <Slider
               min={0}
-              max={30}
+              max={20}
               value={fps}
               orientation='horizontal'
               onChange={this.handleChange}

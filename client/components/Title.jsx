@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {title, flicker, arr, color} from '../../lib/title'
+import {title, flicker, arr, border} from '../../lib/title'
 
 class Title extends Component {
   constructor() {
@@ -9,6 +9,7 @@ class Title extends Component {
       title: arr(),
       count: 164
     }
+    this.raf = 0
   }
 
   componentDidMount() {
@@ -21,8 +22,22 @@ class Title extends Component {
         title: flicker(this.state.title),
         count: this.state.count - 1
       })
-      requestAnimationFrame(this.draw)
+      this.raf = requestAnimationFrame(this.draw)
+    } else {
+      cancelAnimationFrame(this.raf)
+      this.curve()
     }
+  }
+  
+  curve = () => {
+    if (this.state.count < 1125) {
+      this.raf = requestAnimationFrame(this.curve)
+      let ti = border(this.state.title)
+      this.setState({
+        title: ti,
+        count: this.state.count + 1
+      })
+    } else cancelAnimationFrame(this.raf)    
   }
 
 
@@ -33,11 +48,17 @@ class Title extends Component {
   
         {this.state.title.map(arr => {
           return [
-            <div style={{backgroundColor: color[arr], height: '6px', width: '6px'}}
-            className='row'>
+            <div className='row'>
               {arr.map(indx => {
                 return [
-                  <div style={{backgroundColor: color[indx], height: '6px', width: '6px'}}>
+                  <div style={{backgroundColor: indx.bG ? indx.bG : indx.color,
+                               borderRadius: indx.alive ? indx.radius : '0',
+                               height: '8px', width: '8px'}}>
+                    {indx.bG &&
+                    <div style={{backgroundColor: 'black',
+                                 borderRadius: indx.radius,
+                                 height: '8px', width: '8px'}}>
+                    </div>}
                   </div>
                 ]
               })}  

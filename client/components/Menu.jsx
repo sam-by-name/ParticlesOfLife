@@ -27,12 +27,12 @@ class Menu extends Component {
   }
 
   showTitle = () => {
-    setTimeout(() => {
-      this.setState({title: 1})
-      setTimeout(() => {
-        this.setState({title: 0})
-      }, 1000)
-    }, 600)    
+    // setTimeout(() => {
+    //   this.setState({title: 1})
+    //   setTimeout(() => {
+    //     this.setState({title: 0})
+    //   }, 1000)
+    // }, 8000)    
   }
 
   handleChange = (e) => {

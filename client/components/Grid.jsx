@@ -14,7 +14,7 @@ const Grid = (props) => {
                                  height: '8px', width: '8px'}} key={cell.key}>
                     {/* <div style={{backgroundColor: cell.color, height: '8px', width: '8px'}}
                       key={cell.key}></div> */}
-                      {(cell.bG) && 
+                      {cell.bG && 
                         <div style={{backgroundColor: 'black',
                                      borderRadius: cell.radius,
                                      height: '8px', width: '8px'}}>
