@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {title, flicker, arr, border} from '../../lib/title'
+import {title, flicker, arr, border, appear, disappear} from '../../lib/title'
 
 class Title extends Component {
   constructor() {
@@ -8,7 +8,7 @@ class Title extends Component {
     this.state = {
       title: arr(),
       j: 0,
-      o: 81
+      o: 88
     }
     this.raf = 0
   }
@@ -20,17 +20,31 @@ class Title extends Component {
   draw = () => {
     if (this.state.o >= 0) {
       let q = this.state
+      let arr = appear(q.title, q.j, 0, title[0].length)
       this.setState({
-        title: flicker(q.title, q.j, q.o),
+        title: arr,
         j: q.j + 1,
         o: q.o - 1
       })
       this.raf = requestAnimationFrame(this.draw)
-    } 
-    // else {
-    //   cancelAnimationFrame(this.raf)
-    //   this.curve()
-    // }
+    }
+    else {
+      cancelAnimationFrame(this.raf)
+      this.unDraw()
+    }
+  }
+
+  unDraw = () => {
+    if (this.state.j > 0) {
+      let q = this.state
+      let arr = disappear(q.title, q.j, 14, title[0].length + 14)
+      this.setState({
+        title: arr,
+        j: q.j - 1,
+        o: q.o + 1
+      })
+      this.raf = requestAnimationFrame(this.unDraw)
+    }
   }
   
   curve = () => {
