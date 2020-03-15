@@ -7,7 +7,8 @@ class Title extends Component {
     super()
     this.state = {
       title: arr(),
-      count: 164
+      j: 0,
+      o: 81
     }
     this.raf = 0
   }
@@ -17,16 +18,19 @@ class Title extends Component {
   }
 
   draw = () => {
-    if (this.state.count) {
+    if (this.state.o >= 0) {
+      let q = this.state
       this.setState({
-        title: flicker(this.state.title),
-        count: this.state.count - 1
+        title: flicker(q.title, q.j, q.o),
+        j: q.j + 1,
+        o: q.o - 1
       })
       this.raf = requestAnimationFrame(this.draw)
-    } else {
-      cancelAnimationFrame(this.raf)
-      this.curve()
-    }
+    } 
+    // else {
+    //   cancelAnimationFrame(this.raf)
+    //   this.curve()
+    // }
   }
   
   curve = () => {
@@ -48,16 +52,16 @@ class Title extends Component {
   
         {this.state.title.map(arr => {
           return [
-            <div className='row'>
+            <div className='row' style={{height: '6px', width: '6px'}}>
               {arr.map(indx => {
                 return [
                   <div style={{backgroundColor: indx.bG ? indx.bG : indx.color,
                                borderRadius: indx.alive ? indx.radius : '0',
-                               height: '8px', width: '8px'}}>
+                               height: '6px', width: '6px'}}>
                     {indx.bG &&
                     <div style={{backgroundColor: 'black',
                                  borderRadius: indx.radius,
-                                 height: '8px', width: '8px'}}>
+                                 height: '6px', width: '6px'}}>
                     </div>}
                   </div>
                 ]
