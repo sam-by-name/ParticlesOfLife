@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {title, flicker, arr, border, appear, disappear} from '../../lib/title'
+import {title, flicker, arr, curveAppear, appear, disappear} from '../../lib/title'
 
 class Title extends Component {
   constructor() {
@@ -30,33 +30,50 @@ class Title extends Component {
     }
     else {
       cancelAnimationFrame(this.raf)
-      this.unDraw()
+      // setTimeout(() => {
+        this.curve()
+      // }, 1000)
     }
   }
 
-  unDraw = () => {
+  curve = () => {
     if (this.state.j > 0) {
       let q = this.state
-      let arr = disappear(q.title, q.j, 14, title[0].length + 14)
+      let arr = curveAppear(q.title, q.j - 1, 14, title[0].length + 13)
       this.setState({
         title: arr,
         j: q.j - 1,
         o: q.o + 1
       })
-      this.raf = requestAnimationFrame(this.unDraw)
+      this.raf = requestAnimationFrame(this.curve)
     }
+    else {
+      cancelAnimationFrame(this.raf)
+      setTimeout(() => {
+        this.unDraw()
+      }, 1000)
+    } 
+  }
+
+  unDraw = () => {
+    if (this.state.o >= 0) {
+      let q = this.state
+      let arr = disappear(q.title, q.o, 14, title[0].length + 13)
+      this.setState({
+        title: arr,
+        j: q.j + 1,
+        o: q.o - 1
+      })
+      this.raf = requestAnimationFrame(this.unDraw)
+    } 
+    // else {
+    //   cancelAnimationFrame(this.raf)
+    //   setTimeout(() => {
+    //     this.draw()
+    //   }, 1000)
+    // }
   }
   
-  curve = () => {
-    if (this.state.count < 1125) {
-      this.raf = requestAnimationFrame(this.curve)
-      let ti = border(this.state.title)
-      this.setState({
-        title: ti,
-        count: this.state.count + 1
-      })
-    } else cancelAnimationFrame(this.raf)    
-  }
 
 
   render() {
