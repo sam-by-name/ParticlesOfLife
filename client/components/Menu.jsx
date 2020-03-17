@@ -22,17 +22,10 @@ class Menu extends Component {
     }
   }
 
-  componentDidMount() {
-    this.showTitle()
-  }
-
-  showTitle = () => {
+  showLifeSize = () => {
     setTimeout(() => {
-      this.setState({title: 1})
-      setTimeout(() => {
-        this.setState({title: 0})
-      }, 1000)
-    }, 600)    
+      this.setState({title: 0})
+    }, 500)    
   }
 
   handleChange = (e) => {
@@ -45,10 +38,10 @@ class Menu extends Component {
   handleClick = () => {
     this.fade()
     setTimeout(() => {
-      this.props.createLife(this.state.xy || '50')
       this.props.updateXy(this.state.xy || '50')
-      this.setState({redirect: true})
       this.props.rules(this.state.lifeOps)
+      this.props.createLife(this.state.xy || '50')
+      this.setState({redirect: true})
     }, 1000)
   }
 
@@ -70,7 +63,10 @@ class Menu extends Component {
         <div className='menuCont'>
           <div className='menuDiv'>
               {this.state.title > 0  &&
-                <Title title={this.state.title} />
+                <Title
+                  title={this.state.title}
+                  lifeSize={this.showLifeSize}
+                />
               }
               {(this.state.title < 1 && !this.state.xyChosen) &&
                 <LifeSize

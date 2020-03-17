@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 
 import {lifeOpsTxt} from '../../lib/lifeOpsTxt'
 
@@ -66,6 +65,9 @@ class RuleOptions extends Component {
               <label className='opsLbl' >move
                 <input type='radio' name='lifeOps' value='2' onChange={this.ruleFade}/>
               </label>
+              <label className='opsLbl' >rounded
+                <input type='radio' name='lifeOps' value='3' onChange={this.ruleFade}/>
+              </label>
             </div>
             <div className={!this.state.fade ? 'fadeOut' : 'fadeIn' }>
               <h3>{lifeOpsTxt[op < 0 ? 0 : op][0]}</h3>
@@ -76,12 +78,10 @@ class RuleOptions extends Component {
                 })}       
             </div>
             <span className={!this.state.fade ? 'fadeOut' : 'startFadeIn' }>
-              {/* <Link to='/life'> */}
                 <button className='menuBtn'
                   onClick={this.props.handleClick}>
                     Lets Play
                 </button>
-              {/* </Link> */}
             </span>          
         </div>
       </div>

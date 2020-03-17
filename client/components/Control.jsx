@@ -1,39 +1,55 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Slider from 'react-rangeslider'
 
 import {updateLife, createLife} from '../actions/updateLife'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
 import {createLife as create} from '../../lib/newLife'
 
 class Control extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      int: 1000 / 10,
+      fps: 10
+    }
+    this.raf = 0
+  }
   componentDidMount() {
     this.startLife()
+    // this.lifeGo()
   }
 
   startLife = () => {
     this.props.startLife()
-    this.life()
-  }
+    let then = performance.now()
 
-  life = () => {
-    this.props.updateLife({
-      lifeA: this.props.lifeA,
-      lifeB: this.props.lifeB,
-      rules: this.props.rules,
-      raf: requestAnimationFrame(this.life),
-      gen: this.props.gen,
-      eon: this.props.eon
-    }) // I do not like this, can it be refactored?
+    let life = (now) => {
+      const delta = now - then
+      this.raf = requestAnimationFrame(life)
+      
+      if (delta >= this.state.int - 0.1) {
+        then = now - (delta % this.state.int)
+        this.next()
+      }
+    }
+    this.raf = requestAnimationFrame(life)
+  }
+  
+  lifeGo = () => {
+    this.raf = setInterval(() => {
+      this.next()
+    }, this.state.int)
   }
 
   pause = () => {
     this.props.stopLife()
-    cancelAnimationFrame(this.props.raf)
+    cancelAnimationFrame(this.raf)
   }
 
   clearLife = () => {
     this.props.stopLife()
-    cancelAnimationFrame(this.props.raf)
+    cancelAnimationFrame(this.raf)
     this.props.clear(this.props.xy)
   }
 
@@ -43,7 +59,6 @@ class Control extends Component {
       lifeA: create(this.props.xy || 50, true),
       lifeB: create(this.props.xy || 50, true),
       rules: this.props.rules,
-      raf: this.props.raf,
       gen: 0,
       eon: []
     }) // I do not like this, can it be refactored?
@@ -54,14 +69,21 @@ class Control extends Component {
       lifeA: this.props.lifeA,
       lifeB: this.props.lifeB,
       rules: this.props.rules,
-      raf: this.props.raf,
       gen: this.props.gen,
       eon: this.props.eon
     }) // I do not like this, can it be refactored?
   }
 
+  handleChange = (value) => {
+    this.setState({
+      int: 1000 / value,
+      fps: value
+    })
+  }
+
   render() {
     let x = this.props.lifeState
+    const {fps} = this.state
     return ( 
       <div className='controls'> 
         <button className='menuBtn' onClick={x ? this.pause : this.startLife}>
@@ -70,6 +92,16 @@ class Control extends Component {
         <button className='menuBtn' onClick={this.next}>nextGen</button>
         <button className='menuBtn' onClick={this.randomize}>Randomize</button>
         <button className='menuBtn' onClick={this.clearLife}>Clear</button>
+        <div className='slider-horizontal'>
+            <Slider
+              min={0}
+              max={60}
+              value={fps}
+              orientation='horizontal'
+              onChange={this.handleChange}
+            />
+            <div style={{color: 'red', textAlign: 'center'}}className='value'>{fps}</div>
+        </div>
       </div>
     )
   }
@@ -82,7 +114,6 @@ const mapStateToProps = state => {
     lifeB: state.life.lifeB,
     lifeState: state.lifeState,
     xy: state.xy,
-    raf: state.raf,
     gen: state.stats.gen,
     eon: state.stats.eonPos
   }
