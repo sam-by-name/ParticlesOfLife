@@ -4,7 +4,11 @@ const xy = (xy = 0, action) => {
   switch (action.type) {
     
     case UPDATE_XY:
-      return action.payload
+      return {
+        x: action.payload.x,
+        y: action.payload.y,
+        cell: action.payload.cell
+      }
 
     default:
       return xy

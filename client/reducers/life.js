@@ -11,8 +11,8 @@ const life = (state = obj, action) => {
 
     case CREATE_LIFE:
       return {
-        lifeA: createLife(action.payload, true),
-        lifeB: createLife(action.payload, false)
+        lifeA: createLife(action.payload.x, action.payload.y, true),
+        lifeB: createLife(action.payload.x, action.payload.y, false)
       }
 
     case UPDATE_LIFE:
@@ -23,8 +23,8 @@ const life = (state = obj, action) => {
 
     case CLEAR:
       return {
-        lifeA: createLife(action.payload, false),
-        lifeB: createLife(action.payload, false)
+        lifeA: createLife(action.payload.x, action.payload.y, false),
+        lifeB: createLife(action.payload.x, action.payload.y, false)
       }
 
     default:

@@ -50,15 +50,19 @@ class Control extends Component {
   clearLife = () => {
     this.props.stopLife()
     cancelAnimationFrame(this.raf)
-    this.props.clear(this.props.xy)
+    this.props.clear({
+      x: this.props.x,
+      y: this.props.y
+    })
   }
 
   randomize = () => {
-    this.props.clear(this.props.xy)
-    this.props.updateLife({
-      lifeA: create(this.props.xy || 50, true),
-      lifeB: create(this.props.xy || 50, true),
-      rules: this.props.rules,
+    let p = this.props
+    p.clear({x: p.x, y: p.y})
+    p.updateLife({
+      lifeA: create(p.x, p.y, true),
+      lifeB: create(p.x, p.y, true),
+      rules: p.rules,
       gen: 0,
       eon: []
     }) // I do not like this, can it be refactored?
@@ -71,7 +75,7 @@ class Control extends Component {
       rules: this.props.rules,
       gen: this.props.gen,
       eon: this.props.eon
-    }) // I do not like this, can it be refactored?
+    })
   }
 
   handleChange = (value) => {
@@ -113,7 +117,8 @@ const mapStateToProps = state => {
     lifeA: state.life.lifeA,
     lifeB: state.life.lifeB,
     lifeState: state.lifeState,
-    xy: state.xy,
+    x: state.xy.x,
+    y: state.xy.y,
     gen: state.stats.gen,
     eon: state.stats.eonPos
   }

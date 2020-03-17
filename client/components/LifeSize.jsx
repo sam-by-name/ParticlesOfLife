@@ -51,17 +51,33 @@ class LifeSize extends Component{
               : x
             }
           </h3>
-          <span className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
+          <div className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
             <input
               className='menuInput'
               type='text'
-              name='xy'
-              placeholder='10-50'
+              name='x'
+              placeholder='10-150'
               onChange={this.props.handleChange}
-              value={this.props.xy}
+              value={this.props.x}
             />
-          </span>
-          <span className={!this.props.xy.length ? 'fadeOut' : 'fadeIn'}>
+            <input
+              className='menuInput'
+              type='text'
+              name='y'
+              placeholder='10-150'
+              onChange={this.props.handleChange}
+              value={this.props.y}
+            />
+            <input
+              className='menuInput'
+              type='text'
+              name='cell'
+              placeholder='1-10'
+              onChange={this.props.handleChange}
+              value={this.props.cell}
+            />
+          </div>
+          <span className={!this.props.x.length ? 'fadeOut' : 'fadeIn'}>
             <button className='menuBtn' onClick={this.props.lifeSize}>
               Good Choice
             </button>

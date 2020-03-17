@@ -9,7 +9,7 @@ const Life = (props) => {
   return (
     <div className='lifeCont'>
       <div className='lifeDiv'>
-        <div className='life' style={{width: 8 * props.xy}}>
+        <div className='life' style={{width: props.cell * props.y}}>
           <Grid />
         </div>
         <Control/>
@@ -21,7 +21,8 @@ const Life = (props) => {
 
 const mapStateToProps = state => {
   return {
-    xy: state.xy
+    cell: state.xy.cell,
+    y: state.xy.y
   }
 }
 

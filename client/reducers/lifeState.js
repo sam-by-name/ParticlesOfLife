@@ -1,10 +1,5 @@
 import {START_LIFE, STOP_LIFE} from '../actions/lifeActions'
 
-// const firstState = {
-//   isLife: false,
-//   timer: null
-// }
-
 const lifeState = (state = false, action) => {
   switch (action.type) {
 

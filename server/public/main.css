@@ -143,8 +143,8 @@ body {
   width:    8em;
   height:   3em;
   text-align: center;
-  flex-direction: column;
-  display: flex;
+  /* display: flex; */
+  /* flex-direction: row; */
   background-color: black;
   color: white;
   border: 1px solid #522aa9bf;

@@ -14,9 +14,11 @@ class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      xy: '',
+      x: '',
+      y: '',
+      cell: '',
       lifeOps: -1,
-      title: 2,
+      title: 0, // 
       xyChosen: false,
       fade: false
     }
@@ -36,11 +38,12 @@ class Menu extends Component {
   }
 
   handleClick = () => {
+    let s = this.state
     this.fade()
     setTimeout(() => {
-      this.props.updateXy(this.state.xy || '50')
-      this.props.rules(this.state.lifeOps)
-      this.props.createLife(this.state.xy || '50')
+      this.props.updateXy({x: s.x, y: s.y, cell: s.cell})
+      this.props.rules(s.lifeOps)
+      this.props.createLife({x: s.x, y: s.y}) //
       this.setState({redirect: true})
     }, 1000)
   }
@@ -71,7 +74,9 @@ class Menu extends Component {
               {(this.state.title < 1 && !this.state.xyChosen) &&
                 <LifeSize
                   handleChange={this.handleChange}
-                  xy={this.state.xy}
+                  x={this.state.x}
+                  y={this.state.y}
+                  cell={this.state.cell}
                   lifeSize={this.lifeSize}
                   fade={this.state.fade}
                 />
@@ -80,7 +85,6 @@ class Menu extends Component {
                 <RuleOptions
                   lifeOps={this.state.lifeOps}
                   handleChange={this.handleChange}
-                  xy={this.state.xy}
                   handleClick={this.handleClick}
                   fade={this.state.fade}
                 />
