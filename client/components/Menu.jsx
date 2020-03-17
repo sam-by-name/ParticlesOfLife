@@ -22,17 +22,10 @@ class Menu extends Component {
     }
   }
 
-  componentDidMount() {
-    this.showTitle()
-  }
-
-  showTitle = () => {
-    // setTimeout(() => {
-    //   this.setState({title: 1})
-    //   setTimeout(() => {
-    //     this.setState({title: 0})
-    //   }, 1000)
-    // }, 8000)    
+  showLifeSize = () => {
+    setTimeout(() => {
+      this.setState({title: 0})
+    }, 500)    
   }
 
   handleChange = (e) => {
@@ -70,7 +63,10 @@ class Menu extends Component {
         <div className='menuCont'>
           <div className='menuDiv'>
               {this.state.title > 0  &&
-                <Title title={this.state.title} />
+                <Title
+                  title={this.state.title}
+                  lifeSize={this.showLifeSize}
+                />
               }
               {(this.state.title < 1 && !this.state.xyChosen) &&
                 <LifeSize

@@ -95,7 +95,7 @@ class Control extends Component {
         <div className='slider-horizontal'>
             <Slider
               min={0}
-              max={20}
+              max={60}
               value={fps}
               orientation='horizontal'
               onChange={this.handleChange}

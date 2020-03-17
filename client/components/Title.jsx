@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {title, flicker, arr, curveAppear, appear, disappear} from '../../lib/title'
+import {title, arr, curveAppear, appear, disappear} from '../../lib/title'
 
 class Title extends Component {
   constructor() {
@@ -30,9 +30,7 @@ class Title extends Component {
     }
     else {
       cancelAnimationFrame(this.raf)
-      // setTimeout(() => {
-        this.curve()
-      // }, 1000)
+      this.curve()
     }
   }
 
@@ -65,20 +63,14 @@ class Title extends Component {
         o: q.o - 1
       })
       this.raf = requestAnimationFrame(this.unDraw)
-    } 
-    // else {
-    //   cancelAnimationFrame(this.raf)
-    //   setTimeout(() => {
-    //     this.draw()
-    //   }, 1000)
-    // }
+    } else this.props.lifeSize()
   }
   
 
 
   render() {
     return (
-      <div className={this.props.title < 2 ? 'fadeOut' : 'fadeIn'}>
+      <div>
         <div className='menuTitle' style={{width: `${title[0].length * 6}px`}}>
   
         {this.state.title.map(arr => {
