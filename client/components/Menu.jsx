@@ -16,7 +16,6 @@ class Menu extends Component {
     this.state = {
       x: '',
       y: '',
-      cell: '',
       lifeOps: -1,
       title: 0, // 
       xyChosen: false,
@@ -41,9 +40,9 @@ class Menu extends Component {
     let s = this.state
     this.fade()
     setTimeout(() => {
-      this.props.updateXy({x: s.x, y: s.y, cell: s.cell})
+      this.props.updateXy({x: s.x, y: s.y})
       this.props.rules(s.lifeOps)
-      this.props.createLife({x: s.x, y: s.y}) //
+      this.props.createLife({x: s.x, y: s.y})
       this.setState({redirect: true})
     }, 1000)
   }
@@ -76,7 +75,6 @@ class Menu extends Component {
                   handleChange={this.handleChange}
                   x={this.state.x}
                   y={this.state.y}
-                  cell={this.state.cell}
                   lifeSize={this.lifeSize}
                   fade={this.state.fade}
                 />

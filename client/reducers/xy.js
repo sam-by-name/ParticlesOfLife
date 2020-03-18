@@ -6,8 +6,7 @@ const xy = (xy = 0, action) => {
     case UPDATE_XY:
       return {
         x: action.payload.x,
-        y: action.payload.y,
-        cell: action.payload.cell
+        y: action.payload.y
       }
 
     default:

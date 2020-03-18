@@ -36,11 +36,11 @@ class Control extends Component {
     this.raf = requestAnimationFrame(life)
   }
   
-  lifeGo = () => {
-    this.raf = setInterval(() => {
-      this.next()
-    }, this.state.int)
-  }
+  // lifeGo = () => {
+  //   this.raf = setInterval(() => {
+  //     this.next()
+  //   }, this.state.int)
+  // }
 
   pause = () => {
     this.props.stopLife()

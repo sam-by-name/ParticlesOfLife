@@ -29,8 +29,7 @@ const Grid = (props) => {
 }
 const mapStateToProps = state => {
   return {
-    lifeA: state.life.lifeA,
-    cell: state.xy.cell
+    lifeA: state.life.lifeA
   }
 }
 

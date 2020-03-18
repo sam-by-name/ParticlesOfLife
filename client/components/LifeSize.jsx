@@ -23,20 +23,20 @@ class LifeSize extends Component{
     // this.type()
   }
 
-  type = () => {
-    if (this.state.temp.length) {
-      let tl = this.state.temp
-      let char = tl.charAt(0)
-      this.setState({
-        title: this.state.title + char,
-        temp: tl.slice(1)
-      })
-    } 
-    if (this.state.temp.charAt(0) === ' ') {
-      let count = Math.floor(Math.random() * 500)
-      setTimeout(() =>  requestAnimationFrame(this.type), count)
-    } else requestAnimationFrame(this.type)
-  }
+  // type = () => {
+  //   if (this.state.temp.length) {
+  //     let tl = this.state.temp
+  //     let char = tl.charAt(0)
+  //     this.setState({
+  //       title: this.state.title + char,
+  //       temp: tl.slice(1)
+  //     })
+  //   } 
+  //   if (this.state.temp.charAt(0) === ' ') {
+  //     let count = Math.floor(Math.random() * 500)
+  //     setTimeout(() =>  requestAnimationFrame(this.type), count)
+  //   } else requestAnimationFrame(this.type)
+  // }
 
   render() {
     let x = this.state.title
@@ -67,14 +67,6 @@ class LifeSize extends Component{
               placeholder='10-150'
               onChange={this.props.handleChange}
               value={this.props.y}
-            />
-            <input
-              className='menuInput'
-              type='text'
-              name='cell'
-              placeholder='1-10'
-              onChange={this.props.handleChange}
-              value={this.props.cell}
             />
           </div>
           <span className={!this.props.x.length ? 'fadeOut' : 'fadeIn'}>
