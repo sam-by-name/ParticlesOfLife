@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 const Stats = (props) => {
   return (
     <div className='stats' >
-      <h2>Stats</h2>
+      <div className='statsTlt'>Stats</div>
       <table>
         <thead>
           <tr>

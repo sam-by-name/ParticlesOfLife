@@ -227,13 +227,14 @@ h2 {
 
 .lifeCont {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
+  flex-direction: column;
+  margin: auto;
 }
 
 .lifeDiv {
   display: flex;
-  flex-direction: column;
-  margin: auto;
+  height: 80vh;
 }
 
 .life {
@@ -250,14 +251,36 @@ h2 {
 
 
 .controls {
-  margin: 0 auto
+  margin: 0 auto;
+  height: 10vh;
+  /* bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute */
+}
 
+.ctrlBtn {
+  margin: auto;
+  /* flex-direction: column;
+  display: flex; */
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+  border-radius: 20%;
+  padding: 5px 15px;
+}
+
+.statsTlt {
+  color: Green;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .stats {
   margin: 0 auto;
   color: purple;
   text-align: center;
+  height: 10vh;
   /* display: flex;
   flex-direction: row; */
 }

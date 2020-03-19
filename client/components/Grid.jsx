@@ -6,7 +6,7 @@ const Grid = (props) => {
     <Fragment>
       {props.lifeA.map(row => {
             return [
-              <div className='row' style={{height: `${props.cell}px`}} key={row[0].key}>
+              <div className='row' style={{height: `${props.cell}px`, width: `${row.length * props.cell}px`}} key={row[0].key}>
                 {row.map(cell => {
                   return [
                     <div style={{backgroundColor: cell.bG ? cell.bG : cell.color,
