@@ -40,9 +40,9 @@ class Menu extends Component {
     let s = this.state
     this.fade()
     setTimeout(() => {
-      this.props.updateXy({x: s.x, y: s.y})
+      this.props.updateXy({x: Number(s.x), y: Number(s.y)})
       this.props.rules(s.lifeOps)
-      this.props.createLife({x: s.x, y: s.y})
+      this.props.createLife({x: Number(s.x), y: Number(s.y)})
       this.setState({redirect: true})
     }, 1000)
   }

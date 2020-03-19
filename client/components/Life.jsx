@@ -36,6 +36,7 @@ class Life extends Component {
     this.state = {
       mobile: /Mobi|Android/i.test(navigator.userAgent),
       width: window.innerWidth,
+      height: window.innerHeight,
       cell: 5,
       portrait: false,
       transform: 0
@@ -44,49 +45,76 @@ class Life extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.updateWindowDimensions)
+    this.updateWindowDimensions()
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions)
   }
-  // transform: rotate(90deg)
+
   updateWindowDimensions = () => {
-    let cell, width, portrait, transform
-    portrait = window.innerHeight > window.innerWidth ? true : false
+    let cell, width, portrait, transform = false
     let p = this.props
-    transform = portrait && (p.x < p.y) ? false : true
+    let iW = window.innerWidth
+    let iH = window.innerHeight - (window.innerHeight * (25 / 100))
+    portrait = iH > iW ? true : false
+    // if (portrait && (p.x < p.y)) transform = true
+    // else if (!portrait && (p.x > p.y)) transform = true // what if board is square?
+    // if (transform) width = window.innerHeight
+    // else width = window.innerWidth
+    
     if (this.state.mobile) { // think there are some problems here
       if (p.x > p.y && portrait) {         // board is taller than wide, window is portrait
         width = window.innerWidth
         cell = width / p.y
-        transform = 0
       } else if (p.x < p.y && portrait) {  // board is wider than tall, window is portrait
         width = (window.innerHeight / 4) * 3
         cell = width / p.x
-        transform = 90
       } else if (p.x > p.y && !portrait) { // board is taller than wide, window is landscape
         width = window.innerHeight
         cell = width / p.y
-        transform = 90
       } else if (p.x < p.y && !portrait) { // board is wider than tall, window is landscape
         width = window.innerWidth
         cell = width / p.x
-        transform = 0
       }
-    } else {
-      if (window.innerWidth < 600) {
-        cell = window.innerWidth / this.props.y
-        width = window.innerWidth
-      } else if (window.innerWidth < 1000) {
-        cell = 700 / this.props.y
-        width = 700
-      }
+    } else { // desktop
+      // if (portrait) {
+        if (iW > 1400) {
+          width = iW - (iW * (30 / 100))
+        } else if (iW > 1000) {
+          width = iW - (iW * (20 / 100))
+        } else  if (iW > 600) {
+          width = iW - (iW * (5 / 100))  
+        } else {
+          width = iW
+        }
+        let x = p.x > p.y ? p.x : p.y
+        let big = iW < iH ? iW : iH
+        cell = big / x
+      // } 
+      // else { // screen is landscape
+      //   if (window.innerWidth > 1400) {
+      //     width = width - (window.innerWidth * (20 / 100))
+      //   } else if (window.innerWidth > 1000) {
+      //     width = width - (window.innerWidth * (10 / 100))
+      //   } else  if (window.innerWidth > 600) {
+      //     width = width - (window.innerWidth * (5 / 100))  
+      //   }
+      //   cell = width / p.x
+      // }
+      // if (window.innerWidth < 600) {
+      //   cell = window.innerWidth / this.props.y
+      //   width = window.innerWidth
+      // } else if (window.innerWidth < 1000) {
+      //   cell = 700 / this.props.y
+      //   width = 700
+      // }
     }
     this.setState({
       width,
       cell,
       portrait,
-      transform
+      transform: transform ? 90 : 0
     })
   }
 
@@ -95,8 +123,8 @@ class Life extends Component {
       <div className='lifeCont'>
         <div className='lifeDiv'>
           <div className='life' style={{
-            width: this.state.width,
-            transform: `transform(${this.state.transform}deg)`
+            // width: this.state.width,
+            transform: `rotate(${this.state.transform}deg)`
           }}>
             <Grid cell={this.state.cell} />
           </div>
