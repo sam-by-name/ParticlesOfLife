@@ -74,9 +74,10 @@ class Title extends Component {
   render() {
     let p = this.props
     return (
-      <div>
-        <div className={p.title} style={{width: `${this.state.title[0].length * p.size}px`, transform: `rotate(${p.boo ? 180 : 0}deg)`}}>
-  
+      <div className={p.class} style={{
+        width: `${this.state.title[0].length * p.size}px`,
+        transform: `rotate(${p.flip ? 180 : 0}deg)`
+      }}>
         {this.state.title.map(arr => {
           return [
             <div className='row' style={{height: `${p.size}px`}}>
@@ -97,7 +98,6 @@ class Title extends Component {
             </div>
           ]
         })}
-        </div>
       </div>
     )
   }

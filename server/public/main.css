@@ -21,7 +21,6 @@ body {
 
 .menuDiv {
   margin: auto;
-  /* border: 1px solid red; */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -29,7 +28,6 @@ body {
 
 .menuTitle {
   color: blue;
-  /* align-content: center; */
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -41,10 +39,7 @@ body {
 }
 
 .lifeSizeTxt {
-  /* text-align: left; */
   margin: 10px auto;
-  /* width: 209px; */
-  font-size: 1em;
 }
 
 .menuInput {
@@ -89,9 +84,7 @@ body {
 }
 
 .ruleOpsTxt {
-  text-align: left;
   margin: 10px auto;
-  width: 229px;
 }
 
 .fadeOut {

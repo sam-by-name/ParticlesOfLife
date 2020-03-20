@@ -10,7 +10,8 @@ import {createLife} from '../actions/updateLife'
 import {updateXy} from '../actions/updateXy'
 import {lifeRules} from '../actions/lifeRules'
 
-import {arr, title} from '../../lib/title'
+import {arr} from '../../lib/title'
+import {title} from '../../lib/titleArrs'
 
 class Menu extends Component {
   constructor(props) {

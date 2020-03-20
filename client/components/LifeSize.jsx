@@ -1,19 +1,20 @@
 import React, {Component} from 'react'
 
 import Title from './Title'
-import {lifeSizeTitle, arr} from '../../lib/title'
+import {arr} from '../../lib/title'
+import {lifeSizeTitle} from '../../lib/titleArrs'
 
 class LifeSize extends Component{
   constructor (props) {
     super(props)
     this.state = {
-      boo: true,
+      // boo: true,
       fadeIn: false
     }
   }
 
   componentDidMount() {
-    
+
   }
 
   fadeIn = () => {
@@ -21,7 +22,6 @@ class LifeSize extends Component{
   }
 
   render() {
-    let x = this.state.title
     return (
       <div className={this.props.fade ? 'fadeOut' : 'fadeIn'}>
         <div className='lifeSizeDiv'>
@@ -32,6 +32,7 @@ class LifeSize extends Component{
             title={lifeSizeTitle}
             titleArr={arr(lifeSizeTitle)}
             func={this.fadeIn}
+            flip={true}
             boo={true}
           />
           <div className={this.state.fadeIn ? 'fadeIn' : 'fadeOut'}>
