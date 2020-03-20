@@ -238,8 +238,8 @@ h2 {
 }
 
 .life {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   margin: auto;
 }
 

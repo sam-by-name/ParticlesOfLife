@@ -35,10 +35,7 @@ class Life extends Component {
     super(props)
     this.state = {
       mobile: /Mobi|Android/i.test(navigator.userAgent),
-      width: window.innerWidth,
-      height: window.innerHeight,
       cell: 5,
-      portrait: false,
       transform: 0
     }
   }
@@ -53,7 +50,7 @@ class Life extends Component {
   }
 
   updateWindowDimensions = () => {
-    let cell, width, portrait, transform = false
+    let cell, portrait, transform = false
     let p = this.props
     let iW = window.innerWidth
     let iH = window.innerHeight - (window.innerHeight * (20 / 100))
@@ -62,22 +59,30 @@ class Life extends Component {
     else if (!portrait && (p.x > p.y)) transform = true // what if board is square?
     // if (transform) width = window.innerHeight
     // else width = window.innerWidth
+    let x = p.x > p.y ? p.x : p.y // x = the larger length of the board
+    let sml = iW < iH ? iW : iH // sml = the smaller length of the window
+    // if (transform) {
+    //   // x = p.x < p.y ? p.x : p.y
+    //   sml = iW > iH ? iW : iH
+    // }
+    cell = sml / x
+    // based off of ratio of screen and ratio of the board?
     
-    if (this.state.mobile) { // think there are some problems here
-      if (p.x > p.y && portrait) {         // board is taller than wide, window is portrait
-        width = window.innerWidth
-        cell = width / p.y
-      } else if (p.x < p.y && portrait) {  // board is wider than tall, window is portrait
-        width = (window.innerHeight / 4) * 3
-        cell = width / p.x
-      } else if (p.x > p.y && !portrait) { // board is taller than wide, window is landscape
-        width = window.innerHeight
-        cell = width / p.y
-      } else if (p.x < p.y && !portrait) { // board is wider than tall, window is landscape
-        width = window.innerWidth
-        cell = width / p.x
-      }
-    } else { // desktop
+    // if (this.state.mobile) { // think there are some problems here
+    //   if (p.x > p.y && portrait) {         // board is taller than wide, window is portrait
+    //     width = window.innerWidth
+    //     cell = width / p.y
+    //   } else if (p.x < p.y && portrait) {  // board is wider than tall, window is portrait
+    //     width = (window.innerHeight / 4) * 3
+    //     cell = width / p.x
+    //   } else if (p.x > p.y && !portrait) { // board is taller than wide, window is landscape
+    //     width = window.innerHeight
+    //     cell = width / p.y
+    //   } else if (p.x < p.y && !portrait) { // board is wider than tall, window is landscape
+    //     width = window.innerWidth
+    //     cell = width / p.x
+    //   }
+    // } else { // desktop
       // if (portrait) {
         // if (iW > 1400) {
         //   width = iW - (iW * (30 / 100))
@@ -88,10 +93,6 @@ class Life extends Component {
         // } else {
         //   width = iW
         // }
-        let x = p.x > p.y ? p.x : p.y // x = the larger length of the board
-        // if (transform) x = p.x < p.y ? p.x : p.y
-        let sml = iW < iH ? iW : iH // sml = the smaller length of the window
-        cell = sml / x
       // } 
       // else { // screen is landscape
       //   if (window.innerWidth > 1400) {
@@ -110,11 +111,9 @@ class Life extends Component {
       //   cell = 700 / this.props.y
       //   width = 700
       // }
-    }
+    // }
     this.setState({
-      width,
       cell,
-      portrait,
       transform: transform ? 90 : 0
     })
   }
