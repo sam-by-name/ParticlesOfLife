@@ -90,12 +90,6 @@ class Control extends Component {
     const {fps} = this.state
     return ( 
       <div className='controls'> 
-        <button className='ctrlBtn' onClick={x ? this.pause : this.startLife}>
-          {x ? 'Pause' : 'Play'}
-        </button>
-        <button className='ctrlBtn' onClick={this.next}>nextGen</button>
-        <button className='ctrlBtn' onClick={this.randomize}>Randomize</button>
-        <button className='ctrlBtn' onClick={this.clearLife}>Clear</button>
         <div className='slider-horizontal'>
           <Slider
             min={0}
@@ -106,6 +100,12 @@ class Control extends Component {
           />
           {/* <div style={{color: 'red', textAlign: 'center'}}className='value'>{fps}</div> */}
         </div>
+        <button className='ctrlBtn' onClick={x ? this.pause : this.startLife}>
+          {x ? 'Pause' : 'Play'}
+        </button>
+        <button className='ctrlBtn' onClick={this.next}>nextGen</button>
+        <button className='ctrlBtn' onClick={this.randomize}>Randomize</button>
+        <button className='ctrlBtn' onClick={this.clearLife}>Clear</button>
       </div>
     )
   }

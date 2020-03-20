@@ -35,6 +35,7 @@ class Life extends Component {
     super(props)
     this.state = {
       mobile: /Mobi|Android/i.test(navigator.userAgent),
+      portrait: false,
       cell: 5,
       transform: 0
     }
@@ -82,37 +83,9 @@ class Life extends Component {
     //     width = window.innerWidth
     //     cell = width / p.x
     //   }
-    // } else { // desktop
-      // if (portrait) {
-        // if (iW > 1400) {
-        //   width = iW - (iW * (30 / 100))
-        // } else if (iW > 1000) {
-        //   width = iW - (iW * (20 / 100))
-        // } else  if (iW > 600) {
-        //   width = iW - (iW * (5 / 100))  
-        // } else {
-        //   width = iW
-        // }
-      // } 
-      // else { // screen is landscape
-      //   if (window.innerWidth > 1400) {
-      //     width = width - (window.innerWidth * (20 / 100))
-      //   } else if (window.innerWidth > 1000) {
-      //     width = width - (window.innerWidth * (10 / 100))
-      //   } else  if (window.innerWidth > 600) {
-      //     width = width - (window.innerWidth * (5 / 100))  
-      //   }
-      //   cell = width / p.x
-      // }
-      // if (window.innerWidth < 600) {
-      //   cell = window.innerWidth / this.props.y
-      //   width = window.innerWidth
-      // } else if (window.innerWidth < 1000) {
-      //   cell = 700 / this.props.y
-      //   width = 700
-      // }
     // }
     this.setState({
+      portrait,
       cell,
       transform: transform ? 90 : 0
     })

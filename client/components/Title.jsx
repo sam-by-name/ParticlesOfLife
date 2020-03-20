@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
 
-import {title, arr, curveAppear, appear, disappear} from '../../lib/title'
+import {curveAppear, appear, disappear} from '../../lib/title'
 
 class Title extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      title: arr(),
+      title: this.props.titleArr,
       j: 0,
-      o: 88
+      o: this.props.length
     }
     this.raf = 0
   }
@@ -20,7 +20,7 @@ class Title extends Component {
   draw = () => {
     if (this.state.o >= 0) {
       let q = this.state
-      let arr = appear(q.title, q.j, 0, title[0].length)
+      let arr = appear(q.title, q.j, 0, q.title[0].length, this.props.title)
       this.setState({
         title: arr,
         j: q.j + 1,
@@ -37,7 +37,7 @@ class Title extends Component {
   curve = () => {
     if (this.state.j > 0) {
       let q = this.state
-      let arr = curveAppear(q.title, q.j - 1, 14, title[0].length + 13)
+      let arr = curveAppear(q.title, q.j - 1, 14, q.title[0].length + 13)
       this.setState({
         title: arr,
         j: q.j - 1,
@@ -45,47 +45,52 @@ class Title extends Component {
       })
       this.raf = requestAnimationFrame(this.curve)
     }
-    else {
+    else if (!this.props.boo){
       cancelAnimationFrame(this.raf)
       setTimeout(() => {
         this.unDraw()
       }, 1000)
-    } 
+    } else {
+      cancelAnimationFrame(this.raf)
+      this.props.func()
+    }
   }
 
   unDraw = () => {
     if (this.state.o >= 0) {
       let q = this.state
-      let arr = disappear(q.title, q.o, 14, title[0].length + 13)
+      let arr = disappear(q.title, q.o, 14, q.title[0].length + 13, this.props.title)
       this.setState({
         title: arr,
         j: q.j + 1,
         o: q.o - 1
       })
       this.raf = requestAnimationFrame(this.unDraw)
-    } else this.props.lifeSize()
+    } else this.props.func()
   }
   
 
 
   render() {
+    let p = this.props
     return (
       <div>
-        <div className='menuTitle' style={{width: `${title[0].length * 6}px`}}>
+        <div className={p.title} style={{width: `${this.state.title[0].length * p.size}px`, transform: `rotate(${p.boo ? 180 : 0}deg)`}}>
   
         {this.state.title.map(arr => {
           return [
-            <div className='row' style={{height: '6px', width: '6px'}}>
+            <div className='row' style={{height: `${p.size}px`}}>
               {arr.map(indx => {
                 return [
                   <div style={{backgroundColor: indx.bG ? indx.bG : indx.color,
                                borderRadius: indx.alive ? indx.radius : '0',
-                               height: '6px', width: '6px'}}>
+                               height: `${p.size}px`, width: `${p.size}px`}}>
                     {indx.bG &&
-                    <div style={{backgroundColor: 'black',
-                                 borderRadius: indx.radius,
-                                 height: '6px', width: '6px'}}>
-                    </div>}
+                      <div style={{backgroundColor: 'black',
+                                   borderRadius: indx.radius,
+                                   height: `${p.size}px`, width: `${p.size}px`}}>
+                      </div>
+                    }
                   </div>
                 ]
               })}  

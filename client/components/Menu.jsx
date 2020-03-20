@@ -10,6 +10,8 @@ import {createLife} from '../actions/updateLife'
 import {updateXy} from '../actions/updateXy'
 import {lifeRules} from '../actions/lifeRules'
 
+import {arr, title} from '../../lib/title'
+
 class Menu extends Component {
   constructor(props) {
     super(props)
@@ -17,7 +19,7 @@ class Menu extends Component {
       x: '',
       y: '',
       lifeOps: -1,
-      title: 0, // 
+      title: 2, // 
       xyChosen: false,
       fade: false
     }
@@ -66,8 +68,12 @@ class Menu extends Component {
           <div className='menuDiv'>
               {this.state.title > 0  &&
                 <Title
-                  title={this.state.title}
-                  lifeSize={this.showLifeSize}
+                  size={6}
+                  length={88}
+                  class={'menuTitle'}
+                  titleArr={arr(title)}
+                  title={title}
+                  func={this.showLifeSize}
                 />
               }
               {(this.state.title < 1 && !this.state.xyChosen) &&

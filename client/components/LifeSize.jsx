@@ -1,57 +1,40 @@
 import React, {Component} from 'react'
 
+import Title from './Title'
+import {lifeSizeTitle, arr} from '../../lib/title'
+
 class LifeSize extends Component{
   constructor (props) {
     super(props)
     this.state = {
-      title: "",
-      temp: "Life will need a size"
+      boo: true,
+      fadeIn: false
     }
   }
 
   componentDidMount() {
-    let timer = setInterval(() => {
-      if (this.state.temp.length) {
-        let tl = this.state.temp
-        let char = tl.charAt(0)
-        this.setState({
-          title: this.state.title + char,
-          temp: tl.slice(1)
-        })
-      } else clearInterval(timer)
-    }, 60)
-    // this.type()
+    
   }
 
-  // type = () => {
-  //   if (this.state.temp.length) {
-  //     let tl = this.state.temp
-  //     let char = tl.charAt(0)
-  //     this.setState({
-  //       title: this.state.title + char,
-  //       temp: tl.slice(1)
-  //     })
-  //   } 
-  //   if (this.state.temp.charAt(0) === ' ') {
-  //     let count = Math.floor(Math.random() * 500)
-  //     setTimeout(() =>  requestAnimationFrame(this.type), count)
-  //   } else requestAnimationFrame(this.type)
-  // }
+  fadeIn = () => {
+    this.setState({fadeIn: true})
+  }
 
   render() {
     let x = this.state.title
     return (
       <div className={this.props.fade ? 'fadeOut' : 'fadeIn'}>
         <div className='lifeSizeDiv'>
-          <h3 className='lifeSizeTxt'>
-            {this.state.temp.length
-              ? !x.length % 2 === 0 
-                ? x + '|' 
-                : x
-              : x
-            }
-          </h3>
-          <div className={this.state.temp.length ? 'fadeOut' : 'fadeIn'}>
+          <Title 
+            size={4}
+            length={92}
+            class={'menuTitle'}
+            title={lifeSizeTitle}
+            titleArr={arr(lifeSizeTitle)}
+            func={this.fadeIn}
+            boo={true}
+          />
+          <div className={this.state.fadeIn ? 'fadeIn' : 'fadeOut'}>
             <input
               className='menuInput'
               type='text'
@@ -69,7 +52,10 @@ class LifeSize extends Component{
               value={this.props.y}
             />
           </div>
-          <span className={!this.props.x.length ? 'fadeOut' : 'fadeIn'}>
+          <span className={
+            (this.props.x.length && this.props.y.length)
+            ? 'fadeIn' : 'fadeOut'
+          }>
             <button className='menuBtn' onClick={this.props.lifeSize}>
               Good Choice
             </button>
