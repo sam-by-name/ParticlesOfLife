@@ -27,7 +27,7 @@ class LifeSize extends Component{
         <div className='lifeSizeDiv'>
           <Title 
             size={4}
-            length={92}
+            length={88}
             class={'menuTitle'}
             title={lifeSizeTitle}
             titleArr={arr(lifeSizeTitle)}

@@ -20,7 +20,7 @@ class Menu extends Component {
       x: '',
       y: '',
       lifeOps: -1,
-      title: 2, // 
+      title: 2,
       xyChosen: false,
       fade: false
     }

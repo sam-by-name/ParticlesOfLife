@@ -45,7 +45,7 @@ class RuleOptions extends Component {
         <div className='ruleDiv'>
           <Title 
             size={4}
-            length={85}
+            length={83}
             class={'menuTitle'}
             title={ruleOpsTitle}
             titleArr={arr(ruleOpsTitle)}
