@@ -10,13 +10,10 @@ class RuleOptions extends Component {
     super(props)
     this.state = {
       fade: false,
-      // boo: true,
       fadeIn: false
     }
   }
 
-  componentDidMount() {
-  }
 
   ruleFade = (e) => {
     if (this.props.lifeOps < 0) {
@@ -44,7 +41,7 @@ class RuleOptions extends Component {
       <div className={!this.props.fade ? 'fadeOut' : 'fadeIn'}>
         <div className='ruleDiv'>
           <Title 
-            size={4}
+            size={6}
             length={83}
             class={'menuTitle'}
             title={ruleOpsTitle}

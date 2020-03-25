@@ -8,13 +8,8 @@ class LifeSize extends Component{
   constructor (props) {
     super(props)
     this.state = {
-      // boo: true,
       fadeIn: false
     }
-  }
-
-  componentDidMount() {
-
   }
 
   fadeIn = () => {
@@ -26,7 +21,7 @@ class LifeSize extends Component{
       <div className={this.props.fade ? 'fadeOut' : 'fadeIn'}>
         <div className='lifeSizeDiv'>
           <Title 
-            size={4}
+            size={6}
             length={88}
             class={'menuTitle'}
             title={lifeSizeTitle}

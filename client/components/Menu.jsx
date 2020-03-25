@@ -27,9 +27,9 @@ class Menu extends Component {
   }
 
   showLifeSize = () => {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.setState({title: 0})
-    }, 500)    
+    // }, 500)    
   }
 
   handleChange = (e) => {
@@ -42,6 +42,7 @@ class Menu extends Component {
   handleClick = () => {
     let s = this.state
     this.fade()
+    
     setTimeout(() => {
       this.props.updateXy({x: Number(s.x), y: Number(s.y)})
       this.props.rules(s.lifeOps)
@@ -69,7 +70,7 @@ class Menu extends Component {
           <div className='menuDiv'>
               {this.state.title > 0  &&
                 <Title
-                  size={6}
+                  size={8}
                   length={88}
                   class={'menuTitle'}
                   titleArr={arr(title)}
