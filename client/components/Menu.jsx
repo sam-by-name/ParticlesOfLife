@@ -47,7 +47,7 @@ class Menu extends Component {
       // change x and y based on best orientation?
       this.props.updateXy({x: Number(s.x), y: Number(s.y)})
       this.props.rules(s.lifeOps)
-      this.props.createLife({x: Number(s.x), y: Number(s.y)})
+      this.props.createLife({x: Number(s.x), y: Number(s.y), rules: s.lifeOps})
       this.setState({redirect: true})
     }, 1000)
   }

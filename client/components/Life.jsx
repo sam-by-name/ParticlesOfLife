@@ -32,6 +32,7 @@ class Life extends Component {
       lifeA: this.props.lifeA,
       lifeB: this.props.lifeB,
       boo: boo,
+      rules: this.props.rules,
       func: this.gridSwap
     })
   }
@@ -108,7 +109,8 @@ const mapStateToProps = state => {
     x: state.xy.x,
     y: state.xy.y,
     lifeA: state.life.lifeA,
-    lifeB: state.life.lifeB
+    lifeB: state.life.lifeB,
+    rules: state.rules
   }
 }
 

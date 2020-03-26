@@ -11,7 +11,7 @@ const life = (state = obj, action) => {
 
     case CREATE_LIFE:
       return {
-        lifeA: createLife(action.payload.x, action.payload.y, true),
+        lifeA: createLife(action.payload.x, action.payload.y, true, action.payload.rules),
         lifeB: createLife(action.payload.x, action.payload.y, false)
       }
 
