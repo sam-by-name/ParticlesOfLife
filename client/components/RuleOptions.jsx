@@ -14,7 +14,6 @@ class RuleOptions extends Component {
     }
   }
 
-
   ruleFade = (e) => {
     if (this.props.lifeOps < 0) {
     this.props.handleChange(e)

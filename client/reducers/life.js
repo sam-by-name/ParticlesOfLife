@@ -1,4 +1,4 @@
-import {UPDATE_LIFE, CREATE_LIFE} from '../actions/updateLife'
+import {UPDATE_LIFE, CREATE_LIFE, FADE_LIFE} from '../actions/updateLife'
 import {createLife} from '../../lib/newLife'
 import {CLEAR} from '../actions/lifeActions'
 let obj = {
@@ -19,7 +19,13 @@ const life = (state = obj, action) => {
       return {
         lifeA: action.payload.lifeA,
         lifeB: action.payload.lifeB
-      } 
+      }
+
+    case FADE_LIFE:
+      return {
+        lifeA: action.payload.lifeA,
+        lifeB: action.payload.lifeB
+      }
 
     case CLEAR:
       return {

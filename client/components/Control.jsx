@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Slider from 'react-rangeslider'
 
-import {updateLife, createLife} from '../actions/updateLife'
+import {updateLife} from '../actions/updateLife'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
-import {createLife as create} from '../../lib/newLife'
+import {createLife as create} from '../../lib/newLife.min'
 
 class Control extends Component {
   constructor(props) {
@@ -61,7 +61,7 @@ class Control extends Component {
     p.clear({x: p.x, y: p.y})
     p.updateLife({
       lifeA: create(p.x, p.y, true),
-      lifeB: create(p.x, p.y, true),
+      lifeB: create(p.x, p.y, false),
       rules: p.rules,
       gen: 0,
       eon: []
@@ -125,11 +125,10 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  updateLife: (obj) => updateLife(obj),
-  createLife: (num) => createLife(num),
-  startLife: (timer) => startLife(timer),
+  updateLife: obj => updateLife(obj),
+  startLife: timer => startLife(timer),
   stopLife: () => stopLife(),
-  clear: (num) => clear(num)
+  clear: num => clear(num)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Control)

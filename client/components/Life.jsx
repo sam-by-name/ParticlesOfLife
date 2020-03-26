@@ -4,31 +4,8 @@ import {connect} from 'react-redux'
 import Control from './Control'
 import Stats from './Stats'
 import Grid from './Grid'
-
-// const Life = (props) => {
-//   return (
-//     <div className='lifeCont'>
-//       <div className='lifeDiv'>
-//         <div className='life' style={{width: props.cell * props.y}}>
-//           <Grid />
-//         </div>
-//         <Control/>
-//         <Stats/>
-//       </div>
-//     </div>
-//   )
-// } 
-
-// const mapStateToProps = state => {
-//   return {
-//     cell: state.xy.cell,
-//     y: state.xy.y
-//   }
-// }
-
-
-// export default connect(mapStateToProps)(Life)
-
+import GridFade from './GridFade'
+import {fadeLife} from '../actions/updateLife'
 
 class Life extends Component {
   constructor(props) {
@@ -37,13 +14,32 @@ class Life extends Component {
       mobile: /Mobi|Android/i.test(navigator.userAgent),
       portrait: false,
       cell: 5,
-      transform: 0
+      transform: 0,
+      fade: true
     }
   }
 
   componentDidMount() {
     window.addEventListener('resize', this.updateWindowDimensions)
     this.updateWindowDimensions()
+    setTimeout(() => {
+      this.fade(true)
+    })
+  }
+
+  fade = (boo) => {
+    this.props.fadeLife({
+      lifeA: this.props.lifeA,
+      lifeB: this.props.lifeB,
+      boo: boo,
+      func: this.gridSwap
+    })
+  }
+
+  gridSwap = (time) => {
+    setTimeout(() => {
+      this.setState({fade: !this.state.fade})
+    }, time)
   }
 
   componentWillUnmount() {
@@ -55,17 +51,13 @@ class Life extends Component {
     let p = this.props
     let iW = window.innerWidth
     let iH = window.innerHeight - (window.innerHeight * (20 / 100))
+  
     portrait = iH > iW ? true : false
+
     if (portrait && (p.x < p.y)) transform = true
     else if (!portrait && (p.x > p.y)) transform = true // what if board is square?
-    // if (transform) width = window.innerHeight
-    // else width = window.innerWidth
     let x = p.x > p.y ? p.x : p.y // x = the larger length of the board
     let sml = iW < iH ? iW : iH // sml = the smaller length of the window
-    // if (transform) {
-    //   // x = p.x < p.y ? p.x : p.y
-    //   sml = iW > iH ? iW : iH
-    // }
     cell = sml / x
     // based off of ratio of screen and ratio of the board?
     
@@ -98,11 +90,13 @@ class Life extends Component {
           <div className='life' style={{
             transform: `rotate(${this.state.transform}deg)`
           }}>
-            <Grid cell={this.state.cell} />
+            {this.state.fade 
+              ? <GridFade cell={this.state.cell}/>
+              : <Grid cell={this.state.cell}/>}
           </div>
         </div>
-          <Control/>
-          <Stats/>
+          {!this.state.fade && <Control/>}
+          {!this.state.fade && <Stats/>}
       </div>
     )
 
@@ -112,8 +106,14 @@ class Life extends Component {
 const mapStateToProps = state => {
   return {
     x: state.xy.x,
-    y: state.xy.y
+    y: state.xy.y,
+    lifeA: state.life.lifeA,
+    lifeB: state.life.lifeB
   }
 }
 
-export default connect(mapStateToProps)(Life)
+const mapDispatchToProps = {
+  fadeLife: obj => fadeLife(obj)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Life)

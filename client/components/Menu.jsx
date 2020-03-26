@@ -20,7 +20,7 @@ class Menu extends Component {
       x: '',
       y: '',
       lifeOps: -1,
-      title: 2,
+      title: 0, // <<<< //
       xyChosen: false,
       fade: false
     }
@@ -44,6 +44,7 @@ class Menu extends Component {
     this.fade()
     
     setTimeout(() => {
+      // change x and y based on best orientation?
       this.props.updateXy({x: Number(s.x), y: Number(s.y)})
       this.props.rules(s.lifeOps)
       this.props.createLife({x: Number(s.x), y: Number(s.y)})
