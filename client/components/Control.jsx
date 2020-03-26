@@ -4,7 +4,9 @@ import Slider from 'react-rangeslider'
 
 import {updateLife} from '../actions/updateLife'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
-import {createLife as create} from '../../lib/newLife.min'
+import {fadeLife} from '../actions/updateLife'
+import {createLife as create} from '../../lib/newLife'
+import {fade, opacity} from '../../lib/fade'
 
 class Control extends Component {
   constructor(props) {
@@ -16,7 +18,7 @@ class Control extends Component {
     this.raf = 0
   }
   componentDidMount() {
-    this.startLife()
+    // this.startLife()
     // this.lifeGo()
   }
 
@@ -35,12 +37,6 @@ class Control extends Component {
     }
     this.raf = requestAnimationFrame(life)
   }
-  
-  // lifeGo = () => {
-  //   this.raf = setInterval(() => {
-  //     this.next()
-  //   }, this.state.int)
-  // }
 
   pause = () => {
     this.props.stopLife()
@@ -48,12 +44,33 @@ class Control extends Component {
   }
 
   clearLife = () => {
-    this.props.stopLife()
-    cancelAnimationFrame(this.raf)
-    this.props.clear({
-      x: this.props.x,
-      y: this.props.y
-    })
+    this.pause()
+    let {lifeA, lifeB} = opacity(this.props.lifeA, this.props.lifeB)
+    this.props.fadeLife({lifeA, lifeB})
+    this.props.gridSwap(0)
+    this.fadeOut(lifeA, lifeB)
+  }
+  
+  fadeOut = (lifeA, lifeB) => {
+    setTimeout(() => {
+      this.props.fadeLife(fade(
+        lifeA,
+        lifeB,
+        false,
+        this.props.rules,
+        this.clear
+      ))
+    }, 500)
+  }
+
+  clear = time => {
+    setTimeout(() => {
+      this.props.clear({
+        x: this.props.x,
+        y: this.props.y
+      })
+      this.props.gridSwap(0) //
+    }, time)
   }
 
   randomize = () => {
@@ -78,7 +95,7 @@ class Control extends Component {
     })
   }
 
-  handleChange = (value) => {
+  handleChange = value => {
     this.setState({
       int: 1000 / value,
       fps: value
@@ -128,7 +145,8 @@ const mapDispatchToProps = {
   updateLife: obj => updateLife(obj),
   startLife: timer => startLife(timer),
   stopLife: () => stopLife(),
-  clear: num => clear(num)
+  clear: num => clear(num),
+  fadeLife: obj => fadeLife(obj)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Control)

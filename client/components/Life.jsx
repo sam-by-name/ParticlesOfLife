@@ -6,6 +6,7 @@ import Stats from './Stats'
 import Grid from './Grid'
 import GridFade from './GridFade'
 import {fadeLife} from '../actions/updateLife'
+import {fade} from '../../lib/fade'
 
 class Life extends Component {
   constructor(props) {
@@ -28,16 +29,16 @@ class Life extends Component {
   }
 
   fade = (boo) => {
-    this.props.fadeLife({
-      lifeA: this.props.lifeA,
-      lifeB: this.props.lifeB,
-      boo: boo,
-      rules: this.props.rules,
-      func: this.gridSwap
-    })
+    this.props.fadeLife(fade(
+      this.props.lifeA,
+      this.props.lifeB,
+      boo,
+      this.props.rules,
+      this.gridSwap
+    ))
   }
 
-  gridSwap = (time) => {
+  gridSwap = time => {
     setTimeout(() => {
       this.setState({fade: !this.state.fade})
     }, time)
@@ -96,7 +97,7 @@ class Life extends Component {
               : <Grid cell={this.state.cell}/>}
           </div>
         </div>
-          {!this.state.fade && <Control/>}
+          {!this.state.fade && <Control gridSwap={this.gridSwap} />}
           {!this.state.fade && <Stats/>}
       </div>
     )
