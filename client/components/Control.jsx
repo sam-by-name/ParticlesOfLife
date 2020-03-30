@@ -43,12 +43,12 @@ class Control extends Component {
     cancelAnimationFrame(this.raf)
   }
 
-  clearLife = (func) => {
+  clearLife = (boo) => {
     if (this.props.lifeState) this.pause() // is running
     this.props.gridSwap(0)
     let {lifeA, lifeB} = opacity(this.props.lifeA, this.props.lifeB)
     this.props.fadeLife({lifeA, lifeB})
-    this.props.fade(false, func = this.clear)
+    this.props.fade(false, boo ? this.createLife : this.clear)
   }
 
   clear = time => {
@@ -64,7 +64,7 @@ class Control extends Component {
   randomize = () => {
     let p = this.props
     if (!p.lifeState) { // is paused
-      this.clearLife(this.createLife)
+      this.clearLife(true)
     } else {
       // p.clear({x: p.x, y: p.y})
       p.updateLife({
@@ -77,10 +77,12 @@ class Control extends Component {
     }
   }
 
-  createLife = () => {
+  createLife = (time) => {
     let p = this.props
-    this.props.createLife({x: p.x, y: p.y, rules: p.rules})
-    p.fade(true, p.gridSwap)
+    setTimeout(() => {
+      this.props.createLife({x: p.x, y: p.y, rules: p.rules})
+      p.fade(true, p.gridSwap)
+    }, time)
   }
 
   next = () => {
@@ -120,7 +122,7 @@ class Control extends Component {
         </button>
         <button className='ctrlBtn' onClick={this.next}>nextGen</button>
         <button className='ctrlBtn' onClick={this.randomize}>Randomize</button>
-        <button className='ctrlBtn' onClick={this.clearLife}>Clear</button>
+        <button className='ctrlBtn' onClick={() => this.clearLife(false)}>Clear</button>
       </div>
     )
   }
