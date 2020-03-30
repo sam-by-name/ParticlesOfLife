@@ -16,7 +16,8 @@ class Life extends Component {
       portrait: false,
       cell: 5,
       transform: 0,
-      fade: true
+      fade: true,
+      load: true
     }
   }
 
@@ -40,7 +41,10 @@ class Life extends Component {
 
   gridSwap = time => {
     setTimeout(() => {
-      this.setState({fade: !this.state.fade})
+      this.setState({
+        fade: !this.state.fade,
+        load: false
+      })
     }, time)
   }
 
@@ -97,12 +101,12 @@ class Life extends Component {
               : <Grid cell={this.state.cell}/>}
           </div>
         </div>
-          {!this.state.fade &&
+          {!this.state.load &&
             <Control 
               gridSwap={this.gridSwap}
               fade={this.fade}
           />}
-          {!this.state.fade && <Stats/>}
+          {!this.state.load && <Stats/>}
       </div>
     )
 
