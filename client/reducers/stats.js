@@ -1,4 +1,4 @@
-import {UPDATE_LIFE} from '../actions/updateLife'
+import {UPDATE_LIFE, FADE_LIFE} from '../actions/updateLife'
 import {CLEAR} from '../actions/lifeActions'
 import {statsChecker} from '../../lib/statsChecker'
 
@@ -7,7 +7,10 @@ const stats = (stats = {gen: 1}, action) => {
   switch (action.type) {
 
     case UPDATE_LIFE:
-    return statsChecker(action.payload)
+      return statsChecker(action.payload)
+
+    case FADE_LIFE:
+      return statsChecker(action.payload)
 
     case CLEAR:
       return {

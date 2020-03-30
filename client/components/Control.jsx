@@ -63,9 +63,9 @@ class Control extends Component {
 
   randomize = () => {
     let p = this.props
-    if (!p.lifeState && p.gen) { // is paused
+    if (!p.lifeState && p.gen) { // is paused and has a board
       this.clearLife(true)
-    } else if (!p.gen) {
+    } else if (!p.gen) {         // is paused and no board
       p.gridSwap(0)
       this.createLife(50)
     } else {
