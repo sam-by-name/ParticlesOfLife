@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Slider from 'react-rangeslider'
 
-import {updateLife} from '../actions/updateLife'
+import {updateLife, createLife} from '../actions/updateLife'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
 import {fadeLife} from '../actions/updateLife'
 import {createLife as create} from '../../lib/newLife'
-import {fade, opacity} from '../../lib/fade'
+import {opacity} from '../../lib/fade'
 
 class Control extends Component {
   constructor(props) {
@@ -43,24 +43,12 @@ class Control extends Component {
     cancelAnimationFrame(this.raf)
   }
 
-  clearLife = () => {
-    this.pause()
+  clearLife = (func) => {
+    if (this.props.lifeState) this.pause() // is running
+    this.props.gridSwap(0)
     let {lifeA, lifeB} = opacity(this.props.lifeA, this.props.lifeB)
     this.props.fadeLife({lifeA, lifeB})
-    this.props.gridSwap(0)
-    this.fadeOut(lifeA, lifeB)
-  }
-  
-  fadeOut = (lifeA, lifeB) => {
-    setTimeout(() => {
-      this.props.fadeLife(fade(
-        lifeA,
-        lifeB,
-        false,
-        this.props.rules,
-        this.clear
-      ))
-    }, 500)
+    this.props.fade(false, func = this.clear)
   }
 
   clear = time => {
@@ -69,20 +57,30 @@ class Control extends Component {
         x: this.props.x,
         y: this.props.y
       })
-      this.props.gridSwap(0) //
+      this.props.gridSwap(0)
     }, time)
   }
 
   randomize = () => {
     let p = this.props
-    p.clear({x: p.x, y: p.y})
-    p.updateLife({
-      lifeA: create(p.x, p.y, true),
-      lifeB: create(p.x, p.y, false),
-      rules: p.rules,
-      gen: 0,
-      eon: []
-    }) // I do not like this, can it be refactored?
+    if (!p.lifeState) { // is paused
+      this.clearLife(this.createLife)
+    } else {
+      // p.clear({x: p.x, y: p.y})
+      p.updateLife({
+        lifeA: create(p.x, p.y, true),
+        lifeB: create(p.x, p.y, false),
+        rules: p.rules,
+        gen: 0,
+        eon: []
+      })
+    }
+  }
+
+  createLife = () => {
+    let p = this.props
+    this.props.createLife({x: p.x, y: p.y, rules: p.rules})
+    p.fade(true, p.gridSwap)
   }
 
   next = () => {
@@ -144,6 +142,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   updateLife: obj => updateLife(obj),
   startLife: timer => startLife(timer),
+  createLife: obj => createLife(obj),
   stopLife: () => stopLife(),
   clear: num => clear(num),
   fadeLife: obj => fadeLife(obj)

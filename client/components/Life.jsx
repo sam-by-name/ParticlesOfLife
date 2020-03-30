@@ -23,19 +23,19 @@ class Life extends Component {
   componentDidMount() {
     window.addEventListener('resize', this.updateWindowDimensions)
     this.updateWindowDimensions()
-    setTimeout(() => {
-      this.fade(true)
-    })
+    this.fade(true, this.gridSwap)
   }
-
-  fade = (boo) => {
-    this.props.fadeLife(fade(
-      this.props.lifeA,
-      this.props.lifeB,
-      boo,
-      this.props.rules,
-      this.gridSwap
-    ))
+  
+  fade = (boo, func) => {
+    setTimeout(() => {
+      this.props.fadeLife(fade(
+        this.props.lifeA,
+        this.props.lifeB,
+        boo,
+        this.props.rules,
+        func
+      ))
+    }, 500)
   }
 
   gridSwap = time => {
@@ -97,7 +97,11 @@ class Life extends Component {
               : <Grid cell={this.state.cell}/>}
           </div>
         </div>
-          {!this.state.fade && <Control gridSwap={this.gridSwap} />}
+          {!this.state.fade &&
+            <Control 
+              gridSwap={this.gridSwap}
+              fade={this.fade}
+          />}
           {!this.state.fade && <Stats/>}
       </div>
     )
