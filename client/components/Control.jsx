@@ -63,10 +63,12 @@ class Control extends Component {
 
   randomize = () => {
     let p = this.props
-    if (!p.lifeState) { // is paused
+    if (!p.lifeState && p.gen) { // is paused
       this.clearLife(true)
+    } else if (!p.gen) {
+      p.gridSwap(0)
+      this.createLife(50)
     } else {
-      // p.clear({x: p.x, y: p.y})
       p.updateLife({
         lifeA: create(p.x, p.y, true),
         lifeB: create(p.x, p.y, false),
@@ -122,7 +124,7 @@ class Control extends Component {
         </button>
         <button className='ctrlBtn' onClick={this.next}>nextGen</button>
         <button className='ctrlBtn' onClick={this.randomize}>Randomize</button>
-        <button className='ctrlBtn' onClick={() => this.clearLife(false)}>Clear</button>
+        {this.props.gen && <button className='ctrlBtn' onClick={() => this.clearLife(false)}>Clear</button>}
       </div>
     )
   }
