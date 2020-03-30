@@ -18,9 +18,17 @@ class Control extends Component {
     this.raf = 0
   }
   componentDidMount() {
-    // this.startLife()
-    // this.lifeGo()
+    this.gradualLife(1000)
   }
+
+  gradualLife = (num) => {
+    if (num > this.state.int - 1) {
+      this.next()
+      setTimeout(() => {
+        this.gradualLife(num - 100)
+      }, num)
+    } else this.startLife()
+  } 
 
   startLife = () => {
     this.props.startLife()
@@ -119,7 +127,7 @@ class Control extends Component {
           />
           {/* <div style={{color: 'red', textAlign: 'center'}}className='value'>{fps}</div> */}
         </div>
-        <button className='ctrlBtn' onClick={x ? this.pause : this.startLife}>
+        <button className='ctrlBtn' onClick={x ? this.pause : () => this.gradualLife(1000)}>
           {x ? 'Pause' : 'Play'}
         </button>
         <button className='ctrlBtn' onClick={this.next}>nextGen</button>
