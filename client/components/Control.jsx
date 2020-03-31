@@ -12,23 +12,34 @@ class Control extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      int: 1000 / 10,
-      fps: 10
+      int: 1000 / 1,
+      fps: 1
     }
     this.raf = 0
   }
   componentDidMount() {
-    this.gradualLife(1000, 10)
+    this.gradualLife(true)
+    this.startLife()
   }
 
-  gradualLife = (num, inc) => {
-    if (num > this.state.int - 1) {
-      this.next()
-      setTimeout(() => {
-        if (num < 600) inc += inc
-        this.gradualLife(num - (100 + inc), inc)
-      }, num)
-    } else this.startLife()
+  gradualLife = (boo) => { //num, inc) => {
+    let s = this.state
+      let num
+      if (s.fps < 10 && boo) {
+        num = s.fps + 1
+        setTimeout(() => {
+          this.handleChange(num)
+          this.gradualLife(num === 10 ? false : true)
+        }, 1000)
+      } else if (s.fps > 6 && !boo) {
+        num = s.fps - 1
+        // if (num === 1) boo = true
+        setTimeout(() => {
+          this.handleChange(num)
+          this.gradualLife(boo)
+        }, 1000)
+      }
+
   } 
 
   startLife = () => {
@@ -128,7 +139,7 @@ class Control extends Component {
           />
           {/* <div style={{color: 'red', textAlign: 'center'}}className='value'>{fps}</div> */}
         </div>
-        <button className='ctrlBtn' onClick={x ? this.pause : () => this.gradualLife(1000, 10)}>
+        <button className='ctrlBtn' onClick={x ? this.pause : this.startLife}>
           {x ? 'Pause' : 'Play'}
         </button>
         <button className='ctrlBtn' onClick={this.next}>nextGen</button>
