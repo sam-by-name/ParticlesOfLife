@@ -137,7 +137,7 @@ class Control extends Component {
             orientation='horizontal'
             onChange={this.handleChange}
           />
-          {/* <div style={{color: 'red', textAlign: 'center'}}className='value'>{fps}</div> */}
+          <div style={{color: 'red', textAlign: 'center'}}className='value'>{fps}</div>
         </div>
         <button className='ctrlBtn' onClick={x ? this.pause : this.startLife}>
           {x ? 'Pause' : 'Play'}
