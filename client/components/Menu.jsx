@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 
 import Title from './Title'
 import LifeSize from './LifeSize'
@@ -57,7 +57,7 @@ class Menu extends Component {
   }
 
   render() {
-    if (this.state.redirect) {return <Redirect to='/life'/>}
+    if (this.state.redirect) {return <Navigate to='/life'/>}
     else {
       return (
         <div className='menuCont'>
