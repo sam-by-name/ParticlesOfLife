@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Slider from 'react-rangeslider'
+import RangeSlider from './RangeSlider'
 
 import {updateLife, createLife} from '../actions/updateLife'
 import {startLife, stopLife, clear} from '../actions/lifeActions'
@@ -33,7 +33,7 @@ class Control extends Component {
         }, 1000)
       } else if (s.fps > 6 && !boo) {
         num = s.fps - 1
-        // if (num === 1) boo = true
+        if (num === 1) boo = true
         setTimeout(() => {
           this.handleChange(num)
           this.gradualLife(boo)
@@ -130,7 +130,7 @@ class Control extends Component {
     return ( 
       <div className='controls'> 
         <div className='slider-horizontal'>
-          <Slider
+          <RangeSlider
             min={0}
             max={60}
             value={fps}
