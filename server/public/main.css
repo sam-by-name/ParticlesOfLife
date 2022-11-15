@@ -178,6 +178,12 @@ h2 {
   font-weight: bold;
 }
 
+.slider {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+}
+
 .stats {
   margin: 0 auto;
   color: purple;

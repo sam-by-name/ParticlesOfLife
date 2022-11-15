@@ -117,27 +117,27 @@ class Control extends Component {
     })
   }
 
-  handleChange = value => {
+  handleChange = fps => {
     this.setState({
-      int: 1000 / value,
-      fps: value
+      int: 1000 / fps,
+      fps
     })
   }
 
   render() {
     let x = this.props.lifeState
-    const {fps} = this.state
     return ( 
       <div className='controls'> 
         <div className='slider-horizontal'>
           <RangeSlider
             min={0}
             max={60}
-            value={fps}
+            value={this.state.fps}
+            step={1}
             orientation='horizontal'
             onChange={this.handleChange}
           />
-          <div style={{color: 'red', textAlign: 'center'}}className='value'>{fps}</div>
+          <div style={{color: 'red', textAlign: 'center'}}className='value'>{this.state.fps}</div>
         </div>
         <button className='ctrlBtn' onClick={x ? this.pause : this.startLife}>
           {x ? 'Pause' : 'Play'}
