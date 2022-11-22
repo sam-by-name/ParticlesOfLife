@@ -13,33 +13,32 @@ class Control extends Component {
     super(props)
     this.state = {
       int: 1000 / 1,
-      fps: 1
+      fps: 6
     }
     this.raf = 0
   }
   componentDidMount() {
-    this.gradualLife(true)
+    // this.gradualLife(true)
     this.startLife()
   }
 
   gradualLife = (boo) => { //num, inc) => {
     let s = this.state
-      let num
-      if (s.fps < 10 && boo) {
-        num = s.fps + 1
-        setTimeout(() => {
-          this.handleChange(num)
-          this.gradualLife(num === 10 ? false : true)
-        }, 1000)
-      } else if (s.fps > 6 && !boo) {
+    let num
+    if (s.fps < 10 && boo) {
+      num = s.fps + 1
+      setTimeout(() => {
+        this.handleChange(num)
+        this.gradualLife(num === 10 ? false : true)
+      }, 1000)
+    } else if (s.fps > 6 && !boo) {
         num = s.fps - 1
         if (num === 1) boo = true
         setTimeout(() => {
           this.handleChange(num)
           this.gradualLife(boo)
-        }, 1000)
-      }
-
+      }, 1000)
+    }
   } 
 
   startLife = () => {

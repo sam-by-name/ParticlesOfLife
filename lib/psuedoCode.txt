@@ -1,0 +1,24 @@
+Psuedo code for scalling cell/board size according to window resize, to fill the screen.
+
+The idea is, to get the dimensions of the board and the innerwindow and to make sure the board
+is oriented such that its longest side flows along the longest dimension of the innerwindow
+and to make each cell to be as large as possible, whilst keeping the board centered and within bounds
+
+// Originally I used : cell = small length of window / larger length of board.
+// This works just fine for square boards, but not rectangle boards (no duh!).
+
+function () {
+get larger length of board
+get smaller length of board
+
+get larger length of window
+get smaller length of window
+
+let cellA = small length of window / small length of board
+let cellB = large length of window / large length of board
+
+if cellB >= cellA, use cellA, else use cellB // actually it does not work
+
+}
+// the above would mean the smaller side of the board does not exceed it's avalable space.
+// but it does not maximize the available screen space used by the board

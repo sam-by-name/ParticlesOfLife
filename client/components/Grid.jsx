@@ -35,3 +35,9 @@ const mapStateToProps = state => {
 
 
 export default connect(mapStateToProps)(Grid)
+
+// Is there a way to reduce resource cost in here?
+// Seems to cost about half of total time between frames
+// New version of react replaces Fragment, createStore and Routes / Route ... ??
+// useMemo() ???
+// StrictMode ???

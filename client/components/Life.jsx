@@ -15,6 +15,9 @@ class Life extends Component {
       mobile: /Mobi|Android/i.test(navigator.userAgent),
       portrait: false,
       cell: 5,
+      margin: 'auto',
+      winH: '100%',
+      winW: '100%',
       transform: 0,
       fade: true,
       load: true
@@ -57,14 +60,38 @@ class Life extends Component {
     let p = this.props
     let iW = window.innerWidth
     let iH = window.innerHeight - (window.innerHeight * (20 / 100))
+
+    let margin
+    let winH, winW
   
     portrait = iH > iW ? true : false
 
-    if (portrait && (p.x < p.y)) transform = true
-    else if (!portrait && (p.x > p.y)) transform = true // what if board is square?
-    let x = p.x > p.y ? p.x : p.y // x = the larger length of the board
-    let sml = iW < iH ? iW : iH // sml = the smaller length of the window
-    cell = sml / x
+    if (portrait && (p.x < p.y)) transform = true // if screen is portrait and the game is landscape, rotate the board
+    else if (!portrait && (p.x > p.y)) transform = true // if screen is landscape and the game is not, rotate the board. what if board is square?
+    
+    let x = p.x > p.y ? p.x : p.y // x = the larger length of the board (original)
+//
+    let y = p.x < p.y ? p.x : p.y // y = the smaller length of the board
+//
+    let sml = iW < iH ? iW : iH // sml = the smaller length of the window (original)
+    // cell = sml / x
+    let lgl = iW > iH ? iW: iH // lgl = the larger length of the window
+    // cell = lgl / x // cell = sml / x (original)
+    let cellA = sml / y
+    let cellB = lgl / x
+    cell = cellB >= cellA ? cellA : cellB
+
+    if (transform || this.state.transform) margin = `${(iW - (cell * y)) / 2}px auto ${(iW - (cell * y)) / 2}px auto`
+    else margin = 'auto'
+
+    if (transform || this.state.transform) {
+      winH = cell * y // iW hmmm
+      winW = '100%' // cell * x
+    } else winW = undefined
+
+    // If using the larger screen dimension, margin is based off of pre-transformed state and so push's away from center.
+    // Must find a way to solve this or I cannot allow anthing other than a square ... humph
+
     // based off of ratio of screen and ratio of the board?
     
     // if (this.state.mobile) { // think there are some problems here
@@ -85,7 +112,10 @@ class Life extends Component {
     this.setState({
       portrait,
       cell,
-      transform: transform ? 90 : 0
+      transform: transform ? 90 : 0, // <<< tidy ^^^
+      winH,
+      winW,
+      margin
     })
   }
 
@@ -94,22 +124,25 @@ class Life extends Component {
       <div className='lifeCont'>
         <div className='lifeDiv'>
           <div className='life' style={{
-            transform: `rotate(${this.state.transform}deg)`
+            transform: `rotate(${this.state.transform}deg)`,
+            margin: this.state.margin,
+            height: this.state.winH,
+            width: this.state.winW
           }}>
             {this.state.fade 
               ? <GridFade cell={this.state.cell}/>
               : <Grid cell={this.state.cell}/>}
           </div>
         </div>
-          {!this.state.load &&
-            <Control 
-              gridSwap={this.gridSwap}
-              fade={this.fade}
-          />}
-          {!this.state.load && <Stats/>}
+        {!this.state.load &&
+          <Control 
+            gridSwap={this.gridSwap}
+            fade={this.fade}
+          />
+        }
+        {!this.state.load && <Stats/>}
       </div>
     )
-
   }
 } 
 

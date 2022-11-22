@@ -15,7 +15,9 @@ const store = createStore(reducers,
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <Provider store={store}>
-      <App />
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
     </Provider>,
     document.getElementById('app')
   )
